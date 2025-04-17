@@ -10,4 +10,7 @@ public class InventorySlot
         this.item = item;
         this.quantity = quantity;
     }
+
+    // Construtor sem parâmetros (obrigatório para usar new InventorySlot())
+    public InventorySlot() { }
 }
