@@ -3,10 +3,8 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 
-public class UIInventory : MonoBehaviour
+public class UIInventory : UIMenuTab
 {
-    public static UIInventory Instance;
-
     public GameObject inventoryUI;
     public Transform slotContainer;
     public GameObject slotPrefab;
@@ -21,16 +19,24 @@ public class UIInventory : MonoBehaviour
     public int rows = 4;
     public int columns = 5;
 
-    public int currentIndex = 0;
+    private int currentIndex = 0;
     private List<GameObject> slotObjects = new List<GameObject>();
     private Item nullItem;
 
+    public static UIInventory Instance;
+
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+            Instance = this;
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         inventoryUI.SetActive(false);
 
-        // Cria um item "vazio"
         nullItem = new Item
         {
             itemName = "null",
@@ -41,41 +47,15 @@ public class UIInventory : MonoBehaviour
         GenerateSlots();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            inventoryUI.SetActive(!inventoryUI.activeSelf);
-            if (inventoryUI.activeSelf)
-            {
-                currentIndex = 0;
-            }
-            UpdateUI();
-        }
-
-        if (!inventoryUI.activeSelf) return;
-
-        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) currentIndex++;
-        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) currentIndex--;
-
-        int maxIndex = rows * columns - 1;
-        currentIndex = Mathf.Clamp(currentIndex, 0, maxIndex);
-
-        Highlight(currentIndex);
-    }
-
     private void GenerateSlots()
     {
         int totalSlots = rows * columns;
-
-
 
         for (int i = 0; i < totalSlots; i++)
         {
             GameObject obj = Instantiate(slotPrefab, slotContainer);
             slotObjects.Add(obj);
 
-            // Preenche com item nulo
             InventoryManager.Instance.inventory.Add(new InventorySlot
             {
                 item = nullItem,
@@ -84,8 +64,80 @@ public class UIInventory : MonoBehaviour
         }
     }
 
+    public override void Toggle(bool open)
+    {
+        Debug.Log("UIInventory.Toggle chamado com open = " + open);
+
+        if (InputManager.Instance.CurrentState == InputState.Minigame)
+        {
+            Debug.Log("Toggle cancelado: estado é Minigame.");
+            return;
+        }
+
+        inventoryUI.SetActive(open);
+        IsOpen = open;
+
+        if (open)
+        {
+            Debug.Log("Menu do inventário aberto.");
+            currentIndex = 0;
+            UpdateUI();
+        }
+        else
+        {
+            Debug.Log("Menu do inventário fechado.");
+        }
+    }
+
+    public override void Navigate(Vector2 direction)
+    {
+        if (!IsOpen)
+        {
+            Debug.Log("Navigate cancelado: menu está fechado.");
+            return;
+        }
+
+        Debug.Log("Navigate chamado com direção: " + direction);
+
+        int newIndex = currentIndex;
+
+        if (direction == Vector2.right) newIndex += 1;
+        else if (direction == Vector2.left) newIndex -= 1;
+        else if (direction == Vector2.down) newIndex += columns;
+        else if (direction == Vector2.up) newIndex -= columns;
+
+        int maxIndex = rows * columns - 1;
+        newIndex = Mathf.Clamp(newIndex, 0, maxIndex);
+
+        if (newIndex != currentIndex)
+        {
+            Debug.Log($"Índice alterado de {currentIndex} para {newIndex}");
+            currentIndex = newIndex;
+            Highlight(currentIndex);
+        }
+        else
+        {
+            Debug.Log("Índice permaneceu o mesmo: " + currentIndex);
+        }
+    }
+
+    public override void Confirm()
+    {
+        Debug.Log("UIInventory.Confirm chamado");
+        // Implementar ações se necessário
+    }
+
+    public override void Cancel()
+    {
+        Debug.Log("UIInventory.Cancel chamado");
+        Toggle(false);
+        InputManager.Instance.SetState(InputState.Gameplay);
+    }
+
     public void UpdateUI()
     {
+        Debug.Log("UpdateUI chamado");
+
         var inventory = InventoryManager.Instance.inventory;
 
         for (int i = 0; i < slotObjects.Count; i++)
@@ -104,37 +156,45 @@ public class UIInventory : MonoBehaviour
             }
         }
 
-        
         Highlight(currentIndex);
     }
 
     private void Highlight(int index)
     {
+        Debug.Log("Highlight chamado com index = " + index);
+
         var inventory = InventoryManager.Instance.inventory;
 
         if (index < 0 || index >= inventory.Count)
+        {
+            Debug.LogWarning("Highlight cancelado: índice fora do intervalo.");
             return;
+        }
 
         var slot = inventory[index];
 
-        // Se for item "vazio", limpa destaque
         if (slot.item == null || slot.item.itemName == "null")
         {
+            Debug.Log("Slot vazio no índice " + index);
             highlightedIcon.sprite = null;
             highlightedIcon.enabled = false;
             highlightedName.text = "";
             highlightedDescription.text = "";
             highlightedQuantity.text = "";
-            highlightedLabelQuantity.text = ""; // <- Limpa o rótulo
+            highlightedLabelQuantity.text = "";
             return;
         }
+
+        Debug.Log("Slot com item encontrado: " + slot.item.itemName);
 
         highlightedIcon.sprite = slot.item.icon;
         highlightedIcon.enabled = true;
         highlightedName.text = slot.item.itemName;
         highlightedDescription.text = slot.item.description;
         highlightedQuantity.text = $"{slot.quantity}";
-        highlightedLabelQuantity.text = "Quantidade"; // <- Mostra o rótulo
+        highlightedLabelQuantity.text = "Quantidade";
     }
+
+
     public Item NullItem => nullItem;
 }

@@ -31,6 +31,24 @@ public class MoveChanPhisical : MonoBehaviour
     float weight;
     FixedJoint joint;
 
+    Vector3 moveInput;
+
+    public void SetMoveInput(float h, float v)
+    {
+        moveInput = new Vector3(h, 0, v);
+    }
+
+    public void TriggerJump()
+    {
+        jumpbtn = true;
+        jumpbtndown = true;
+    }
+
+    public void TriggerAttack()
+    {
+        anim.SetTrigger("PunchA");
+    }
+
     // Método Start é chamado antes do primeiro frame
     void Start()
     {
@@ -73,7 +91,7 @@ public class MoveChanPhisical : MonoBehaviour
     {
 
         // Atualiza o eixo de movimento com base no input do usuário
-        movaxis = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        movaxis = moveInput;
 
         // Define a animação de velocidade
         anim.SetFloat("Speed", rdb.linearVelocity.magnitude);
