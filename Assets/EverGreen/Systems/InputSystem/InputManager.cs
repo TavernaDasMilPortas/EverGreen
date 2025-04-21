@@ -35,7 +35,7 @@ public class InputManager : MonoBehaviour
                 break;
 
             case InputState.Minigame:
-                // HandleMinigameInput();
+                HandleMinigameInput();
                 break;
         }
     }
@@ -115,7 +115,17 @@ public class InputManager : MonoBehaviour
         }
 
     }
-
+    private void HandleMinigameInput()
+    {
+        foreach (char c in Input.inputString)
+        {
+            if (System.Char.IsLetterOrDigit(c))
+            {
+                KeyCode key = (KeyCode)System.Enum.Parse(typeof(KeyCode), c.ToString().ToUpper());
+                MinigameManager.Instance.HandleInput(key);
+            }
+        }
+    }
     public void SetState(InputState newState)
     {
         CurrentState = newState;
