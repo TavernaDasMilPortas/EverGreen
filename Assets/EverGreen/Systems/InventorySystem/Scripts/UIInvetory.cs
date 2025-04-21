@@ -16,8 +16,9 @@ public class UIInventory : UIMenuTab
     public TMP_Text highlightedLabelQuantity;
 
     [Header("Tamanho da grade")]
-    public int rows = 4;
-    public int columns = 5;
+    int rows;
+    int columns = 10;
+    int resto = 0;
 
     private int currentIndex = 0;
     private List<GameObject> slotObjects = new List<GameObject>();
@@ -43,17 +44,25 @@ public class UIInventory : UIMenuTab
             description = "",
             icon = null
         };
+ 
 
+    }
+    private void Start()
+    {
+        rows = Mathf.FloorToInt(InventoryManager.Instance.maxSlots / columns);
+        resto = InventoryManager.Instance.maxSlots % columns;
         GenerateSlots();
     }
 
     private void GenerateSlots()
     {
-        int totalSlots = rows * columns;
+
+        int totalSlots = (rows * columns) + resto;
 
         for (int i = 0; i < totalSlots; i++)
         {
             GameObject obj = Instantiate(slotPrefab, slotContainer);
+            Debug.Log("Slot criado: " + i);
             slotObjects.Add(obj);
 
             InventoryManager.Instance.inventory.Add(new InventorySlot
@@ -106,7 +115,7 @@ public class UIInventory : UIMenuTab
         else if (direction == Vector2.down) newIndex += columns;
         else if (direction == Vector2.up) newIndex -= columns;
 
-        int maxIndex = rows * columns - 1;
+        int maxIndex = (rows * columns) + resto - 1;
         newIndex = Mathf.Clamp(newIndex, 0, maxIndex);
 
         if (newIndex != currentIndex)

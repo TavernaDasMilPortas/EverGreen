@@ -569,8 +569,8 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 60, y: 60}
-  m_Spacing: {x: 5, y: 5}
+  m_CellSize: {x: 115, y: 115}
+  m_Spacing: {x: 15, y: 15}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &32567925926769332
@@ -635,7 +635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: []
-  maxSlots: 3
+  maxSlots: 51
 --- !u!1 &6881259408269571928
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,7 +717,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 161, y: -37}
+  m_AnchoredPosition: {x: 161, y: -48.9}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2220456812677630297
@@ -942,8 +942,6 @@ MonoBehaviour:
   highlightedDescription: {fileID: 8056431159276555510}
   highlightedQuantity: {fileID: 7783904272768358780}
   highlightedLabelQuantity: {fileID: 56609501692326177}
-  rows: 10
-  columns: 5
 --- !u!1 &8358470746789342151
 GameObject:
   m_ObjectHideFlags: 0
@@ -978,7 +976,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 301, y: -39}
+  m_AnchoredPosition: {x: 301, y: -49.3}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3230861060273832970
