@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 140928e2dc4af3d45acaaa7fc1e5e7a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 124038662}
 --- !u!114 &124038656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,8 +294,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3ab1cbb7e607346878b9fc55cbc5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 124038662}
   target: {fileID: 0}
+--- !u!95 &124038662 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95457531584545886, guid: 596dc7dadc19403380aa123308e5fd8a, type: 3}
+  m_PrefabInstance: {fileID: 1994666139}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &147128502
 GameObject:
   m_ObjectHideFlags: 0
@@ -10075,7 +10080,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: fa6f1caa96fb0cf4abb8893fafcfa634, type: 2}
+  m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
 --- !u!1001 &3027747562409238262
 PrefabInstance:
