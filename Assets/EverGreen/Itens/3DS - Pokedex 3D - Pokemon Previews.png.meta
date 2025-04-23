@@ -1,0 +1,4066 @@
+fileFormatVersion: 2
+guid: 9a51d621d6f6092429ac278409a33b18
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 2
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 38
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 344
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b518cc0825c8b3445972f480524a9ec7
+      internalID: -1951517463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_1
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 344
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 775a5fc3d7499f340a09dab3f5ad3f42
+      internalID: -2045326311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_2
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 344
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7793b45e959aaee4193ed194684d5214
+      internalID: 1859947001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_3
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 344
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00fc216a959a9534698b868177697938
+      internalID: -305139328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_4
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 344
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db40c767ec5f3674091125be393d89a9
+      internalID: 1021603500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_5
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 344
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8495bafe25e2ec441944eaa4ae637324
+      internalID: -1416829523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_6
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 344
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1e73eeb3d11d9546a95564c571e7505
+      internalID: 587776602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_7
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 344
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0775fcb805a011046be65275ace5262a
+      internalID: 480715796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_8
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 344
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 224d5b50da59408468eef9704844112a
+      internalID: -88646835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_9
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 344
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b6ea178ce77dc84ab323f99eab31a87
+      internalID: 809267055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_10
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 344
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d6226c9e762e424c896adc59e3159fe
+      internalID: 231182139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_11
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 344
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 163a9817ce9a74c48826f038a5900c5f
+      internalID: 981519643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_12
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 344
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e857eaf6e758164d867717e2fa9ac50
+      internalID: 571680104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_13
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 344
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01d84004343629246b47c41321093617
+      internalID: -376133153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_14
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 344
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea83fbcee2c51914cb00df68d029ff21
+      internalID: 2118732505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_15
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 344
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0871d76946f58c04eb1399850c22b8de
+      internalID: 414920162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_16
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 344
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a8285d01fec03840a01ec60c08b1379
+      internalID: -1465746641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 306
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f84d0447f6e024048a2b019b7ed33ec5
+      internalID: -926953501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_18
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 306
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9482f5891d7a77347a42956551f8fe87
+      internalID: 847182082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_19
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 306
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0790bab3ad95ff443884542bec7d913f
+      internalID: -230335453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_20
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 306
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3be870fdcad956247b50cdde5ccf88e0
+      internalID: 1802223341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_21
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 306
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59fb5f37b1b3e2b4cbd3231a269152f1
+      internalID: -1576537020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_22
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 306
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91c299c6375e16d44b7176be4caebfca
+      internalID: 1594505926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_23
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 306
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2135cd6221e04a146b7615f3bf7188fe
+      internalID: 1146487213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_24
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 306
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29ff66f12598ca2478716097ff01feae
+      internalID: 850900140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_25
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 306
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dc9d98ec0bcb9547b2b03ea5e107244
+      internalID: 1967260365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_26
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 306
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48ea218cdd88e984eaaab9c9b52a8917
+      internalID: -1734871324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_27
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 306
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0cfbe4092b6a294794790ca772907da
+      internalID: -1724007588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_28
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 306
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3751afc4a5f9d43408cf8e2a272d0ec5
+      internalID: -1973731225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_29
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 306
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 827cbb20e56fd634d8a5cb303636beb7
+      internalID: 789492308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_30
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 306
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47c69712c991dcf4a8da2358aacde48d
+      internalID: 985132992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_31
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 306
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 819e017ba8cd00547832f2dc5820461c
+      internalID: 1439073580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_32
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 306
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 660c04f3978210647ac7386c0f02d536
+      internalID: 415182124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_33
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 306
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b9e0ae74644f60409f26c1e541b552d
+      internalID: -587200191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_34
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 268
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 436a853a17fd32549bef8f458ef1f937
+      internalID: 168854304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_35
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 268
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b2b10a0e57839840aa401f01dc9ed97
+      internalID: 105944645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_36
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 268
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb17214a22b9a364bb55d789ac3c4f8a
+      internalID: -1640845885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_37
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 268
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63f73ae1afd1b0a428b81f027dbff2cd
+      internalID: 1222959017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_38
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 268
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a6a7c77756780345ab021bff68c2aa4
+      internalID: -1316629988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_39
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 268
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93d4bf2e22050e0418530bfc1731b21c
+      internalID: 497829795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_40
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 268
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85ed08f0f164f3845a0e7e12ecc9ceb5
+      internalID: -1843890872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_41
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 268
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a7f057f1a83cff4499290279716a81a
+      internalID: 356704828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_42
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 268
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4ce652c77989b54591127403e6c1cf2
+      internalID: 2039121758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_43
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 268
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e07cd70c3fdebfb4f95564bee2c3fad9
+      internalID: 1202818600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_44
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 268
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 524c4f087062e7f46b3e21eee0681ff9
+      internalID: -1567135818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_45
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 268
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ded3e6694a78ed548a8517cd5ee00bb5
+      internalID: -1307072376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_46
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 268
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85614b3ac82467548b7d7fecc5796309
+      internalID: -585937552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_47
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 268
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9aa811180cd4ae041aa01513abb2c599
+      internalID: -1540265334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_48
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 268
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 069f71317509eac45a4a8a521f591c30
+      internalID: -1528611993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_49
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 268
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79b5d4a4df102ab4e83b84370856c6aa
+      internalID: -1527637616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_50
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 268
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c87dd4ca6487f44f86fc33728c0af6a
+      internalID: 1293265894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_51
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 230
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d2eae7e623e4a34d964e94d8e5fa2e0
+      internalID: -2119181595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_52
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 230
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c5e6699cc671e54582aa5bff22f5286
+      internalID: -140627757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_53
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 230
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55882a88dc442ac439d4bdd0f2c7c6cd
+      internalID: 1452805724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_54
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 230
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c376662c80d805a4c862a3732e5a27d4
+      internalID: -1194672198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_55
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 230
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9f149a056e61404f95efc645ab042c5
+      internalID: 1992171080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_56
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 230
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03ff1e1297f9ff343be3109604c77d24
+      internalID: 1869606350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_57
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 230
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20b4604880470f044b846c1b06ae20fd
+      internalID: 1863234726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_58
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 230
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48dd0aeefb73d2a4a95f95be90c73abe
+      internalID: 1363640600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_59
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 230
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 203e2e8fba86f57458b7aab620e4304f
+      internalID: 191448474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_60
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 230
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 829bc45a45dd6c24caab12a5857e16e4
+      internalID: 2100859224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_61
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 230
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dc82191028051a4aa097c1fbd8f1419
+      internalID: -814718060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_62
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 230
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14071cef189650a41bbe2786a4e2ee8a
+      internalID: 150774851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_63
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 230
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 917a21e43fc80b343815d8bc2886031f
+      internalID: -1453969637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_64
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 230
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8218fbacb4b1d1f4988b26320fee452a
+      internalID: 868041574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_65
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 230
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2866b8c2f834e234faba1a065f8c56c6
+      internalID: -303838253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_66
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 230
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22c493851bafbb84498c00c6fed30a13
+      internalID: 482235056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_67
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 230
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86f20fb6b81e5b548b8a81716630ec67
+      internalID: -2143283275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_68
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1026a7f97361c8c40909e7ffe718bde4
+      internalID: -599309820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_69
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 192
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c9e8693735a8db4a861995bdd3d0d96
+      internalID: 1360942725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_70
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 192
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4672feb42afeb99438059c1a1291b6d8
+      internalID: 1079464248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_71
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 192
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b51dc4fb13b643842911ecd453d55443
+      internalID: -50778687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_72
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 192
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dfd426eede65364598d8c48987a1496
+      internalID: -141259893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_73
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 192
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6792c51142e3bff47927519448d46a50
+      internalID: -1269758267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_74
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 192
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d16bf0392acac344d8bcf8d1fb978423
+      internalID: -1172861995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_75
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 192
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c5cad435fb342544bb13407a9036fbf
+      internalID: -1919151002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_76
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 192
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abf96398e0a45db4596cb4adce57d6c4
+      internalID: 1839325801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_77
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 192
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bef778dd455d8c64387631dd282531ce
+      internalID: 1629497934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_78
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 192
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3011fac381656f44c99f3f18d366da33
+      internalID: 1649964894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_79
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 192
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd3fa68de375793449c60a83be4297ef
+      internalID: -992290162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_80
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 192
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76d1b08f1bec7684590496b47d0fcc51
+      internalID: 786570364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_81
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 192
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e66c686d0462509479ee7198db62a157
+      internalID: 517702280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_82
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 192
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c135f7eda38bf74487bfab59a792c43
+      internalID: -190862245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_83
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 192
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23dd9fa5c1e93d64aac6bdb62b9ece2c
+      internalID: 1613514006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_84
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 192
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb2ee7acc15a40e42ada9683d8a6eb59
+      internalID: 912311404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_85
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 154
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13bc25397fb8c30468fbfead8a8a65d1
+      internalID: 1314133404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_86
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 154
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99c258d2e50cc6f40a2ff551d7df61b2
+      internalID: 2009800078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_87
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 154
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a40b4f519f944864d9ec49ac7c60c32d
+      internalID: -494316355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_88
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 154
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38a88925b1313974f955bc6ceffa6bfa
+      internalID: -1226387959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_89
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 154
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 105bbbeb2872b5043ae44784a306ab19
+      internalID: 1926293850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_90
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 154
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be7fede440420ae459b314c2c19144bf
+      internalID: -1208852178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_91
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 154
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5006070f23acdc647971f51f58d2efcf
+      internalID: -982324027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_92
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 154
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a7404b64243f644a87913e4ba0804f6
+      internalID: -191813355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_93
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 154
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8514c5accdd093f4cb155cfa0cc51135
+      internalID: -1567572472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_94
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 154
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87135be9c9a38df4eb0914c5f9436742
+      internalID: 1984562205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_95
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 154
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad5b9fd08f01cb344a4205b38e2598af
+      internalID: 139181926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_96
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 154
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f77fa4b67b2824a49884335abd5b89c6
+      internalID: -1792938110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_97
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 154
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e74c06566f133644fab777524f47f724
+      internalID: 572661127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_98
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 154
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a047c7a900fa8b4d9e97aeb1437b4bb
+      internalID: -1407904982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_99
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 154
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96f6ee5d7c10a894b8ca36f82725309b
+      internalID: 1811877663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_100
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 154
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dde200ae5d17bcd4db5766e06544ac91
+      internalID: 1267988507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_101
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 154
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a37e0d141c224044a183d7fc5cde312
+      internalID: -858095012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_102
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 116
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18eae61bc6d2cac44a75790655f93917
+      internalID: 1182856928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_103
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 116
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: facb701b390b78048820c6b7c1f244a9
+      internalID: 367027524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_104
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 116
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdfd56cd4d80edc49b30a5c68e74194e
+      internalID: 722933522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_105
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 116
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9aed6e153406a7142b3c7a20504363be
+      internalID: 1296086009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_106
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 116
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b7180808b506784cba73e5c167ad1af
+      internalID: 470797088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_107
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 116
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df147cf1b1533474384a5b605f502c25
+      internalID: -1120678032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_108
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 116
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88d5822e5d5d90a439e2560c3defcc30
+      internalID: 594800465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_109
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 116
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 564b92a4c776c9d4eab9006d4bfee51c
+      internalID: 742623775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_110
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 116
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54e7d727722f6cb41947202ca6ff284f
+      internalID: 977029785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_111
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 116
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8bfc676a7cb639489a497447c8c1cfc
+      internalID: -713245959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_112
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 116
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 397a665e524207445aec416fc633ffad
+      internalID: -1113174225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_113
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 116
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21654c56e9ba89c47abedf8bacaa7bfa
+      internalID: -869855443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_114
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 116
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 583f9fe7fd64aa241b9a5a419538bda1
+      internalID: 300576658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_115
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 116
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fd894d5fe3c2714582d6daed5b8f7e7
+      internalID: -2065790726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_116
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 116
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b7e47ed39cd05b408c4783a73079339
+      internalID: -1147943756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_117
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 116
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1605732aa405d74f9c2177870b3c1e4
+      internalID: 718090805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_118
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 116
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dabb54339dcd7214299feca75d766421
+      internalID: 802399247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_119
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 78
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5c98055e0132a64d86633c8b5b2e385
+      internalID: 1466040405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_120
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 78
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43927997e5265d24fb03f849ba0c89f1
+      internalID: -1158944126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_121
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 78
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b62c7ee3387a484384b00b263e3864a
+      internalID: -1369339500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_122
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 78
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cd7bdd8523107d459d015305414831b
+      internalID: 477597129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_123
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 78
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c85c0b1b7631f940bd0e6b6558af9cf
+      internalID: 1708870341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_124
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 78
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78511b16756802349ba61c8c8d9a4c25
+      internalID: 1385053369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_125
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 78
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e96be590342cb8642ae442ae8b533437
+      internalID: -869785729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_126
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 78
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab962b87c010b5d45a4ac0dc7bee553d
+      internalID: -1175929904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_127
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 78
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dadb4e8ff403b7447be76e44fb4335c2
+      internalID: -979295590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_128
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 78
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f80508607beec5242b0ac5bd3540f53f
+      internalID: -1787415795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_129
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 78
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cecf4c4223516043ad48aecb2231821
+      internalID: -286115500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_130
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 78
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f0d9b6b6024d8440a605afc0a53e18e
+      internalID: -1597271141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_131
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 78
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e23ec67ebec32f4fb5bb5a422cef376
+      internalID: 1005444786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_132
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 78
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a07088dceccb4704586dff3871fe903d
+      internalID: -171072494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_133
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 78
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 981a3eb1a33ad6a46acdeede4924e4d7
+      internalID: -168475659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_134
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 78
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 318969d68340298419fb22b1619e1eca
+      internalID: 1663748860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_135
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 78
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f458abbdaefcf04c957c2b9b762f2eb
+      internalID: 298156014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_136
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 40
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad3a99992de96cb40b14ccca8344de5c
+      internalID: 1877502600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_137
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 40
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 684d628a5edba6d45a30e90bef59d283
+      internalID: -665060484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_138
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 40
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cdb74718f80cdf4dbf5598bfab6f793
+      internalID: 860105267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_139
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 40
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b1b90b2c771053449003379e937b82a
+      internalID: -1119116446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_140
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 40
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ab47f7de1040e341bee5130e6fb80c3
+      internalID: 1031942324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_141
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 40
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f338d36a1d66b84bb7dd48df2cb7527
+      internalID: 962234223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_142
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 40
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a4f888a347db7a4084d8c0168445544
+      internalID: 1441895603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_143
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 40
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc7da85d72ed7dc49a750a939e44441b
+      internalID: 1156224900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_144
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 40
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8c7c6d8749da1243825209ff314144f
+      internalID: 349839525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_145
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 40
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7040d9d97007ef7479576689de57cbf9
+      internalID: -1611517422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_146
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 40
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abb85456e0462e642b50ae287abcc7f3
+      internalID: 1469792321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_147
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 40
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7257213f1d57f14e81a43d395ffdc72
+      internalID: -1486502596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_148
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 40
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71e5dfc9b6931a74d89f7c2682f03b22
+      internalID: -1199065023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_149
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 40
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a02fe5908638e764ab6bd80acd175940
+      internalID: 345095076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_150
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 40
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdbb8dd62eb62b74bbe037b7d3cbcd25
+      internalID: 1793795015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_151
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 40
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02601d1b9c58b904ba0cf426b3290fe4
+      internalID: -1386162851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_152
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 40
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29b6b6e78c8eb1f4d985d3a07829f134
+      internalID: -1971435396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_153
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c41b3b6d384330344a033f4c53c58bc8
+      internalID: 1785200702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_154
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 2
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1db7959bc53973d4bb5b22b94170d1b5
+      internalID: 2097956074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_155
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 2
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00efa0b406fdf634396cb419a14a1f66
+      internalID: -181616307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_156
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 2
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed4c97c84c4aed44bb4462c6fb7cdd92
+      internalID: -1508555886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_157
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 2
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34e2f8933dba5a94cbafda4100ab9f19
+      internalID: -300674248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_158
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 2
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cf6b77b25cab354fa8e8800e1d49b08
+      internalID: 1024075269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_159
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 2
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8213d457090f1f842968c5559f38e498
+      internalID: -981807397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_160
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 2
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af9895e1b0cf68b40b043ed3675ef0b3
+      internalID: -148666201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_161
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 2
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f439d0ef8ac05ce47a66892c8bb80b83
+      internalID: 708538064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_162
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 2
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6387e85643e5ea242830ad2817fb1799
+      internalID: 1344030193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_163
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 2
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da2d2e47d46b0e04cacd48dfd5f5e677
+      internalID: -314006811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_164
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 2
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6005b817ca7541147bfc27047595f0d0
+      internalID: 1030473150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_165
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 2
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee8e5178a0f88594b93368647fc2ce1f
+      internalID: -992264708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_166
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 2
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64e573c62d573474c8e9df7f6fc5e01e
+      internalID: 163848278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_167
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 2
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 974c4ae08fcd96d46ab9837cba7dc4a6
+      internalID: 1646564664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_168
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 2
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9bec2e9dc51cbe45b6aee2bf30bf6f2
+      internalID: 264792589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3DS - Pokedex 3D - Pokemon Previews_169
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 2
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b563379820416e45a06d2dc13b65de5
+      internalID: 1906732781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 7492e0adce4f50f4ba94f1917af0a4a1
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      3DS - Pokedex 3D - Pokemon Previews_0: -1951517463
+      3DS - Pokedex 3D - Pokemon Previews_1: -2045326311
+      3DS - Pokedex 3D - Pokemon Previews_10: 231182139
+      3DS - Pokedex 3D - Pokemon Previews_100: 1267988507
+      3DS - Pokedex 3D - Pokemon Previews_101: -858095012
+      3DS - Pokedex 3D - Pokemon Previews_102: 1182856928
+      3DS - Pokedex 3D - Pokemon Previews_103: 367027524
+      3DS - Pokedex 3D - Pokemon Previews_104: 722933522
+      3DS - Pokedex 3D - Pokemon Previews_105: 1296086009
+      3DS - Pokedex 3D - Pokemon Previews_106: 470797088
+      3DS - Pokedex 3D - Pokemon Previews_107: -1120678032
+      3DS - Pokedex 3D - Pokemon Previews_108: 594800465
+      3DS - Pokedex 3D - Pokemon Previews_109: 742623775
+      3DS - Pokedex 3D - Pokemon Previews_11: 981519643
+      3DS - Pokedex 3D - Pokemon Previews_110: 977029785
+      3DS - Pokedex 3D - Pokemon Previews_111: -713245959
+      3DS - Pokedex 3D - Pokemon Previews_112: -1113174225
+      3DS - Pokedex 3D - Pokemon Previews_113: -869855443
+      3DS - Pokedex 3D - Pokemon Previews_114: 300576658
+      3DS - Pokedex 3D - Pokemon Previews_115: -2065790726
+      3DS - Pokedex 3D - Pokemon Previews_116: -1147943756
+      3DS - Pokedex 3D - Pokemon Previews_117: 718090805
+      3DS - Pokedex 3D - Pokemon Previews_118: 802399247
+      3DS - Pokedex 3D - Pokemon Previews_119: 1466040405
+      3DS - Pokedex 3D - Pokemon Previews_12: 571680104
+      3DS - Pokedex 3D - Pokemon Previews_120: -1158944126
+      3DS - Pokedex 3D - Pokemon Previews_121: -1369339500
+      3DS - Pokedex 3D - Pokemon Previews_122: 477597129
+      3DS - Pokedex 3D - Pokemon Previews_123: 1708870341
+      3DS - Pokedex 3D - Pokemon Previews_124: 1385053369
+      3DS - Pokedex 3D - Pokemon Previews_125: -869785729
+      3DS - Pokedex 3D - Pokemon Previews_126: -1175929904
+      3DS - Pokedex 3D - Pokemon Previews_127: -979295590
+      3DS - Pokedex 3D - Pokemon Previews_128: -1787415795
+      3DS - Pokedex 3D - Pokemon Previews_129: -286115500
+      3DS - Pokedex 3D - Pokemon Previews_13: -376133153
+      3DS - Pokedex 3D - Pokemon Previews_130: -1597271141
+      3DS - Pokedex 3D - Pokemon Previews_131: 1005444786
+      3DS - Pokedex 3D - Pokemon Previews_132: -171072494
+      3DS - Pokedex 3D - Pokemon Previews_133: -168475659
+      3DS - Pokedex 3D - Pokemon Previews_134: 1663748860
+      3DS - Pokedex 3D - Pokemon Previews_135: 298156014
+      3DS - Pokedex 3D - Pokemon Previews_136: 1877502600
+      3DS - Pokedex 3D - Pokemon Previews_137: -665060484
+      3DS - Pokedex 3D - Pokemon Previews_138: 860105267
+      3DS - Pokedex 3D - Pokemon Previews_139: -1119116446
+      3DS - Pokedex 3D - Pokemon Previews_14: 2118732505
+      3DS - Pokedex 3D - Pokemon Previews_140: 1031942324
+      3DS - Pokedex 3D - Pokemon Previews_141: 962234223
+      3DS - Pokedex 3D - Pokemon Previews_142: 1441895603
+      3DS - Pokedex 3D - Pokemon Previews_143: 1156224900
+      3DS - Pokedex 3D - Pokemon Previews_144: 349839525
+      3DS - Pokedex 3D - Pokemon Previews_145: -1611517422
+      3DS - Pokedex 3D - Pokemon Previews_146: 1469792321
+      3DS - Pokedex 3D - Pokemon Previews_147: -1486502596
+      3DS - Pokedex 3D - Pokemon Previews_148: -1199065023
+      3DS - Pokedex 3D - Pokemon Previews_149: 345095076
+      3DS - Pokedex 3D - Pokemon Previews_15: 414920162
+      3DS - Pokedex 3D - Pokemon Previews_150: 1793795015
+      3DS - Pokedex 3D - Pokemon Previews_151: -1386162851
+      3DS - Pokedex 3D - Pokemon Previews_152: -1971435396
+      3DS - Pokedex 3D - Pokemon Previews_153: 1785200702
+      3DS - Pokedex 3D - Pokemon Previews_154: 2097956074
+      3DS - Pokedex 3D - Pokemon Previews_155: -181616307
+      3DS - Pokedex 3D - Pokemon Previews_156: -1508555886
+      3DS - Pokedex 3D - Pokemon Previews_157: -300674248
+      3DS - Pokedex 3D - Pokemon Previews_158: 1024075269
+      3DS - Pokedex 3D - Pokemon Previews_159: -981807397
+      3DS - Pokedex 3D - Pokemon Previews_16: -1465746641
+      3DS - Pokedex 3D - Pokemon Previews_160: -148666201
+      3DS - Pokedex 3D - Pokemon Previews_161: 708538064
+      3DS - Pokedex 3D - Pokemon Previews_162: 1344030193
+      3DS - Pokedex 3D - Pokemon Previews_163: -314006811
+      3DS - Pokedex 3D - Pokemon Previews_164: 1030473150
+      3DS - Pokedex 3D - Pokemon Previews_165: -992264708
+      3DS - Pokedex 3D - Pokemon Previews_166: 163848278
+      3DS - Pokedex 3D - Pokemon Previews_167: 1646564664
+      3DS - Pokedex 3D - Pokemon Previews_168: 264792589
+      3DS - Pokedex 3D - Pokemon Previews_169: 1906732781
+      3DS - Pokedex 3D - Pokemon Previews_17: -926953501
+      3DS - Pokedex 3D - Pokemon Previews_18: 847182082
+      3DS - Pokedex 3D - Pokemon Previews_19: -230335453
+      3DS - Pokedex 3D - Pokemon Previews_2: 1859947001
+      3DS - Pokedex 3D - Pokemon Previews_20: 1802223341
+      3DS - Pokedex 3D - Pokemon Previews_21: -1576537020
+      3DS - Pokedex 3D - Pokemon Previews_22: 1594505926
+      3DS - Pokedex 3D - Pokemon Previews_23: 1146487213
+      3DS - Pokedex 3D - Pokemon Previews_24: 850900140
+      3DS - Pokedex 3D - Pokemon Previews_25: 1967260365
+      3DS - Pokedex 3D - Pokemon Previews_26: -1734871324
+      3DS - Pokedex 3D - Pokemon Previews_27: -1724007588
+      3DS - Pokedex 3D - Pokemon Previews_28: -1973731225
+      3DS - Pokedex 3D - Pokemon Previews_29: 789492308
+      3DS - Pokedex 3D - Pokemon Previews_3: -305139328
+      3DS - Pokedex 3D - Pokemon Previews_30: 985132992
+      3DS - Pokedex 3D - Pokemon Previews_31: 1439073580
+      3DS - Pokedex 3D - Pokemon Previews_32: 415182124
+      3DS - Pokedex 3D - Pokemon Previews_33: -587200191
+      3DS - Pokedex 3D - Pokemon Previews_34: 168854304
+      3DS - Pokedex 3D - Pokemon Previews_35: 105944645
+      3DS - Pokedex 3D - Pokemon Previews_36: -1640845885
+      3DS - Pokedex 3D - Pokemon Previews_37: 1222959017
+      3DS - Pokedex 3D - Pokemon Previews_38: -1316629988
+      3DS - Pokedex 3D - Pokemon Previews_39: 497829795
+      3DS - Pokedex 3D - Pokemon Previews_4: 1021603500
+      3DS - Pokedex 3D - Pokemon Previews_40: -1843890872
+      3DS - Pokedex 3D - Pokemon Previews_41: 356704828
+      3DS - Pokedex 3D - Pokemon Previews_42: 2039121758
+      3DS - Pokedex 3D - Pokemon Previews_43: 1202818600
+      3DS - Pokedex 3D - Pokemon Previews_44: -1567135818
+      3DS - Pokedex 3D - Pokemon Previews_45: -1307072376
+      3DS - Pokedex 3D - Pokemon Previews_46: -585937552
+      3DS - Pokedex 3D - Pokemon Previews_47: -1540265334
+      3DS - Pokedex 3D - Pokemon Previews_48: -1528611993
+      3DS - Pokedex 3D - Pokemon Previews_49: -1527637616
+      3DS - Pokedex 3D - Pokemon Previews_5: -1416829523
+      3DS - Pokedex 3D - Pokemon Previews_50: 1293265894
+      3DS - Pokedex 3D - Pokemon Previews_51: -2119181595
+      3DS - Pokedex 3D - Pokemon Previews_52: -140627757
+      3DS - Pokedex 3D - Pokemon Previews_53: 1452805724
+      3DS - Pokedex 3D - Pokemon Previews_54: -1194672198
+      3DS - Pokedex 3D - Pokemon Previews_55: 1992171080
+      3DS - Pokedex 3D - Pokemon Previews_56: 1869606350
+      3DS - Pokedex 3D - Pokemon Previews_57: 1863234726
+      3DS - Pokedex 3D - Pokemon Previews_58: 1363640600
+      3DS - Pokedex 3D - Pokemon Previews_59: 191448474
+      3DS - Pokedex 3D - Pokemon Previews_6: 587776602
+      3DS - Pokedex 3D - Pokemon Previews_60: 2100859224
+      3DS - Pokedex 3D - Pokemon Previews_61: -814718060
+      3DS - Pokedex 3D - Pokemon Previews_62: 150774851
+      3DS - Pokedex 3D - Pokemon Previews_63: -1453969637
+      3DS - Pokedex 3D - Pokemon Previews_64: 868041574
+      3DS - Pokedex 3D - Pokemon Previews_65: -303838253
+      3DS - Pokedex 3D - Pokemon Previews_66: 482235056
+      3DS - Pokedex 3D - Pokemon Previews_67: -2143283275
+      3DS - Pokedex 3D - Pokemon Previews_68: -599309820
+      3DS - Pokedex 3D - Pokemon Previews_69: 1360942725
+      3DS - Pokedex 3D - Pokemon Previews_7: 480715796
+      3DS - Pokedex 3D - Pokemon Previews_70: 1079464248
+      3DS - Pokedex 3D - Pokemon Previews_71: -50778687
+      3DS - Pokedex 3D - Pokemon Previews_72: -141259893
+      3DS - Pokedex 3D - Pokemon Previews_73: -1269758267
+      3DS - Pokedex 3D - Pokemon Previews_74: -1172861995
+      3DS - Pokedex 3D - Pokemon Previews_75: -1919151002
+      3DS - Pokedex 3D - Pokemon Previews_76: 1839325801
+      3DS - Pokedex 3D - Pokemon Previews_77: 1629497934
+      3DS - Pokedex 3D - Pokemon Previews_78: 1649964894
+      3DS - Pokedex 3D - Pokemon Previews_79: -992290162
+      3DS - Pokedex 3D - Pokemon Previews_8: -88646835
+      3DS - Pokedex 3D - Pokemon Previews_80: 786570364
+      3DS - Pokedex 3D - Pokemon Previews_81: 517702280
+      3DS - Pokedex 3D - Pokemon Previews_82: -190862245
+      3DS - Pokedex 3D - Pokemon Previews_83: 1613514006
+      3DS - Pokedex 3D - Pokemon Previews_84: 912311404
+      3DS - Pokedex 3D - Pokemon Previews_85: 1314133404
+      3DS - Pokedex 3D - Pokemon Previews_86: 2009800078
+      3DS - Pokedex 3D - Pokemon Previews_87: -494316355
+      3DS - Pokedex 3D - Pokemon Previews_88: -1226387959
+      3DS - Pokedex 3D - Pokemon Previews_89: 1926293850
+      3DS - Pokedex 3D - Pokemon Previews_9: 809267055
+      3DS - Pokedex 3D - Pokemon Previews_90: -1208852178
+      3DS - Pokedex 3D - Pokemon Previews_91: -982324027
+      3DS - Pokedex 3D - Pokemon Previews_92: -191813355
+      3DS - Pokedex 3D - Pokemon Previews_93: -1567572472
+      3DS - Pokedex 3D - Pokemon Previews_94: 1984562205
+      3DS - Pokedex 3D - Pokemon Previews_95: 139181926
+      3DS - Pokedex 3D - Pokemon Previews_96: -1792938110
+      3DS - Pokedex 3D - Pokemon Previews_97: 572661127
+      3DS - Pokedex 3D - Pokemon Previews_98: -1407904982
+      3DS - Pokedex 3D - Pokemon Previews_99: 1811877663
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
