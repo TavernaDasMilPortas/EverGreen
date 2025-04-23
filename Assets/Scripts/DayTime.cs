@@ -34,7 +34,7 @@ public class DayTime : MonoBehaviour
     void Update()
     {
         
-        daySeconds += Time.deltaTime* daySpeed;
+        daySeconds += Time.deltaTime * daySpeed;
         radDay = daySeconds / (86400/2);
         transform.localRotation = Quaternion.Euler(radDay * (180 / Mathf.PI), 0, 0);
 
