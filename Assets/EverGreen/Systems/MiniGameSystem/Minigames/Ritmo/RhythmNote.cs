@@ -20,15 +20,18 @@ public class RhythmNote : MonoBehaviour
 
     public void UpdateNote(float speed)
     {
-        transform.localScale -= Vector3.one * speed * Time.deltaTime;
-
         float lifeProgress = (Time.time - spawnTime) / lifetime;
         indicatorImage.color = Color.Lerp(Color.green, Color.red, lifeProgress);
-    }
 
+        // Reduz apenas o indicatorImage
+        float maxScale = 1f;
+        float minScale = 0.2f;
+        float currentScale = Mathf.Lerp(maxScale, minScale, lifeProgress);
+        indicatorImage.rectTransform.localScale = new Vector3(currentScale, currentScale, 1f);
+    }
     public bool MatchesKey(KeyCode key)
     {
-        return key.ToString().ToLower() == assignedKey.ToString();
+        return key.ToString().ToUpper() == assignedKey.ToString();
     }
 
     public bool IsWithinHitWindow(float hitWindow)

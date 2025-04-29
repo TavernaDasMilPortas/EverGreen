@@ -10,6 +10,7 @@ public class RhythmMinigameController : MonoBehaviour, IMinigame
     public Transform noteArea;
     public GameObject noteButtonPrefab;
     public TextMeshProUGUI feedbackText;
+    public TextMeshProUGUI timerText;
 
     [Header("Configuração")]
     public RhythmMinigameDifficultyData difficultyData;
@@ -37,6 +38,7 @@ public class RhythmMinigameController : MonoBehaviour, IMinigame
         if (!isRunning) return;
 
         gameTimer -= Time.deltaTime;
+        timerText.text = Mathf.CeilToInt(gameTimer).ToString();
 
         if (Time.time >= nextNoteTime)
         {
@@ -82,6 +84,7 @@ public class RhythmMinigameController : MonoBehaviour, IMinigame
 
         feedbackText.text = "Errou!";
         missedHits++;
+
     }
 
     public void EndMinigame()
@@ -102,6 +105,15 @@ public class RhythmMinigameController : MonoBehaviour, IMinigame
     {
         char randomKey = difficultyData.allowedKeys[Random.Range(0, difficultyData.allowedKeys.Length)];
         GameObject newNoteGO = Instantiate(noteButtonPrefab, noteArea);
+
+        // Define posição aleatória dentro do painel
+        RectTransform noteRect = newNoteGO.GetComponent<RectTransform>();
+        RectTransform areaRect = noteArea.GetComponent<RectTransform>();
+
+        float x = Random.Range(0f, areaRect.rect.width - noteRect.rect.width);
+        float y = Random.Range(0f, areaRect.rect.height - noteRect.rect.height);
+        noteRect.anchoredPosition = new Vector2(x, y);
+
         RhythmNote note = newNoteGO.GetComponent<RhythmNote>();
         note.Initialize(randomKey);
         activeNotes.Add(note);
