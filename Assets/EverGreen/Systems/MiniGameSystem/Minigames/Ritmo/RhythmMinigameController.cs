@@ -97,12 +97,9 @@ public class RhythmMinigameController : MonoBehaviour, IMinigame
             correctHits++;
             Debug.Log($"Nota correta! Total acertos: {correctHits}");
         }
-        else
-        {
-            feedbackText.text = "Errou!";
-            missedHits++;
-            Debug.Log($"Tecla errada ou fora da janela. MissedHits: {missedHits}");
-        }
+
+        feedbackText.text = "Errou!";
+        missedHits++;
     }
 
     public void EndMinigame()
@@ -125,21 +122,6 @@ public class RhythmMinigameController : MonoBehaviour, IMinigame
     {
         char randomKey = difficultyData.allowedKeys[Random.Range(0, difficultyData.allowedKeys.Length)];
         GameObject newNoteGO = Instantiate(noteButtonPrefab, noteArea);
-
-        RectTransform noteRect = newNoteGO.GetComponent<RectTransform>();
-        RectTransform areaRect = noteArea.GetComponent<RectTransform>();
-
-        float areaWidth = areaRect.rect.width;
-        float areaHeight = areaRect.rect.height;
-
-        float noteWidth = noteRect.rect.width;
-        float noteHeight = noteRect.rect.height;
-
-        float x = Random.Range(-areaWidth / 2f + noteWidth / 2f, areaWidth / 2f - noteWidth / 2f);
-        float y = Random.Range(-areaHeight / 2f + noteHeight / 2f, areaHeight / 2f - noteHeight / 2f);
-
-        noteRect.anchoredPosition = new Vector2(x, y);
-
         RhythmNote note = newNoteGO.GetComponent<RhythmNote>();
         note.Initialize(randomKey);
         activeNotes.Add(note);
