@@ -96,6 +96,7 @@ public class RhythmMinigameController : MonoBehaviour, IMinigame
             feedbackText.text = "Acertou!";
             correctHits++;
             Debug.Log($"Nota correta! Total acertos: {correctHits}");
+            return;
         }
 
         feedbackText.text = "Errou!";
@@ -127,6 +128,5 @@ public class RhythmMinigameController : MonoBehaviour, IMinigame
         activeNotes.Add(note);
         totalNotes++;
 
-        Debug.Log($"Nota gerada com tecla '{randomKey}' na posição ({x}, {y}). Total de notas: {totalNotes}");
     }
 }
