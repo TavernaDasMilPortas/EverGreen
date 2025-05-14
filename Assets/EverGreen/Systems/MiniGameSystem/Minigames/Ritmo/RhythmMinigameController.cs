@@ -31,6 +31,7 @@ public class RhythmMinigameController : MonoBehaviour, IMinigame
         correctHits = 0;
         missedHits = 0;
         nextNoteTime = Time.time + Random.Range(difficultyData.minTimeBetweenNotes, difficultyData.maxTimeBetweenNotes);
+        Debug.Log("Minigame iniciado.");
     }
 
     public void UpdateMinigame()
@@ -54,6 +55,7 @@ public class RhythmMinigameController : MonoBehaviour, IMinigame
             if (note.HasExpired())
             {
                 feedbackText.text = "Errou!";
+                Debug.Log($"Nota expirada! MissedHits: {missedHits + 1}");
                 Destroy(note.gameObject);
                 activeNotes.RemoveAt(i);
                 missedHits++;
@@ -63,32 +65,47 @@ public class RhythmMinigameController : MonoBehaviour, IMinigame
         if (gameTimer <= 0)
         {
             isRunning = false;
+            Debug.Log("Minigame finalizado. Avaliando resultado...");
             MinigameManager.Instance.EndMinigame();
         }
     }
 
     public void HandleInput(KeyCode key)
     {
-        for (int i = 0; i < activeNotes.Count; i++)
+        string pressedKey = key.ToString().ToUpper(); // Normaliza a tecla pressionada
+        Debug.Log($"Tecla pressionada: {pressedKey}");
+
+        if (activeNotes.Count == 0)
         {
-            RhythmNote note = activeNotes[i];
-            if (note.MatchesKey(key) && note.IsWithinHitWindow(difficultyData.hitWindow))
-            {
-                feedbackText.text = "Acertou!";
-                correctHits++;
-                Destroy(note.gameObject);
-                activeNotes.RemoveAt(i);
-                return;
-            }
+            feedbackText.text = "Errou!";
+            missedHits++;
+            Debug.Log("Nenhuma nota ativa. MissedHits incrementado.");
+            return;
+        }
+
+        // Remove e avalia apenas a nota mais antiga
+        RhythmNote note = activeNotes[0];
+        activeNotes.RemoveAt(0);
+        Destroy(note.gameObject);
+
+        string noteKey = note.GetKey().ToString().ToUpper(); // Normaliza a tecla da nota
+        Debug.Log($"Comparando tecla: {pressedKey} com nota: {noteKey}");
+
+        if (pressedKey == noteKey && note.IsWithinHitWindow(difficultyData.hitWindow))
+        {
+            feedbackText.text = "Acertou!";
+            correctHits++;
+            Debug.Log($"Nota correta! Total acertos: {correctHits}");
+            return;
         }
 
         feedbackText.text = "Errou!";
         missedHits++;
-
     }
 
     public void EndMinigame()
     {
+        Debug.Log("Encerrando minigame e limpando notas.");
         foreach (var note in activeNotes)
         {
             Destroy(note.gameObject);
@@ -98,6 +115,7 @@ public class RhythmMinigameController : MonoBehaviour, IMinigame
 
     public bool EvaluateResult()
     {
+        Debug.Log($"Resultado - Acertos: {correctHits}, Erros: {missedHits}");
         return correctHits > missedHits;
     }
 
@@ -105,18 +123,10 @@ public class RhythmMinigameController : MonoBehaviour, IMinigame
     {
         char randomKey = difficultyData.allowedKeys[Random.Range(0, difficultyData.allowedKeys.Length)];
         GameObject newNoteGO = Instantiate(noteButtonPrefab, noteArea);
-
-        // Define posição aleatória dentro do painel
-        RectTransform noteRect = newNoteGO.GetComponent<RectTransform>();
-        RectTransform areaRect = noteArea.GetComponent<RectTransform>();
-
-        float x = Random.Range(0f, areaRect.rect.width - noteRect.rect.width);
-        float y = Random.Range(0f, areaRect.rect.height - noteRect.rect.height);
-        noteRect.anchoredPosition = new Vector2(x, y);
-
         RhythmNote note = newNoteGO.GetComponent<RhythmNote>();
         note.Initialize(randomKey);
         activeNotes.Add(note);
         totalNotes++;
+
     }
 }

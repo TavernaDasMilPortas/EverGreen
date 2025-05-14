@@ -10,12 +10,14 @@ public class RhythmNote : MonoBehaviour
     private char assignedKey;
     private float spawnTime;
     private float lifetime = 2f;
+    private char noteKey;
 
     public void Initialize(char key)
     {
         assignedKey = key;
         keyText.text = key.ToString().ToUpper();
         spawnTime = Time.time;
+        noteKey = char.ToUpper(key);
     }
 
     public void UpdateNote(float speed)
@@ -24,8 +26,8 @@ public class RhythmNote : MonoBehaviour
         indicatorImage.color = Color.Lerp(Color.green, Color.red, lifeProgress);
 
         // Reduz apenas o indicatorImage
-        float maxScale = 1f;
-        float minScale = 0.2f;
+        float maxScale = 1.5f;
+        float minScale = 1f;
         float currentScale = Mathf.Lerp(maxScale, minScale, lifeProgress);
         indicatorImage.rectTransform.localScale = new Vector3(currentScale, currentScale, 1f);
     }
@@ -44,4 +46,10 @@ public class RhythmNote : MonoBehaviour
     {
         return Time.time - spawnTime > lifetime;
     }
+
+    public char GetKey()
+    {
+        return noteKey;
+    }
+
 }
