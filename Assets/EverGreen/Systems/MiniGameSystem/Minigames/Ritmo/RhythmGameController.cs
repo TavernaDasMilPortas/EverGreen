@@ -2,16 +2,16 @@ using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
 
-public class RhythmGameController : MonoBehaviour
+public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinigame
 {
     [Header("Configurações")]
-    public RhythmDifficultyData difficultyData;
-    public GameObject notePrefab;
-    public RectTransform noteArea;
-    public TextMeshProUGUI feedbackText;
+    [SerializeField] private RhythmMinigameDifficultyData _difficultyData;
+    [SerializeField] private GameObject _notePrefab;
+    [SerializeField] private RectTransform _noteArea;
+    [SerializeField] private TextMeshProUGUI _feedbackText;
 
     [Header("Modo de Jogo")]
-    public RhythmGameMode selectedMode;
+    public RhythmGameMode.RhythmGameModeType selectedMode;
 
     private IRhythmGameMode currentMode;
     private NoteSpawnerService spawnerService;
@@ -19,38 +19,49 @@ public class RhythmGameController : MonoBehaviour
 
     private List<RhythmNote> activeNotes = new List<RhythmNote>();
 
+    [Header("UI Extras")]
+    [SerializeField] private GameObject _noteButtonPrefab;
+    [SerializeField] private TextMeshProUGUI _timerText;
+
+    private bool modeStarted = false;  // controla se o jogo está rodando
+
+    public RectTransform hitZone { get; }
+    // Interface properties
+    public RhythmMinigameDifficultyData difficultyData => _difficultyData;
+    public GameObject notePrefab => _notePrefab;
+    public RectTransform noteArea => _noteArea;
+    public TextMeshProUGUI feedbackText => _feedbackText;
+    public GameObject noteButtonPrefab => _noteButtonPrefab;
+    public TextMeshProUGUI timerText => _timerText;
+
     private void Start()
     {
         spawnerService = new NoteSpawnerService();
         evaluatorService = new NoteEvaluatorService();
 
-        SetMode(RhythmGameModeFactory.Create(selectedMode));
+        // Não iniciar modo automaticamente
+        // SetMode(RhythmGameMode.CreateMode(selectedMode, this));
     }
 
     private void Update()
     {
-        currentMode?.UpdateMode();
+        if (!modeStarted || currentMode == null) return;
 
-        foreach (var note in activeNotes.ToArray())
+        currentMode.UpdateMode();
+
+        if (currentMode.IsModeFinished)
         {
-            note.MoveNote(Time.deltaTime);
-
-            if (note.IsExpired())
-            {
-                activeNotes.Remove(note);
-                Destroy(note.gameObject);
-                feedbackText.text = "Miss!";
-            }
+            Debug.Log("Minigame finished by mode.");
+            EndMinigame();
         }
 
-        // Exemplo de input (tecla pressionada)
         if (Input.anyKeyDown)
         {
             foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
             {
                 if (Input.GetKeyDown(key))
                 {
-                    currentMode?.HandleInput(key);
+                    currentMode.HandleInput(key);
                     break;
                 }
             }
@@ -61,6 +72,18 @@ public class RhythmGameController : MonoBehaviour
     {
         currentMode = mode;
         currentMode.Initialize(this);
+        modeStarted = false; // resetar flag ao trocar de modo
+    }
+
+    public void BeginMinigame()
+    {
+        if (currentMode == null)
+        {
+            SetMode(RhythmGameMode.CreateMode(selectedMode, this));
+        }
+        // Começar o modo explicitamente (chamar StartMode se existir)
+        currentMode?.StartMode();
+        modeStarted = true;
     }
 
     public void SpawnNote(char key, Vector2 position)
@@ -82,9 +105,41 @@ public class RhythmGameController : MonoBehaviour
                 return;
             }
         }
-
         feedbackText.text = "Miss!";
     }
 
     public List<RhythmNote> GetActiveNotes() => activeNotes;
+
+    // Implementação da interface IMinigame
+    public void StartMinigame()
+    {
+        // Só configura o modo, mas não inicia
+        SetMode(RhythmGameMode.CreateMode(selectedMode, this));
+        // Quem chamar StartMinigame deve chamar BeginMinigame para começar
+    }
+
+    public void UpdateMinigame()
+    {
+        // Você pode usar Update normalmente, que já cuida do controle com modeStarted
+        Update();
+    }
+
+    public void HandleInput(KeyCode key)
+    {
+        currentMode?.HandleInput(key);
+    }
+
+    public void EndMinigame()
+    {
+        Debug.Log("Rhythm Minigame Ended.");
+        modeStarted = false;
+        activeNotes.ForEach(note => Destroy(note.gameObject));
+        activeNotes.Clear();
+    }
+
+    public bool EvaluateResult()
+    {
+        // Exemplo básico (ajuste conforme sua lógica)
+        return true;
+    }
 }

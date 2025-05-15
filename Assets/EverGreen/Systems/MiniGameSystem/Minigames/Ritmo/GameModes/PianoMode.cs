@@ -3,14 +3,18 @@ using UnityEngine;
 
 public class PianoMode : IRhythmGameMode
 {
-    private RhythmMinigameController controller;
+    private IRhythmGameController controller;
     private float gameTimer;
     private float nextNoteTime;
     private List<RhythmNote> activeNotes = new List<RhythmNote>();
 
     public bool IsModeFinished { get; private set; } = false;
 
-    public PianoMode(RhythmMinigameController controller)
+    public void Initialize(IRhythmGameController controller)
+    {
+        this.controller = controller;
+    }
+    public PianoMode(IRhythmGameController controller)
     {
         this.controller = controller;
     }
@@ -114,7 +118,7 @@ public class PianoMode : IRhythmGameMode
         noteRect.anchoredPosition = new Vector2(x, areaRect.rect.height / 2f + noteRect.rect.height);
 
         RhythmNote note = newNoteGO.GetComponent<RhythmNote>();
-        note.Initialize(randomKey);
+        note.Initialize(randomKey, controller.hitZone);
 
         activeNotes.Add(note);
     }

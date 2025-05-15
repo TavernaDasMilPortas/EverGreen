@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SequenceMode : IRhythmGameMode
 {
-    private RhythmMinigameController controller;
+    private IRhythmGameController controller;
     private List<char> sequence = new List<char>();
     private int currentPlayerIndex = 0;
     private float displayInterval = 0.7f;
@@ -12,11 +12,14 @@ public class SequenceMode : IRhythmGameMode
     private int sequenceLength = 3;
     public bool IsModeFinished { get; private set; } = false;
 
-    public SequenceMode(RhythmMinigameController controller)
+    public SequenceMode(IRhythmGameController controller)
     {
         this.controller = controller;
     }
-
+    public void Initialize(IRhythmGameController controller)
+    {
+        this.controller = controller;
+    }
     public void StartMode()
     {
         GenerateSequence(sequenceLength);
@@ -93,7 +96,7 @@ public class SequenceMode : IRhythmGameMode
         noteRect.anchoredPosition = new Vector2(x, y);
 
         RhythmNote note = newNoteGO.GetComponent<RhythmNote>();
-        note.Initialize(key);
+        note.Initialize(key, controller.hitZone);
 
         // Destroy após exibir
         GameObject.Destroy(newNoteGO, displayInterval * 0.8f);

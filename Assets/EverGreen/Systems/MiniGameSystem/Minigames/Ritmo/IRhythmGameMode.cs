@@ -6,4 +6,6 @@ public interface IRhythmGameMode
     void UpdateMode();
     void HandleInput(KeyCode key);
     bool IsModeFinished { get; }
+
+    void Initialize(IRhythmGameController controller);  // <-- Adicione esta linha
 }

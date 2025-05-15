@@ -5,9 +5,9 @@ public static class RhythmGameMode
     {
         Classic,
         Sequence,
-        GuitarHero
+        Piano
     }
-    public static IRhythmGameMode CreateMode(RhythmGameModeType modeType, RhythmMinigameController controller)
+    public static IRhythmGameMode CreateMode(RhythmGameModeType modeType, IRhythmGameController controller)
     {
         switch (modeType)
         {
@@ -15,7 +15,7 @@ public static class RhythmGameMode
                 return new ClassicMode(controller);
             case RhythmGameModeType.Sequence:
                 return new SequenceMode(controller);
-            case RhythmGameModeType.GuitarHero:
+            case RhythmGameModeType.Piano:
                 return new PianoMode(controller);
             default:
                 Debug.LogError("Modo de jogo não implementado!");
