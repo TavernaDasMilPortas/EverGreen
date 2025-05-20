@@ -17,17 +17,23 @@ public class RhythmNote : MonoBehaviour
         if (indicatorImage == null)
             indicatorImage = GetComponent<Image>();
     }
+
     public void MoveNote(float deltaTime)
     {
         // Mover a nota horizontalmente (ex: eixo X ou Y)
         transform.Translate(Vector3.left * deltaTime * 100f); // Exemplo básico
     }
 
-    public void MoveDown(float deltaTime)
+    public void MoveDown(float speed)
     {
-        // Movimento vertical descendente para Guitar Hero Mode
-        transform.Translate(Vector3.down * deltaTime * 200f);
+        rectTransform.anchoredPosition -= new Vector2(0, speed * Time.deltaTime);
     }
+
+    public bool IsOutOfBounds()
+    {
+        return rectTransform.anchoredPosition.y < -Screen.height; // ou -noteAreaHeight
+    }
+
 
     public bool IsExpired()
     {
@@ -35,11 +41,7 @@ public class RhythmNote : MonoBehaviour
         return transform.localPosition.x < -hitZone.rect.width;
     }
 
-    public bool IsOutOfBounds()
-    {
-        // Para modo Piano: verificar se saiu da hitZone
-        return transform.localPosition.y < -hitZone.rect.height;
-    }
+
     public float DistanceToHitArea()
     {
         if (hitZone == null)
@@ -73,16 +75,8 @@ public class RhythmNote : MonoBehaviour
         StartCoroutine(VisualAnimationCoroutine(duration));
     }
 
-    private UnityEngine.UI.Image _image;
 
-    private void Awake()
-    {
-        _image = GetComponentInChildren<UnityEngine.UI.Image>();
-        if (_image == null)
-        {
-            Debug.LogWarning("Image component not found in children!");
-        }
-    }
+
 
     private IEnumerator VisualAnimationCoroutine(float duration)
     {
@@ -90,7 +84,7 @@ public class RhythmNote : MonoBehaviour
 
         // Começa com escala 2x e cor verde
         rectTransform.localScale = Vector3.one * 2f;
-        if (_image != null) _image.color = Color.green;
+        if (indicatorImage != null) indicatorImage.color = Color.green;
 
         while (elapsed < duration)
         {
@@ -101,16 +95,16 @@ public class RhythmNote : MonoBehaviour
             rectTransform.localScale = Vector3.one * Mathf.Lerp(2f, 1f, progress);
 
             // Cor de verde para vermelho
-            if (_image != null)
-                _image.color = Color.Lerp(Color.green, Color.red, progress);
+            if (indicatorImage != null)
+                indicatorImage.color = Color.Lerp(Color.green, Color.red, progress);
 
             yield return null;
         }
 
         // Garantir que finalize exatamente no estado final
         rectTransform.localScale = Vector3.one * 1f;
-        if (_image != null)
-            _image.color = Color.red;
+        if (indicatorImage != null)
+            indicatorImage.color = Color.red;
     }
 
 
