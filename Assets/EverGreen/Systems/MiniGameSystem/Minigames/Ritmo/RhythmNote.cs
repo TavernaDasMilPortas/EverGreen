@@ -1,12 +1,22 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class RhythmNote : MonoBehaviour
 {
     public char key;
     public RectTransform hitZone; 
     public RectTransform rectTransform;
+    public Image indicatorImage;
+    private void Awake()
+    {
+        if (rectTransform == null)
+            rectTransform = GetComponent<RectTransform>();
 
+        if (indicatorImage == null)
+            indicatorImage = GetComponent<Image>();
+    }
     public void MoveNote(float deltaTime)
     {
         // Mover a nota horizontalmente (ex: eixo X ou Y)
