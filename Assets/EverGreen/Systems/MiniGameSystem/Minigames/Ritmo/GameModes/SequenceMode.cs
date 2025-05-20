@@ -70,7 +70,7 @@ public class SequenceMode : IRhythmGameMode
             return;
         }
 
-        char expectedKey = sequence[currentPlayerIndex];
+        char expectedKey = sequence.ToString().ToUpper()[currentPlayerIndex];
         string result;
 
         if (pressedKey == expectedKey)
