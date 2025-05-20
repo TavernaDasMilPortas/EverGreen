@@ -12,7 +12,7 @@ public class scri : MonoBehaviour
         if (controller != null)
         {
             Debug.Log("scri: RhythmGameController encontrado, definindo modo Classic e configurando minigame.");
-            controller.selectedMode = RhythmGameMode.RhythmGameModeType.Sequence;
+            controller.selectedMode = RhythmGameMode.RhythmGameModeType.Piano;
             controller.StartMinigame(); // configura o modo, mas não começa ainda
             Debug.Log("scri: Modo configurado, aguardando início do minigame.");
         }

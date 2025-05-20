@@ -24,11 +24,16 @@ public class RhythmNote : MonoBehaviour
         transform.Translate(Vector3.left * deltaTime * 100f); // Exemplo básico
     }
 
-    public void MoveDown(float deltaTime)
+    public void MoveDown(float speed)
     {
-        // Movimento vertical descendente para Guitar Hero Mode
-        transform.Translate(Vector3.down * deltaTime * 200f);
+        rectTransform.anchoredPosition -= new Vector2(0, speed * Time.deltaTime);
     }
+
+    public bool IsOutOfBounds()
+    {
+        return rectTransform.anchoredPosition.y < -Screen.height; // ou -noteAreaHeight
+    }
+
 
     public bool IsExpired()
     {
@@ -36,11 +41,7 @@ public class RhythmNote : MonoBehaviour
         return transform.localPosition.x < -hitZone.rect.width;
     }
 
-    public bool IsOutOfBounds()
-    {
-        // Para modo Piano: verificar se saiu da hitZone
-        return transform.localPosition.y < -hitZone.rect.height;
-    }
+
     public float DistanceToHitArea()
     {
         if (hitZone == null)

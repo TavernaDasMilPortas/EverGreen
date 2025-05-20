@@ -62,7 +62,7 @@ public class SequenceMode : IRhythmGameMode
     {
         if (isShowingSequence || IsModeFinished) return;
 
-        char pressedKey = key.ToString().ToUpper()[0];
+        char pressedKey = key.ToString().ToLower()[0];
 
         if (currentPlayerIndex >= sequence.Count)
         {
@@ -70,7 +70,7 @@ public class SequenceMode : IRhythmGameMode
             return;
         }
 
-        char expectedKey = sequence.ToString().ToUpper()[currentPlayerIndex];
+        char expectedKey = sequence[currentPlayerIndex];
         string result;
 
         if (pressedKey == expectedKey)
@@ -149,7 +149,6 @@ public class SequenceMode : IRhythmGameMode
         if (note != null)
         {
             note.Initialize(key, controller.hitZone);
-            note.AnimateVisualOverLifetime(displayInterval);
         }
 
         // Armazena o GameObject para depois marcar acerto/erro

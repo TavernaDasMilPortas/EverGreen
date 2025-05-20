@@ -135,7 +135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c53c580d73a9fb6458b497ffdebdcf19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyText: {fileID: 5893732500996027400}
+  key: 0
+  hitZone: {fileID: 4404157022647457269, guid: 8cf7be12d74163040a8ce2bcfdd322db, type: 3}
+  rectTransform: {fileID: 0}
   indicatorImage: {fileID: 2461847928585966647}
 --- !u!1 &3936285476720152237
 GameObject:
