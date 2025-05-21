@@ -16,8 +16,8 @@ public class RhythmNote : MonoBehaviour
 
         if (indicatorImage == null)
             indicatorImage = GetComponent<Image>();
-    }
 
+    }
     public void MoveNote(float deltaTime)
     {
         // Mover a nota horizontalmente (ex: eixo X ou Y)
@@ -62,7 +62,19 @@ public class RhythmNote : MonoBehaviour
 
     public float GetVerticalDistanceToHitZone()
     {
-        return Mathf.Abs(transform.localPosition.y - hitZone.localPosition.y);
+        if (rectTransform == null)
+        {
+            Debug.LogError($"[RhythmNote] rectTransform está nulo no objeto {gameObject.name}");
+            return float.MaxValue;
+        }
+
+        if (hitZone == null)
+        {
+           // Debug.LogError($"[RhythmNote] hitZone está nulo no objeto {gameObject.name}");
+            return float.MaxValue;
+        }
+
+        return Mathf.Abs(rectTransform.anchoredPosition.y - hitZone.anchoredPosition.y);
     }
 
     public void Initialize(char assignedKey, RectTransform hitZoneReference)

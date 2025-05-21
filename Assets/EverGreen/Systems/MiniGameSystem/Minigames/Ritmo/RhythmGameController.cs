@@ -22,10 +22,11 @@ public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinig
     [Header("UI Extras")]
     [SerializeField] private GameObject _noteButtonPrefab;
     [SerializeField] private TextMeshProUGUI _timerText;
+    [SerializeField] private RectTransform _hitZone;
 
     private bool modeStarted = false;  // controla se o jogo está rodando
 
-    public RectTransform hitZone { get; }
+    public RectTransform hitZone => _hitZone;
     // Interface properties
     public RhythmMinigameDifficultyData difficultyData => _difficultyData;
     public GameObject notePrefab => _notePrefab;
