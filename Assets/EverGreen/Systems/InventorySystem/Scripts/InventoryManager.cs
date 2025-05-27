@@ -88,4 +88,29 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }
+
+ 
+    public bool HasItem(Item item)
+    {
+        return HasItem(item, 1);
+    }
+
+
+    public bool HasItem(Item item, int quantity)
+    {
+        if (item == null || item.itemName == "null" || quantity <= 0)
+        {
+            return false;
+        }
+
+        foreach (InventorySlot slot in inventory)
+        {
+            if (slot.item == item && slot.quantity >= quantity)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
