@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: 0
-  hitZone: {fileID: 4404157022647457269, guid: 8cf7be12d74163040a8ce2bcfdd322db, type: 3}
+  hitZone: {fileID: 0}
   rectTransform: {fileID: 0}
   indicatorImage: {fileID: 2461847928585966647}
 --- !u!1 &3936285476720152237

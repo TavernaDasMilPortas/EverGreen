@@ -917,6 +917,7 @@ MonoBehaviour:
   selectedMode: 1
   _noteButtonPrefab: {fileID: 3611035413562261296, guid: 20a0c40928fdf694597917af61e470bb, type: 3}
   _timerText: {fileID: 538644706}
+  _hitZone: {fileID: 202042463}
 --- !u!1 &1734460204
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,7 +936,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1734460205
 RectTransform:
   m_ObjectHideFlags: 0

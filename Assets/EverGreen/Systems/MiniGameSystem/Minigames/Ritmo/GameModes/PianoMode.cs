@@ -60,16 +60,19 @@ public class PianoMode : IRhythmGameMode
 
     public void HandleInput(KeyCode key)
     {
-        string pressedKey = key.ToString().ToUpper();
+        string pressedKey = key.ToString().ToLower();
+        Debug.Log($"Tecla pressionada: {pressedKey}");
 
         PianoNoteData bestCandidate = null;
         float closestDistance = float.MaxValue;
 
         foreach (var noteData in activeNotes)
         {
-            if (noteData.key.ToString().ToUpper() == pressedKey)
+            if (noteData.key.ToString().ToLower() == pressedKey)
             {
                 float distance = Mathf.Abs(noteData.noteScript.GetVerticalDistanceToHitZone());
+                Debug.Log($"Nota {noteData.key} corresponde. Distância: {distance}");
+
                 if (distance < closestDistance)
                 {
                     closestDistance = distance;
@@ -80,14 +83,18 @@ public class PianoMode : IRhythmGameMode
 
         if (bestCandidate != null)
         {
-            string accuracy = EvaluateAccuracy(closestDistance);
-            controller.feedbackText.text = accuracy;
+            Debug.Log($"Melhor candidata: {bestCandidate.key} com distância: {closestDistance}");
 
+            string accuracy = EvaluateAccuracy(closestDistance);
+            Debug.Log($"Nota {bestCandidate.key} acertada com precisão: {accuracy} (distância: {closestDistance})");
+
+            controller.feedbackText.text = accuracy;
             activeNotes.Remove(bestCandidate);
             GameObject.Destroy(bestCandidate.noteGO);
         }
         else
         {
+            Debug.LogWarning("Nenhuma nota correspondente encontrada para a tecla pressionada.");
             controller.feedbackText.text = "Errou!";
         }
     }
@@ -95,6 +102,8 @@ public class PianoMode : IRhythmGameMode
     private void SpawnNote()
     {
         char randomKey = controller.difficultyData.allowedKeys[Random.Range(0, controller.difficultyData.allowedKeys.Length)];
+        Debug.Log($"Spawnando nova nota: {randomKey}");
+
         GameObject newNoteGO = GameObject.Instantiate(controller.noteButtonPrefab, controller.noteArea);
 
         RectTransform noteRect = newNoteGO.GetComponent<RectTransform>();
@@ -108,19 +117,13 @@ public class PianoMode : IRhythmGameMode
         noteRect.anchoredPosition = new Vector2(x, areaRect.rect.height / 2f + noteRect.rect.height);
         noteRect.localScale = Vector3.one;
 
-        // Texto
         var tmpText = newNoteGO.GetComponentInChildren<TMPro.TextMeshProUGUI>();
         if (tmpText != null)
-        {
             tmpText.text = randomKey.ToString();
-        }
 
-        // Cor
         var image = newNoteGO.GetComponent<UnityEngine.UI.Image>();
         if (image != null)
-        {
             image.color = Color.green;
-        }
 
         var rhythmNote = newNoteGO.GetComponent<RhythmNote>();
         if (rhythmNote != null)
@@ -139,6 +142,7 @@ public class PianoMode : IRhythmGameMode
             noteScript = rhythmNote
         });
     }
+
 
     private string EvaluateAccuracy(float distance)
     {
