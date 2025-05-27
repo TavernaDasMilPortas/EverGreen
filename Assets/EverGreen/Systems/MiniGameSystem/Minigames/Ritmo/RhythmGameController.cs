@@ -116,6 +116,8 @@ public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinig
     {
         // Só configura o modo, mas não inicia
         SetMode(RhythmGameMode.CreateMode(selectedMode, this));
+        currentMode?.StartMode();
+        modeStarted = true;
         // Quem chamar StartMinigame deve chamar BeginMinigame para começar
     }
 
