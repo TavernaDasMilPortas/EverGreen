@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: EasyDifficulty
   m_EditorClassIdentifier: 
   allowedKeys: qwer
-  minTimeBetweenNotes: 1
-  maxTimeBetweenNotes: 2
-  noteSpeed: 1
-  gameDuration: 30
-  hitWindow: 0.5
+  classic_minTimeBetweenNotes: 1
+  classic_maxTimeBetweenNotes: 3
+  classic_hitWindow: 3
+  classic_gameDuration: 20
+  sequence_length: 5
+  sequence_displayInterval: 0.7
+  piano_minTimeBetweenNotes: 0.5
+  piano_maxTimeBetweenNotes: 1.5
+  piano_noteSpeed: 300
+  piano_gameDuration: 30

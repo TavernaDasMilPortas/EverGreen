@@ -31,6 +31,7 @@ public class MinigameManager : MonoBehaviour
     public void StartMinigame(IMinigame minigame)
     {
         currentMinigame = minigame;
+        //minigame.gamePrefab.SetActive(true); // Ativa o prefab do minigame
         isRunning = true;
         currentMinigame.StartMinigame();
         InputManager.Instance.SetState(InputState.Minigame);
