@@ -20,20 +20,27 @@ public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinig
     private List<RhythmNote> activeNotes = new List<RhythmNote>();
 
     [Header("UI Extras")]
+    //[SerializeField] private GameObject _gamePrefab; // Prefab do minigame, usado para ativar/desativar
     [SerializeField] private GameObject _noteButtonPrefab;
     [SerializeField] private TextMeshProUGUI _timerText;
     [SerializeField] private RectTransform _hitZone;
 
     private bool modeStarted = false;  // controla se o jogo está rodando
+    //public GameObject gamePrefab => _gamePrefab;
 
     public RectTransform hitZone => _hitZone;
-    // Interface properties
-    public RhythmMinigameDifficultyData difficultyData => _difficultyData;
     public GameObject notePrefab => _notePrefab;
     public RectTransform noteArea => _noteArea;
     public TextMeshProUGUI feedbackText => _feedbackText;
     public GameObject noteButtonPrefab => _noteButtonPrefab;
     public TextMeshProUGUI timerText => _timerText;
+
+
+    public RhythmMinigameDifficultyData difficultyData => _difficultyData;
+
+   
+
+   
 
     private void Start()
     {
@@ -116,6 +123,8 @@ public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinig
     {
         // Só configura o modo, mas não inicia
         SetMode(RhythmGameMode.CreateMode(selectedMode, this));
+        currentMode?.StartMode();
+        modeStarted = true;
         // Quem chamar StartMinigame deve chamar BeginMinigame para começar
     }
 

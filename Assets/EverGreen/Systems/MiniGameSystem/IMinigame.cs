@@ -8,4 +8,6 @@ public interface IMinigame
     void HandleInput(KeyCode key);
     void EndMinigame();
     bool EvaluateResult();
+
+    //GameObject gamePrefab { get; }
 }
