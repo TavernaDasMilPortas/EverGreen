@@ -9,9 +9,10 @@ public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinig
     [SerializeField] private GameObject _notePrefab;
     [SerializeField] private RectTransform _noteArea;
     [SerializeField] private TextMeshProUGUI _feedbackText;
+    [SerializeField] private GameObject UiRoot;
 
     [Header("Modo de Jogo")]
-    public RhythmGameMode.RhythmGameModeType selectedMode;
+    public GameModes.Modes selectedMode;
 
     private IRhythmGameMode currentMode;
     private NoteSpawnerService spawnerService;
@@ -20,10 +21,9 @@ public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinig
     private List<RhythmNote> activeNotes = new List<RhythmNote>();
 
     [Header("UI Extras")]
-    //[SerializeField] private GameObject _gamePrefab; // Prefab do minigame, usado para ativar/desativar
-    [SerializeField] private GameObject _noteButtonPrefab;
-    [SerializeField] private TextMeshProUGUI _timerText;
-    [SerializeField] private RectTransform _hitZone;
+    //[SerializeField] private GameObject _gamePrefab; // Prefab do minigame, usado para ativar/desativa
+    private TextMeshProUGUI _timerText;
+    private RectTransform _hitZone;
 
     private bool modeStarted = false;  // controla se o jogo está rodando
     //public GameObject gamePrefab => _gamePrefab;
@@ -32,20 +32,16 @@ public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinig
     public GameObject notePrefab => _notePrefab;
     public RectTransform noteArea => _noteArea;
     public TextMeshProUGUI feedbackText => _feedbackText;
-    public GameObject noteButtonPrefab => _noteButtonPrefab;
+    public GameObject noteButtonPrefab => _notePrefab;
     public TextMeshProUGUI timerText => _timerText;
-
 
     public RhythmMinigameDifficultyData difficultyData => _difficultyData;
 
-   
-
-   
-
+  
     private void Start()
     {
         spawnerService = new NoteSpawnerService();
-        evaluatorService = new NoteEvaluatorService();
+        evaluatorService = new NoteEvaluatorService(); 
 
         // Não iniciar modo automaticamente
         // SetMode(RhythmGameMode.CreateMode(selectedMode, this));
@@ -83,6 +79,24 @@ public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinig
         modeStarted = false; // resetar flag ao trocar de modo
     }
 
+    public void SelectMode( GameModes.Modes mode)
+    {
+        selectedMode = mode;
+    }
+
+    public void SetDifficulty(IDifficultData Difficult)
+    {
+        RhythmMinigameDifficultyData rhythmDifficulty = Difficult as RhythmMinigameDifficultyData;
+        if (rhythmDifficulty != null)
+        {
+            _difficultyData = rhythmDifficulty;
+        }
+        else
+        {
+            Debug.LogError("Dificuldade fornecida não é do tipo RhythmMinigameDifficultyData!");
+        }
+    }
+    
     public void BeginMinigame()
     {
         if (currentMode == null)
@@ -116,12 +130,25 @@ public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinig
         feedbackText.text = "Miss!";
     }
 
+    public void AssignUI(GameObject uiRoot)
+    {
+        _noteArea = uiRoot.transform.Find("NoteArea")?.GetComponent<RectTransform>();
+        _feedbackText = uiRoot.transform.Find("FeedbackText")?.GetComponent<TextMeshProUGUI>();
+        _hitZone = uiRoot.transform.Find("HitZone")?.GetComponent<RectTransform>();
+        _timerText = uiRoot.transform.Find("TimerText")?.GetComponent<TextMeshProUGUI>();
+
+        if (_noteArea == null || _feedbackText == null || _hitZone == null || _timerText == null)
+        {
+            Debug.LogWarning("Alguns elementos da UI não foram encontrados corretamente.");
+        }
+    }
+
     public List<RhythmNote> GetActiveNotes() => activeNotes;
 
     // Implementação da interface IMinigame
     public void StartMinigame()
     {
-        // Só configura o modo, mas não inicia
+        AssignUI(UiRoot);
         SetMode(RhythmGameMode.CreateMode(selectedMode, this));
         currentMode?.StartMode();
         modeStarted = true;

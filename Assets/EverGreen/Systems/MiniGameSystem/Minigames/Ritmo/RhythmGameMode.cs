@@ -1,21 +1,16 @@
 using UnityEngine;
 public static class RhythmGameMode
 {
-    public enum RhythmGameModeType
-    {
-        Classic,
-        Sequence,
-        Piano
-    }
-    public static IRhythmGameMode CreateMode(RhythmGameModeType modeType, IRhythmGameController controller)
+
+    public static IRhythmGameMode CreateMode(GameModes.Modes modeType, IRhythmGameController controller)
     {
         switch (modeType)
         {
-            case RhythmGameModeType.Classic:
+            case GameModes.Modes.Classic:
                 return new ClassicMode(controller);
-            case RhythmGameModeType.Sequence:
+            case GameModes.Modes.Sequence:
                 return new SequenceMode(controller);
-            case RhythmGameModeType.Piano:
+            case GameModes.Modes.Piano:
                 return new PianoMode(controller);
             default:
                 Debug.LogError("Modo de jogo não implementado!");

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Minigame/Rhythm/DifficultyData", fileName = "NewRhythmDifficultyData")]
-public class RhythmMinigameDifficultyData : ScriptableObject
+public class RhythmMinigameDifficultyData : ScriptableObject, IDifficultData
 {
     [Header("Geral")]
     [Tooltip("Teclas permitidas para todos os modos.")]

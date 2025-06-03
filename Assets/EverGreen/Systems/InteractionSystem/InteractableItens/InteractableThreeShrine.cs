@@ -33,7 +33,7 @@ public class InteractableThreeShrine : MonoBehaviour, IInteractable
         IMinigame minigame = GetComponent<IMinigame>();
         if (minigame != null)
         {
-            MinigameManager.Instance.StartMinigame(minigame);
+            //MinigameManager.Instance.StartMinigame(minigame);
 
             // Após StartMinigame, já chama o início real do minigame:
             minigame.StartMinigame();
