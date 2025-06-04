@@ -5,7 +5,8 @@ public class MinigameTestStarter : MonoBehaviour
     [Header("Prefabs do Minigame")]
     public GameObject uiPrefab; // Prefab da UI do minigame
     public GameObject minigameControllerPrefab; // Prefab do controlador do minigame
-    public IDifficultData difficultData; // Dados de dificuldade do minigame
+    public RhythmMinigameDifficultyData difficultData;  // Dados de dificuldade do minigame
+    public int teste;
     public GameModes.Modes selectedMode; // Modo de jogo selecionado
     [Header("Hierarquia da UI")]
     public Transform uiParent; // Painel ou Canvas onde a UI será instanciada
@@ -23,7 +24,6 @@ public class MinigameTestStarter : MonoBehaviour
 
     void StartMinigame()
     {
-        MinigameManager.Instance.SetMiniGame(difficultData,selectedMode);
-        MinigameManager.Instance.StartMinigameWithUI(uiPrefab, minigameControllerPrefab);
+        MinigameManager.Instance.StartMinigameWithUI(uiPrefab, minigameControllerPrefab, difficultData, GameModes.Modes.Classic);
     }
 }

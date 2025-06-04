@@ -7,7 +7,8 @@ public class MinigameManager : MonoBehaviour
     private GameObject currentMinigameUI;
     private GameObject currentMinigameController;
     private bool isRunning;
-    [SerializeField] private Transform uiParent; // Painel onde a UI do minigame será instanciada
+    [SerializeField] private Transform uiParent;
+
     private void Awake()
     {
         if (Instance == null)
@@ -34,11 +35,10 @@ public class MinigameManager : MonoBehaviour
     /// </summary>
     /// <param name="uiPrefab">Prefab da UI do minigame.</param>
     /// <param name="minigameControllerPrefab">Prefab do controlador do minigame (com um script que implementa IMinigame).</param>
-    public void StartMinigameWithUI(GameObject uiPrefab, GameObject minigameControllerPrefab)
+    public void StartMinigameWithUI(GameObject uiPrefab, GameObject minigameControllerPrefab, IDifficultData difficult, GameModes.Modes mode)
     {
         // Instancia a UI como filha do painel
         currentMinigameUI = Instantiate(uiPrefab, uiParent, false);
-
         currentMinigameController = Instantiate(minigameControllerPrefab);
         currentMinigame = currentMinigameController.GetComponent<IMinigame>();
 
@@ -50,12 +50,14 @@ public class MinigameManager : MonoBehaviour
             return;
         }
 
+        SetMiniGame(difficult, mode);
         isRunning = true;
         currentMinigame.StartMinigame();
         InputManager.Instance.SetState(InputState.Minigame);
     }
     public void SetMiniGame(IDifficultData difficult , GameModes.Modes mode)
     {
+        Debug.Log("Definindo minigame com dificuldade: " + difficult + " e modo: " + mode);
         currentMinigame?.SetDifficulty(difficult);
         currentMinigame?.SelectMode(mode);
     }

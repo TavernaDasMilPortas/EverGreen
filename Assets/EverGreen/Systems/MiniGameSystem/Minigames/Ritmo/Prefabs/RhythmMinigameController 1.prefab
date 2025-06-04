@@ -49,4 +49,4 @@ MonoBehaviour:
   _noteArea: {fileID: 0}
   _feedbackText: {fileID: 0}
   UiRoot: {fileID: 2167000426180074409, guid: e1b71dac1da3bef47aeff464611ce6e8, type: 3}
-  selectedMode: 1
+  selectedMode: 0

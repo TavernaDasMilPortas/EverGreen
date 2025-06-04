@@ -450,6 +450,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiPrefab: {fileID: 2167000426180074409, guid: e1b71dac1da3bef47aeff464611ce6e8, type: 3}
   minigameControllerPrefab: {fileID: 902015046832067346, guid: 50be4588a45a5d143a2ac0685782f305, type: 3}
+  difficultData: {fileID: 11400000, guid: e34af0c93de40ea4eb2e6ea3f2108725, type: 2}
+  teste: 0
   selectedMode: 0
   uiParent: {fileID: 1528018276}
 --- !u!4 &1743346791

@@ -59,7 +59,6 @@ public class ClassicMode : IRhythmGameMode
             ClassicNoteData noteData = activeNotes[i];
             float timeLeft = noteData.expireTime - Time.time;
 
-            Debug.Log($"[UpdateMode] Note '{noteData.key}' time left: {timeLeft:F2}");
 
             if (Time.time >= noteData.expireTime)
             {
@@ -74,14 +73,14 @@ public class ClassicMode : IRhythmGameMode
 
     public void HandleInput(KeyCode key)
     {
-        string pressedKey = key.ToString().ToUpper();
+        string pressedKey = key.ToString().ToLower();
         Debug.Log($"[HandleInput] Key pressed: {pressedKey}");
 
         ClassicNoteData hitNote = null;
 
         foreach (var noteData in activeNotes)
         {
-            if (noteData.key.ToString().ToUpper() == pressedKey)
+            if (noteData.key.ToString().ToLower() == pressedKey)
             {
                 hitNote = noteData;
                 break;
@@ -116,7 +115,7 @@ public class ClassicMode : IRhythmGameMode
     private void SpawnNote()
     {
         char randomKey = controller.difficultyData.allowedKeys[Random.Range(0, controller.difficultyData.allowedKeys.Length)];
-        GameObject newNoteGO = GameObject.Instantiate(controller.noteButtonPrefab, controller.noteArea);
+        GameObject newNoteGO = GameObject.Instantiate(controller.noteButtonPrefab, GameObject.Find("MiniGamePanel").transform);
 
         RectTransform noteRect = newNoteGO.GetComponent<RectTransform>();
         RectTransform areaRect = controller.noteArea.GetComponent<RectTransform>();
