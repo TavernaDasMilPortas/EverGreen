@@ -302,8 +302,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Lux URP Essentials\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1556
-    y: 79
+    x: 1557
+    y: 24
     width: 363
     height: 907
   m_SerializedDataModeController:
@@ -1220,8 +1220,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 210
-    y: 79
+    x: 211
+    y: 24
     width: 1344
     height: 591
   m_SerializedDataModeController:
@@ -1772,11 +1772,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.24801987, y: 0.5262974, z: -0.16384496, w: 0.796664}
     speed: 2
-    m_Value: {x: 0.2480172, y: 0.5262917, z: -0.1638432, w: 0.7966555}
+    m_Value: {x: 0.24801987, y: 0.52629733, z: -0.16384496, w: 0.796664}
   m_Size:
     m_Target: 2336.5967
     speed: 2
-    m_Value: 2235.9778
+    m_Value: 2336.5967
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1829,7 +1829,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 79
+    y: 24
     width: 209
     height: 591
   m_SerializedDataModeController:
@@ -1846,23 +1846,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: fc980000
-      m_LastClickedID: 39164
+      m_SelectedIDs: 
+      m_LastClickedID: 0
       m_ExpandedIDs: 6a63fdff7c43feff3055feffd65dfeff30eeffffecfaffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: arvore2 (1)
-        m_OriginalName: arvore2 (1)
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -4562
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_TrimLeadingAndTrailingWhitespace: 0
         m_ClientGUIView: {fileID: 8}
@@ -1895,7 +1895,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 696
+    y: 641
     width: 1555
     height: 290
   m_SerializedDataModeController:
@@ -1939,7 +1939,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 60}
     m_SelectedIDs: c4af0000
     m_LastClickedID: 44996
-    m_ExpandedIDs: 000000004a9400001a960000de960000ee96000000ca9a3bffffff7f
+    m_ExpandedIDs: 
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1968,7 +1968,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000004a940000
+    m_ExpandedIDs: 
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
