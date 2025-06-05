@@ -3,10 +3,11 @@ using UnityEngine;
 public class MinigameManager : MonoBehaviour
 {
     public static MinigameManager Instance { get; private set; }
-
     private IMinigame currentMinigame;
+    private GameObject currentMinigameUI;
+    private GameObject currentMinigameController;
     private bool isRunning;
-
+    [SerializeField] private Transform uiParent; // Painel onde a UI do minigame será instanciada
     private void Awake()
     {
         if (Instance == null)
@@ -28,15 +29,36 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
-    public void StartMinigame(IMinigame minigame)
+    /// <summary>
+    /// Inicia o minigame instanciando a UI e o controlador.
+    /// </summary>
+    /// <param name="uiPrefab">Prefab da UI do minigame.</param>
+    /// <param name="minigameControllerPrefab">Prefab do controlador do minigame (com um script que implementa IMinigame).</param>
+    public void StartMinigameWithUI(GameObject uiPrefab, GameObject minigameControllerPrefab)
     {
-        currentMinigame = minigame;
-        //minigame.gamePrefab.SetActive(true); // Ativa o prefab do minigame
+        // Instancia a UI como filha do painel
+        currentMinigameUI = Instantiate(uiPrefab, uiParent, false);
+
+        currentMinigameController = Instantiate(minigameControllerPrefab);
+        currentMinigame = currentMinigameController.GetComponent<IMinigame>();
+
+        if (currentMinigame == null)
+        {
+            Debug.LogError("O prefab do controlador não possui um componente que implementa IMinigame.");
+            Destroy(currentMinigameUI);
+            Destroy(currentMinigameController);
+            return;
+        }
+
         isRunning = true;
         currentMinigame.StartMinigame();
         InputManager.Instance.SetState(InputState.Minigame);
     }
-
+    public void SetMiniGame(IDifficultData difficult , GameModes.Modes mode)
+    {
+        currentMinigame?.SetDifficulty(difficult);
+        currentMinigame?.SelectMode(mode);
+    }
     public void HandleInput(KeyCode key)
     {
         if (isRunning && currentMinigame != null)
@@ -53,6 +75,10 @@ public class MinigameManager : MonoBehaviour
             bool success = currentMinigame.EvaluateResult();
             Debug.Log("Minigame finalizado. Sucesso: " + success);
         }
+
+        // Destroi os objetos instanciados
+        if (currentMinigameUI != null) Destroy(currentMinigameUI);
+        if (currentMinigameController != null) Destroy(currentMinigameController);
 
         currentMinigame = null;
         isRunning = false;
