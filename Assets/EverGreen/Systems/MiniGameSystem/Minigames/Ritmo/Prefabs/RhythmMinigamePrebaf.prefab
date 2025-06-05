@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 6556433877611272758}
   - component: {fileID: 6819939769420546593}
   m_Layer: 0
-  m_Name: CurrentTime
+  m_Name: TimerText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 1610264768680358902}
   - component: {fileID: 3851347889715433673}
   m_Layer: 0
-  m_Name: StatusText
+  m_Name: FeedbackText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

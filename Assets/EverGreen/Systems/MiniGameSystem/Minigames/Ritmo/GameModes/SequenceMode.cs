@@ -6,6 +6,7 @@ public class SequenceMode : IRhythmGameMode
     private IRhythmGameController controller;
     private List<char> sequence = new List<char>();
     private List<GameObject> noteObjects = new List<GameObject>();
+    private List<char> playerInputs = new List<char>();
 
     private int currentDisplayIndex = 0;
     private int currentPlayerIndex = 0;
@@ -35,6 +36,7 @@ public class SequenceMode : IRhythmGameMode
         currentPlayerIndex = 0;
         currentDisplayIndex = 0;
         isShowingSequence = true;
+        playerInputs.Clear();
 
         controller.feedbackText.text = "Observe!";
     }
@@ -45,7 +47,7 @@ public class SequenceMode : IRhythmGameMode
         {
             if (currentDisplayIndex < sequence.Count)
             {
-                ShowSequenceNote(sequence[currentDisplayIndex]);
+                ShowSequenceNote(sequence[currentDisplayIndex], currentDisplayIndex);
                 currentDisplayIndex++;
                 nextDisplayTime = Time.time + displayInterval;
             }
@@ -54,6 +56,14 @@ public class SequenceMode : IRhythmGameMode
                 isShowingSequence = false;
                 currentPlayerIndex = 0;
                 controller.feedbackText.text = "Sua vez!";
+
+                // Zera textos das notas
+                foreach (var noteGO in noteObjects)
+                {
+                    var note = noteGO.GetComponent<RhythmNote>();
+                    if (note != null)
+                        note.SetText(' ');
+                }
             }
         }
     }
@@ -70,36 +80,42 @@ public class SequenceMode : IRhythmGameMode
             return;
         }
 
-        char expectedKey = sequence[currentPlayerIndex];
-        string result;
+        playerInputs.Add(pressedKey);
 
-        if (pressedKey == expectedKey)
+        // Atualiza nota com input do jogador
+        var noteGO = noteObjects[currentPlayerIndex];
+        var note = noteGO.GetComponent<RhythmNote>();
+        if (note != null)
         {
-            result = $"Acertou {pressedKey}!";
-            currentPlayerIndex++;
-        }
-        else
-        {
-            result = $"Errou! Esperava {expectedKey}, mas recebeu {pressedKey}.";
-            IsModeFinished = true;
+            note.SetText(pressedKey);
         }
 
-        controller.feedbackText.text = result;
+        currentPlayerIndex++;
 
-        // Opcional: realce a nota correspondente
-        if (currentPlayerIndex - 1 < noteObjects.Count && noteObjects[currentPlayerIndex - 1] != null)
+        if (currentPlayerIndex >= sequence.Count)
         {
-            var img = noteObjects[currentPlayerIndex - 1].GetComponent<UnityEngine.UI.Image>();
-            if (img != null)
-                img.color = pressedKey == expectedKey ? Color.green : Color.red;
+            EvaluateSequence();
+        }
+    }
+
+    private void EvaluateSequence()
+    {
+        IsModeFinished = true;
+
+        for (int i = 0; i < sequence.Count; i++)
+        {
+            var noteGO = noteObjects[i];
+            var note = noteGO.GetComponent<RhythmNote>();
+            if (note != null)
+            {
+                if (playerInputs[i] == note.GetOriginalKey())
+                    note.SetColor(Color.green);
+                else
+                    note.SetColor(Color.red);
+            }
         }
 
-        // Finaliza se o jogador completou a sequência com sucesso
-        if (currentPlayerIndex >= sequence.Count && !IsModeFinished)
-        {
-            controller.feedbackText.text = "Sequência Completa!";
-            IsModeFinished = true;
-        }
+        controller.feedbackText.text = "Sequência completada!";
     }
 
     private void GenerateSequence(int length)
@@ -114,47 +130,43 @@ public class SequenceMode : IRhythmGameMode
         }
     }
 
-    private void ShowSequenceNote(char key)
+    private void ShowSequenceNote(char key, int index)
     {
-        GameObject newNoteGO = GameObject.Instantiate(controller.noteButtonPrefab, controller.noteArea);
+        GameObject newNoteGO = GameObject.Instantiate(controller.noteButtonPrefab, GameObject.Find("MiniGamePanel").transform);
 
         RectTransform noteRect = newNoteGO.GetComponent<RectTransform>();
         RectTransform areaRect = controller.noteArea.GetComponent<RectTransform>();
 
-        float areaWidth = areaRect.rect.width;
-        float areaHeight = areaRect.rect.height;
+        // Fixa a coluna no meio da área
+        float x = 0f;
 
-        float x = Random.Range(-areaWidth / 2f + noteRect.rect.width / 2f, areaWidth / 2f - noteRect.rect.width / 2f);
-        float y = Random.Range(-areaHeight / 2f + noteRect.rect.height / 2f, areaHeight / 2f - noteRect.rect.height / 2f);
+        // Espaçamento vertical entre notas
+        float spacing = 50f;
+
+        float y = areaRect.rect.height / 2f - spacing * index;
 
         noteRect.anchoredPosition = new Vector2(x, y);
         noteRect.localScale = Vector3.one * 2f;
 
-        // TextMeshProUGUI da nota
+        // Configura visual
         var tmpText = newNoteGO.GetComponentInChildren<TMPro.TextMeshProUGUI>();
         if (tmpText != null)
         {
             tmpText.text = key.ToString();
         }
 
-        // Indicador visual
         var indicatorImage = newNoteGO.GetComponent<UnityEngine.UI.Image>();
         if (indicatorImage != null)
         {
             indicatorImage.color = Color.green;
         }
 
-        // RhythmNote
-        RhythmNote note = newNoteGO.GetComponent<RhythmNote>();
+        var note = newNoteGO.GetComponent<RhythmNote>();
         if (note != null)
         {
-            note.Initialize(key, controller.hitZone);
+            note.Initialize(key, controller.hitZone, NoteType.Sequence, 0);
         }
 
-        // Armazena o GameObject para depois marcar acerto/erro
         noteObjects.Add(newNoteGO);
-
-        // Destruir depois de um tempo? Agora NÃO, pois será usado visualmente na comparação
-        // GameObject.Destroy(newNoteGO, displayInterval * 0.8f); 
     }
 }

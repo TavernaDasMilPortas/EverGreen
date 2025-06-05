@@ -6,7 +6,8 @@ public class PianoMode : IRhythmGameMode
     private IRhythmGameController controller;
     private float gameTimer;
     private float nextNoteTime;
-    private List<PianoNoteData> activeNotes = new List<PianoNoteData>();
+    private List<RhythmNote> activeNotes = new List<RhythmNote>();
+
     public bool IsModeFinished { get; private set; } = false;
 
     public PianoMode(IRhythmGameController controller)
@@ -46,13 +47,16 @@ public class PianoMode : IRhythmGameMode
 
         for (int i = activeNotes.Count - 1; i >= 0; i--)
         {
-            PianoNoteData noteData = activeNotes[i];
-            noteData.noteScript.MoveDown(controller.difficultyData.piano_noteSpeed);
+            RhythmNote note = activeNotes[i];
 
-            if (noteData.noteScript.IsOutOfBounds())
+            Vector2 pos = note.rectTransform.anchoredPosition;
+            pos.y -= controller.difficultyData.piano_noteSpeed * Time.deltaTime;
+            note.rectTransform.anchoredPosition = pos;
+
+            if (note.IsPastHitZone())
             {
                 controller.feedbackText.text = "Errou!";
-                GameObject.Destroy(noteData.noteGO);
+                note.DestroyNote();
                 activeNotes.RemoveAt(i);
             }
         }
@@ -63,20 +67,20 @@ public class PianoMode : IRhythmGameMode
         string pressedKey = key.ToString().ToLower();
         Debug.Log($"Tecla pressionada: {pressedKey}");
 
-        PianoNoteData bestCandidate = null;
+        RhythmNote bestCandidate = null;
         float closestDistance = float.MaxValue;
 
-        foreach (var noteData in activeNotes)
+        foreach (var note in activeNotes)
         {
-            if (noteData.key.ToString().ToLower() == pressedKey)
+            if (note.MatchesKey(key))
             {
-                float distance = Mathf.Abs(noteData.noteScript.GetVerticalDistanceToHitZone());
-                Debug.Log($"Nota {noteData.key} corresponde. Distância: {distance}");
+                float distance = note.DistanceToHitArea();
+                Debug.Log($"Nota {note.key} corresponde. Distância: {distance}");
 
                 if (distance < closestDistance)
                 {
                     closestDistance = distance;
-                    bestCandidate = noteData;
+                    bestCandidate = note;
                 }
             }
         }
@@ -90,7 +94,7 @@ public class PianoMode : IRhythmGameMode
 
             controller.feedbackText.text = accuracy;
             activeNotes.Remove(bestCandidate);
-            GameObject.Destroy(bestCandidate.noteGO);
+            bestCandidate.OnHit();
         }
         else
         {
@@ -104,45 +108,33 @@ public class PianoMode : IRhythmGameMode
         char randomKey = controller.difficultyData.allowedKeys[Random.Range(0, controller.difficultyData.allowedKeys.Length)];
         Debug.Log($"Spawnando nova nota: {randomKey}");
 
-        GameObject newNoteGO = GameObject.Instantiate(controller.noteButtonPrefab, controller.noteArea);
-
-        RectTransform noteRect = newNoteGO.GetComponent<RectTransform>();
         RectTransform areaRect = controller.noteArea.GetComponent<RectTransform>();
-
         float areaWidth = areaRect.rect.width;
         int keyIndex = controller.difficultyData.allowedKeys.IndexOf(randomKey);
         float slotWidth = areaWidth / controller.difficultyData.allowedKeys.Length;
         float x = -areaWidth / 2f + slotWidth * (keyIndex + 0.5f);
+        Vector2 spawnPos = new Vector2(x, areaRect.rect.height / 2f + 50f); // Ajuste de 50f como offset superior
+        Transform parentTransform = GameObject.Find("MiniGamePanel").transform;
 
-        noteRect.anchoredPosition = new Vector2(x, areaRect.rect.height / 2f + noteRect.rect.height);
-        noteRect.localScale = Vector3.one;
+        GameObject noteGO = RhythmNote.SpawnNote(
+            randomKey,
+            controller.hitZone,
+            controller.noteButtonPrefab,
+            parentTransform,
+            spawnPos,
+            NoteType.Piano,
+            0
+        );
 
-        var tmpText = newNoteGO.GetComponentInChildren<TMPro.TextMeshProUGUI>();
-        if (tmpText != null)
-            tmpText.text = randomKey.ToString();
-
-        var image = newNoteGO.GetComponent<UnityEngine.UI.Image>();
-        if (image != null)
-            image.color = Color.green;
-
-        var rhythmNote = newNoteGO.GetComponent<RhythmNote>();
-        if (rhythmNote != null)
+        RhythmNote rhythmNote = noteGO.GetComponent<RhythmNote>();
+        if (rhythmNote == null)
         {
-            rhythmNote.Initialize(randomKey, controller.hitZone);
-        }
-        else
-        {
-            Debug.LogError("RhythmNote component not found in noteButtonPrefab!");
+            Debug.LogError("RhythmNote component não encontrado no noteButtonPrefab!");
+            return;
         }
 
-        activeNotes.Add(new PianoNoteData
-        {
-            key = randomKey,
-            noteGO = newNoteGO,
-            noteScript = rhythmNote
-        });
+        activeNotes.Add(rhythmNote);
     }
-
 
     private string EvaluateAccuracy(float distance)
     {
@@ -151,12 +143,5 @@ public class PianoMode : IRhythmGameMode
         if (distance <= 30f) return "Ok!";
         if (distance <= 40f) return "Ruim!";
         return "Errou!";
-    }
-
-    private class PianoNoteData
-    {
-        public char key;
-        public GameObject noteGO;
-        public RhythmNote noteScript;
     }
 }

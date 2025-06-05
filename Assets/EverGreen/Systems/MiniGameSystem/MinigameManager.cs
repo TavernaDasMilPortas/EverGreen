@@ -34,11 +34,9 @@ public class MinigameManager : MonoBehaviour
     /// </summary>
     /// <param name="uiPrefab">Prefab da UI do minigame.</param>
     /// <param name="minigameControllerPrefab">Prefab do controlador do minigame (com um script que implementa IMinigame).</param>
-    public void StartMinigameWithUI(GameObject uiPrefab, GameObject minigameControllerPrefab)
+    public void StartMinigameWithUI(GameObject uiPrefab, GameObject minigameControllerPrefab, IDifficultData difficult, GameModes.Modes mode)
     {
-        // Instancia a UI como filha do painel
         currentMinigameUI = Instantiate(uiPrefab, uiParent, false);
-
         currentMinigameController = Instantiate(minigameControllerPrefab);
         currentMinigame = currentMinigameController.GetComponent<IMinigame>();
 
@@ -50,10 +48,20 @@ public class MinigameManager : MonoBehaviour
             return;
         }
 
+        SetMiniGame(difficult, mode);
+
+        // Se for RhythmGameController, fazer AssignUI automaticamente
+        RhythmGameController rhythmController = currentMinigameController.GetComponent<RhythmGameController>();
+        if (rhythmController != null)
+        {
+            rhythmController.AssignUI(currentMinigameUI);
+        }
+
         isRunning = true;
         currentMinigame.StartMinigame();
         InputManager.Instance.SetState(InputState.Minigame);
     }
+
     public void SetMiniGame(IDifficultData difficult , GameModes.Modes mode)
     {
         currentMinigame?.SetDifficulty(difficult);

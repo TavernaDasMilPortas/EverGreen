@@ -1,20 +1,25 @@
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ClassicMode : IRhythmGameMode
 {
     private IRhythmGameController controller;
-    private float gameTimer;
-    private float nextNoteTime;
-    private List<ClassicNoteData> activeNotes = new List<ClassicNoteData>();
+    private MonoBehaviour coroutineExecutor;
+    private List<RhythmNote> activeNotes = new List<RhythmNote>();
     private int correctHits;
     private int missedHits;
+    private Coroutine countdownCoroutine;
+    private Coroutine spawnNotesCoroutine;
+
     public bool IsModeFinished { get; private set; } = false;
 
-    public ClassicMode(IRhythmGameController controller)
+    public ClassicMode(IRhythmGameController controller, MonoBehaviour coroutineExecutor)
     {
         this.controller = controller;
+        this.coroutineExecutor = coroutineExecutor;
     }
+
     public void Initialize(IRhythmGameController controller)
     {
         this.controller = controller;
@@ -22,68 +27,34 @@ public class ClassicMode : IRhythmGameMode
 
     public void StartMode()
     {
-        gameTimer = controller.difficultyData.classic_gameDuration;
         correctHits = 0;
         missedHits = 0;
-        nextNoteTime = Random.Range(controller.difficultyData.classic_minTimeBetweenNotes, controller.difficultyData.classic_maxTimeBetweenNotes);
-        // Inicializa o tempo para a prÛxima nota com um valor relativo, n„o absoluto
+        IsModeFinished = false;
+
+        Debug.Log("[ClassicMode] StartMode iniciado");
+
+        countdownCoroutine = coroutineExecutor.StartCoroutine(CountdownCoroutine());
+        spawnNotesCoroutine = coroutineExecutor.StartCoroutine(SpawnNotesCoroutine());
     }
 
     public void UpdateMode()
     {
-        gameTimer -= Time.deltaTime;
-        controller.timerText.text = Mathf.CeilToInt(gameTimer).ToString();
-
-
-
-        if (gameTimer <= 0)
-        {
-            IsModeFinished = true;
-            Debug.Log("[UpdateMode] Game Over");
-            return;
-        }
-
-        nextNoteTime -= Time.deltaTime;
-
-
-        if (nextNoteTime <= 0f)
-        {
-            Debug.Log("[UpdateMode] Spawning new note...");
-            SpawnNote();
-            nextNoteTime = Random.Range(controller.difficultyData.classic_minTimeBetweenNotes, controller.difficultyData.classic_maxTimeBetweenNotes);
-
-        }
-
-        for (int i = activeNotes.Count - 1; i >= 0; i--)
-        {
-            ClassicNoteData noteData = activeNotes[i];
-            float timeLeft = noteData.expireTime - Time.time;
-
-            Debug.Log($"[UpdateMode] Note '{noteData.key}' time left: {timeLeft:F2}");
-
-            if (Time.time >= noteData.expireTime)
-            {
-                controller.feedbackText.text = "Errou!";
-
-                GameObject.Destroy(noteData.noteGO);
-                activeNotes.RemoveAt(i);
-                missedHits++;
-            }
-        }
+        // N√£o utilizado.
     }
 
     public void HandleInput(KeyCode key)
     {
-        string pressedKey = key.ToString().ToUpper();
-        Debug.Log($"[HandleInput] Key pressed: {pressedKey}");
+        string pressedKey = key.ToString().ToLower();
+        Debug.Log($"[ClassicMode] HandleInput chamado: Key pressed = {pressedKey}");
 
-        ClassicNoteData hitNote = null;
+        RhythmNote hitNote = null;
 
-        foreach (var noteData in activeNotes)
+        foreach (var note in activeNotes)
         {
-            if (noteData.key.ToString().ToUpper() == pressedKey)
+            Debug.Log($"[ClassicMode] Checando nota ativa: {note.key.ToString().ToLower()}");
+            if (note.key.ToString().ToLower() == pressedKey)
             {
-                hitNote = noteData;
+                hitNote = note;
                 break;
             }
         }
@@ -91,105 +62,122 @@ public class ClassicMode : IRhythmGameMode
         if (hitNote != null)
         {
             controller.feedbackText.text = "Acertou!";
-
+            Debug.Log("[ClassicMode] Acertou! FeedbackText atualizado.");
             correctHits++;
+
             activeNotes.Remove(hitNote);
-            GameObject.Destroy(hitNote.noteGO);
+            hitNote.DestroyNote();
         }
         else
         {
             controller.feedbackText.text = "Errou!";
-
+            Debug.Log("[ClassicMode] Errou! FeedbackText atualizado.");
             missedHits++;
 
-            // Se houver pelo menos uma nota ativa, remova a ˙ltima
             if (activeNotes.Count > 0)
             {
                 var lastNote = activeNotes[activeNotes.Count - 1];
                 activeNotes.RemoveAt(activeNotes.Count - 1);
-                GameObject.Destroy(lastNote.noteGO);
+                lastNote.DestroyNote();
+                Debug.Log("[ClassicMode] √öltima nota removida ap√≥s erro.");
             }
         }
     }
 
+    private IEnumerator CountdownCoroutine()
+    {
+        float gameTimer = controller.difficultyData.classic_gameDuration;
+
+        while (gameTimer > 0f)
+        {
+            gameTimer -= Time.deltaTime;
+            controller.timerText.text = Mathf.CeilToInt(gameTimer).ToString();
+            Debug.Log($"[ClassicMode] Timer atualizado: {controller.timerText.text}");
+
+            yield return null;
+        }
+
+        Debug.Log("[ClassicMode] Timer finalizado, chamando EndMode.");
+        EndMode();
+    }
+
+    private IEnumerator SpawnNotesCoroutine()
+    {
+        while (!IsModeFinished)
+        {
+            float nextNoteTime = Random.Range(controller.difficultyData.classic_minTimeBetweenNotes, controller.difficultyData.classic_maxTimeBetweenNotes);
+            Debug.Log($"[ClassicMode] Pr√≥xima nota em {nextNoteTime} segundos");
+            yield return new WaitForSeconds(nextNoteTime);
+
+            if (!IsModeFinished)
+            {
+                Debug.Log("[ClassicMode] SpawnNote chamado dentro do coroutine.");
+                SpawnNote();
+            }
+        }
+    }
+
+    private void EndMode()
+    {
+        IsModeFinished = true;
+        Debug.Log("[ClassicMode] EndMode chamado. Game Over");
+
+        if (countdownCoroutine != null)
+        {
+            coroutineExecutor.StopCoroutine(countdownCoroutine);
+            Debug.Log("[ClassicMode] CountdownCoroutine parado.");
+        }
+        if (spawnNotesCoroutine != null)
+        {
+            coroutineExecutor.StopCoroutine(spawnNotesCoroutine);
+            Debug.Log("[ClassicMode] SpawnNotesCoroutine parado.");
+        }
+
+        controller.feedbackText.text = "";  //  OPCIONAL: limpa no fim tamb√©m.
+    }
 
     private void SpawnNote()
     {
         char randomKey = controller.difficultyData.allowedKeys[Random.Range(0, controller.difficultyData.allowedKeys.Length)];
-        GameObject newNoteGO = GameObject.Instantiate(controller.noteButtonPrefab, controller.noteArea);
+        Transform parentTransform = GameObject.Find("MiniGamePanel").transform;
 
-        RectTransform noteRect = newNoteGO.GetComponent<RectTransform>();
-        RectTransform areaRect = controller.noteArea.GetComponent<RectTransform>();
+        Vector2 spawnPosition = GetRandomSpawnPosition(controller.noteArea.GetComponent<RectTransform>());
 
-        float areaWidth = areaRect.rect.width;
-        float x = Random.Range(-areaWidth / 2f + noteRect.rect.width / 2f, areaWidth / 2f - noteRect.rect.width / 2f);
+        Debug.Log($"[ClassicMode] Spawning note: key={randomKey}, position={spawnPosition}");
 
-        float y = 0f;
-        noteRect.anchoredPosition = new Vector2(x, y);
+        GameObject noteGO = RhythmNote.SpawnNote(
+            randomKey,
+            controller.hitZone,
+            controller.noteButtonPrefab,
+            parentTransform,
+            spawnPosition,
+            NoteType.Classic,
+            controller.difficultyData.classic_hitWindow
+        );
 
-        // Inicializa com escala 2x
-        noteRect.localScale = Vector3.one * 2f;
+        RhythmNote rhythmNote = noteGO.GetComponent<RhythmNote>();
 
-        // TextMeshProUGUI da nota
-        var tmpText = newNoteGO.GetComponentInChildren<TMPro.TextMeshProUGUI>();
-        if (tmpText != null)
+        rhythmNote.StartLifeCycle(controller.difficultyData.classic_hitWindow, () =>
         {
-            tmpText.text = randomKey.ToString();
-        }
-        else
-        {
-            Debug.LogError("TextMeshProUGUI component not found in noteButtonPrefab!");
-        }
-
-        // Indicador visual
-        var indicatorImage = newNoteGO.GetComponent<UnityEngine.UI.Image>();
-        if (indicatorImage != null)
-        {
-            indicatorImage.color = Color.green;
-        }
-
-        // ReferÍncia ao RhythmNote
-        var rhythmNote = newNoteGO.GetComponent<RhythmNote>();
-        if (rhythmNote != null)
-        {
-            rhythmNote.Initialize(randomKey, controller.noteArea);
-        }
-        else
-        {
-            Debug.LogError("RhythmNote component not found in noteButtonPrefab!");
-        }
-
-        float expire = Time.time + controller.difficultyData.classic_hitWindow;
-
-
-        activeNotes.Add(new ClassicNoteData
-        {
-            key = randomKey,
-            noteGO = newNoteGO,
-            noteScript = rhythmNote,
-            expireTime = expire,
-            spawnTime = Time.time,
-            lifeTime = controller.difficultyData.classic_hitWindow,
-            indicatorImage = indicatorImage
+            controller.feedbackText.text = "Errou!";
+            Debug.Log("[ClassicMode] Nota n√£o atingida a tempo. FeedbackText atualizado para 'Errou!'");
+            missedHits++;
+            activeNotes.Remove(rhythmNote);
         });
 
-        if (rhythmNote != null)
-        {
-            rhythmNote.Initialize(randomKey, controller.noteArea);
-            rhythmNote.rectTransform = noteRect;
-            rhythmNote.AnimateVisualOverLifetime(controller.difficultyData.classic_hitWindow);
-        }
+        rhythmNote.AnimateVisualOverLifetime(controller.difficultyData.classic_hitWindow);
+
+        activeNotes.Add(rhythmNote);
     }
 
-
-    private class ClassicNoteData
+    private Vector2 GetRandomSpawnPosition(RectTransform areaRect)
     {
-        public char key;
-        public GameObject noteGO;
-        public RhythmNote noteScript;
-        public float expireTime;
-        public float spawnTime;
-        public float lifeTime;
-        public UnityEngine.UI.Image indicatorImage;
+        float areaWidth = areaRect.rect.width;
+        float noteWidth = controller.noteButtonPrefab.GetComponent<RectTransform>().rect.width;
+
+        float x = Random.Range(-areaWidth / 2f + noteWidth / 2f, areaWidth / 2f - noteWidth / 2f);
+        float y = 0f;
+
+        return new Vector2(x, y);
     }
 }
