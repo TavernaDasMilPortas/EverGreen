@@ -61,6 +61,10 @@ public class InputManager : MonoBehaviour
         {
             MenuManager.Instance?.ToggleMainMenu();
         }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            InteractionHandler.Instance.nearestInteractable.Interact();
+        }
     }
 
     private void HandleMenuInput()

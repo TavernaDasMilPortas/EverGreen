@@ -5,9 +5,12 @@ public class InteractableThreeShrine : MonoBehaviour, IInteractable
     [Header("Item necessário para interação (opcional)")]
     public Item requiredItem;
     public int requiredItemQuantity = 1;
-
+   
     [TextArea]
     public string interactionMessage = "Interagiu com Interactable";
+
+    [Header("GameConfig")]
+    public MinigameConfig config;
 
     // Implementação das propriedades da interface (nomes exatos conforme a interface)
     public Item RequiredItem => requiredItem;
@@ -29,22 +32,16 @@ public class InteractableThreeShrine : MonoBehaviour, IInteractable
     private void PerformInteraction()
     {
         Debug.Log(interactionMessage);
-
-        IMinigame minigame = GetComponent<IMinigame>();
-        if (minigame != null)
+        if (config != null)
         {
-            //MinigameManager.Instance.StartMinigame(minigame);
-
-            // Após StartMinigame, já chama o início real do minigame:
-            minigame.StartMinigame();
-
-            // Se o minigame tiver etapas adicionais, o próprio StartMinigame deve cuidar disso.
-            // Por exemplo, RhythmGameController.SetMode + BeginMinigame.
+            MinigameManager.Instance.StartMinigameWithUI(config.uiPrefab, config.minigameControllerPrefab, config.difficultData as IDifficultData, config.selectedMode);
         }
         else
         {
             Debug.LogError("Nenhum IMinigame encontrado neste objeto!");
         }
     }
+
+
 
 }

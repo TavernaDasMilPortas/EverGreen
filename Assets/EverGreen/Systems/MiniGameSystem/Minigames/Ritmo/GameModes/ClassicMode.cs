@@ -87,16 +87,24 @@ public class ClassicMode : IRhythmGameMode
     private IEnumerator CountdownCoroutine()
     {
         float gameTimer = controller.difficultyData.classic_gameDuration;
+        int lastDisplayedTime = -1;
 
         while (gameTimer > 0f)
         {
             gameTimer -= Time.deltaTime;
-            controller.timerText.text = Mathf.CeilToInt(gameTimer).ToString();
-            Debug.Log($"[ClassicMode] Timer atualizado: {controller.timerText.text}");
+
+            int currentTime = Mathf.CeilToInt(gameTimer);
+            if (currentTime != lastDisplayedTime)
+            {
+                controller.timerText.text = currentTime.ToString();
+                lastDisplayedTime = currentTime;
+                Debug.Log($"[ClassicMode] Timer atualizado: {currentTime}");
+            }
 
             yield return null;
         }
 
+        controller.timerText.text = "0";
         Debug.Log("[ClassicMode] Timer finalizado, chamando EndMode.");
         EndMode();
     }

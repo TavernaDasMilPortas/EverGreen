@@ -194,6 +194,7 @@ public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinig
         modeStarted = false;
         activeNotes.ForEach(note => Destroy(note.gameObject));
         activeNotes.Clear();
+        MinigameManager.Instance.gameFinish = true;
     }
 
     public bool EvaluateResult()
