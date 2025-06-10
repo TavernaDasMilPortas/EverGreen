@@ -43,7 +43,7 @@ public class InteractableThreeShrine : MonoBehaviour, IInteractable
                 config.difficultData as IDifficultData,
                 config.selectedMode);
         }
-        else if(config == null)
+        else if(config == null  )
         {
             Debug.LogError("Nenhum IMinigame encontrado neste objeto!");
         }
