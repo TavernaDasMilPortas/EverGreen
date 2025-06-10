@@ -4,7 +4,7 @@ public class MinigameTestStarter : MonoBehaviour
 {
     [Header("Prefabs do Minigame")]
     public static MinigameTestStarter Instance { get; private set; }
-    public GameObject uiPrefab; // Prefab da UI do minigame
+    public GameObject[] uiPrefab; // Prefab da UI do minigame
     public GameObject minigameControllerPrefab; // Prefab do controlador do minigame
     public ScriptableObject difficultData; // Dados de dificuldade do minigame
     public GameModes.Modes selectedMode; // Modo de jogo selecionado

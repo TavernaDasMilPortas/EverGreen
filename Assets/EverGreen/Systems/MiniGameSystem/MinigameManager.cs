@@ -1,28 +1,28 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MinigameManager : MonoBehaviour
 {
     public static MinigameManager Instance { get; private set; }
+
     private IMinigame currentMinigame;
-    private GameObject currentMinigameUI;
+    private List<GameObject> currentMinigameUI = new List<GameObject>();
     private GameObject currentMinigameController;
     public GameObject MiniGameCanvas;
     private bool isRunning;
     public bool gameFinish;
-
-    [SerializeField] private Transform uiParent; // Painel onde a UI do minigame será instanciada
+    public System.Action<bool> OnMinigameFinished;
+    [SerializeField] private Transform uiParent;
 
     private void Awake()
     {
-        // Tenta encontrar o GameObject com o nome "MiniGameCanvas" na cena
-
         if (MiniGameCanvas != null)
         {
-            MiniGameCanvas.SetActive(false); // Desativa ao iniciar o jogo
+            MiniGameCanvas.SetActive(false);
         }
         else
         {
-            Debug.LogWarning("MiniGameCanvas não encontrado na cena.");
+            Debug.LogWarning("MiniGameCanvas não foi atribuído.");
         }
 
         if (Instance == null)
@@ -45,36 +45,45 @@ public class MinigameManager : MonoBehaviour
 
         if (gameFinish)
         {
-            gameFinish = false; // Garante que não chamará múltiplas vezes
+            gameFinish = false;
             EndMinigame();
         }
     }
 
-    public void StartMinigameWithUI(GameObject uiPrefab, GameObject minigameControllerPrefab, IDifficultData difficult, GameModes.Modes mode)
+    public void StartMinigameWithUI(GameObject[] uiPrefabs, GameObject minigameControllerPrefab, IDifficultData difficult, GameModes.Modes mode)
     {
         if (MiniGameCanvas != null)
         {
-            MiniGameCanvas.SetActive(true); // Ativa o Canvas ao iniciar o minigame
-            Debug.Log("MiniGameCanvas ativado");
+            MiniGameCanvas.SetActive(true);
+            Debug.Log("MiniGameCanvas ativado.");
         }
-        currentMinigameUI = Instantiate(uiPrefab, uiParent, false);
+
+        currentMinigameUI = new List<GameObject>();
+
+        foreach (GameObject prefab in uiPrefabs)
+        {
+            GameObject uiInstance = Instantiate(prefab, uiParent, false);
+            currentMinigameUI.Add(uiInstance);
+        }
+
         currentMinigameController = Instantiate(minigameControllerPrefab);
         currentMinigame = currentMinigameController.GetComponent<IMinigame>();
 
         if (currentMinigame == null)
         {
             Debug.LogError("O prefab do controlador não possui um componente que implementa IMinigame.");
-            Destroy(currentMinigameUI);
+            foreach (var ui in currentMinigameUI) Destroy(ui);
             Destroy(currentMinigameController);
             return;
         }
 
         SetMiniGame(difficult, mode);
 
+        // Envia a primeira UI para o RhythmGameController, se necessário
         RhythmGameController rhythmController = currentMinigameController.GetComponent<RhythmGameController>();
-        if (rhythmController != null)
+        if (rhythmController != null && currentMinigameUI.Count > 0)
         {
-            rhythmController.AssignUI(currentMinigameUI);
+            rhythmController.AssignUI(currentMinigameUI.ToArray());
         }
 
         isRunning = true;
@@ -83,6 +92,7 @@ public class MinigameManager : MonoBehaviour
 
         if (InputManager.Instance != null)
             InputManager.Instance.SetState(InputState.Minigame);
+
     }
 
     public void SetMiniGame(IDifficultData difficult, GameModes.Modes mode)
@@ -106,16 +116,23 @@ public class MinigameManager : MonoBehaviour
             currentMinigame.EndMinigame();
             bool success = currentMinigame.EvaluateResult();
             Debug.Log("Minigame finalizado. Sucesso: " + success);
+            OnMinigameFinished?.Invoke(success);
         }
 
-        if (currentMinigameUI != null) Destroy(currentMinigameUI);
-        if (currentMinigameController != null) Destroy(currentMinigameController);
+        foreach (var ui in currentMinigameUI)
+        {
+            if (ui != null) Destroy(ui);
+        }
+        currentMinigameUI.Clear();
+
+        if (currentMinigameController != null)
+            Destroy(currentMinigameController);
 
         currentMinigame = null;
         isRunning = false;
 
         if (MiniGameCanvas != null)
-            MiniGameCanvas.SetActive(false); // Desativa o Canvas ao terminar o minigame
+            MiniGameCanvas.SetActive(false);
 
         if (InputManager.Instance != null)
             InputManager.Instance.SetState(InputState.Gameplay);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+
 public class ClassicMode : IRhythmGameMode
 {
     private IRhythmGameController controller;
@@ -11,6 +12,8 @@ public class ClassicMode : IRhythmGameMode
     private int missedHits;
     private Coroutine countdownCoroutine;
     private Coroutine spawnNotesCoroutine;
+
+    private bool timeIsUp = false; // NOVO: indica que o tempo acabou
 
     public bool IsModeFinished { get; private set; } = false;
 
@@ -30,6 +33,7 @@ public class ClassicMode : IRhythmGameMode
         correctHits = 0;
         missedHits = 0;
         IsModeFinished = false;
+        timeIsUp = false; // Resetar flag
 
         Debug.Log("[ClassicMode] StartMode iniciado");
 
@@ -46,6 +50,20 @@ public class ClassicMode : IRhythmGameMode
     {
         string pressedKey = key.ToString().ToLower();
         Debug.Log($"[ClassicMode] HandleInput chamado: Key pressed = {pressedKey}");
+
+        if (IsModeFinished)
+            return;
+        if (activeNotes.Count == 0)
+        {
+            Debug.Log("[ClassicMode] Nenhuma nota ativa. Input ignorado.");
+            return;
+        }
+        // Permitir input mesmo se o tempo acabou, desde que haja notas ativas
+        if (timeIsUp && activeNotes.Count == 0)
+        {
+            // Se tempo acabou e não há notas, ignora input
+            return;
+        }
 
         RhythmNote hitNote = null;
 
@@ -67,6 +85,13 @@ public class ClassicMode : IRhythmGameMode
 
             activeNotes.Remove(hitNote);
             hitNote.DestroyNote();
+
+            // Se o tempo acabou e essa foi a última nota, encerra o jogo
+            if (timeIsUp && activeNotes.Count == 0)
+            {
+                Debug.Log("[ClassicMode] Tempo acabou e todas as notas foram processadas. Encerrando o jogo.");
+                EndMode();
+            }
         }
         else
         {
@@ -80,6 +105,12 @@ public class ClassicMode : IRhythmGameMode
                 activeNotes.RemoveAt(activeNotes.Count - 1);
                 lastNote.DestroyNote();
                 Debug.Log("[ClassicMode] Última nota removida após erro.");
+            }
+
+            if (missedHits > controller.difficultyData.MissTolerance)
+            {
+                Debug.Log("[ClassicMode] Número de erros ultrapassou a tolerância. Encerrando o jogo.");
+                EndMode();
             }
         }
     }
@@ -105,19 +136,26 @@ public class ClassicMode : IRhythmGameMode
         }
 
         controller.timerText.text = "0";
-        Debug.Log("[ClassicMode] Timer finalizado, chamando EndMode.");
-        EndMode();
+        Debug.Log("[ClassicMode] Timer finalizado, tempo acabou, aguardando notas restantes.");
+
+        timeIsUp = true;
+
+        // Só finaliza se não houver notas restantes
+        if (activeNotes.Count == 0)
+        {
+            EndMode();
+        }
     }
 
     private IEnumerator SpawnNotesCoroutine()
     {
-        while (!IsModeFinished)
+        while (!IsModeFinished && !timeIsUp) // Parar spawn após o tempo acabar
         {
             float nextNoteTime = Random.Range(controller.difficultyData.classic_minTimeBetweenNotes, controller.difficultyData.classic_maxTimeBetweenNotes);
             Debug.Log($"[ClassicMode] Próxima nota em {nextNoteTime} segundos");
             yield return new WaitForSeconds(nextNoteTime);
 
-            if (!IsModeFinished)
+            if (!IsModeFinished && !timeIsUp)
             {
                 Debug.Log("[ClassicMode] SpawnNote chamado dentro do coroutine.");
                 SpawnNote();
@@ -127,8 +165,17 @@ public class ClassicMode : IRhythmGameMode
 
     private void EndMode()
     {
+        if (IsModeFinished) return;
+
         IsModeFinished = true;
         Debug.Log("[ClassicMode] EndMode chamado. Game Over");
+
+        // Apaga todas as notas ativas restantes antes de terminar o jogo
+        foreach (var note in activeNotes)
+        {
+            note.DestroyNote();
+        }
+        activeNotes.Clear();
 
         if (countdownCoroutine != null)
         {
@@ -140,8 +187,14 @@ public class ClassicMode : IRhythmGameMode
             coroutineExecutor.StopCoroutine(spawnNotesCoroutine);
             Debug.Log("[ClassicMode] SpawnNotesCoroutine parado.");
         }
-
-        controller.feedbackText.text = "";  //  OPCIONAL: limpa no fim também.
+        if (missedHits > controller.difficultyData.MissTolerance)
+        {
+            controller.gameResult = false;
+        }
+        else
+        {
+            controller.gameResult = true;
+        }
     }
 
     private void SpawnNote()
@@ -171,6 +224,20 @@ public class ClassicMode : IRhythmGameMode
             Debug.Log("[ClassicMode] Nota não atingida a tempo. FeedbackText atualizado para 'Errou!'");
             missedHits++;
             activeNotes.Remove(rhythmNote);
+
+            // Verifica se passou da tolerância
+            if (missedHits > controller.difficultyData.MissTolerance)
+            {
+                Debug.Log("[ClassicMode] Número de erros ultrapassou a tolerância. Encerrando o jogo.");
+                EndMode();
+            }
+
+            // Se tempo acabou e não tem mais notas, finaliza
+            if (timeIsUp && activeNotes.Count == 0)
+            {
+                Debug.Log("[ClassicMode] Tempo acabou e todas as notas foram processadas. Encerrando o jogo.");
+                EndMode();
+            }
         });
 
         rhythmNote.AnimateVisualOverLifetime(controller.difficultyData.classic_hitWindow);

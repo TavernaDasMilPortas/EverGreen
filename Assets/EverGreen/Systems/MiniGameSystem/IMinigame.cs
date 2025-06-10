@@ -9,7 +9,7 @@ public interface IMinigame
     void HandleInput(KeyCode key);
     void EndMinigame();
     bool EvaluateResult();
-    void AssignUI(GameObject uiRoot);
+    void AssignUI(GameObject[] uiRoot);
     void SetDifficulty(IDifficultData difficulty);
     void SelectMode(GameModes.Modes mode);
     //GameObject gamePrefab { get; }
