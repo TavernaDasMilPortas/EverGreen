@@ -192,6 +192,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8878966199437937023, guid: 2cd5cdc3355fb8a408ae712af7ff45f4, type: 3}
+      propertyPath: uiParent
+      value: 
+      objectReference: {fileID: 4954667}
+    - target: {fileID: 8878966199437937023, guid: 2cd5cdc3355fb8a408ae712af7ff45f4, type: 3}
       propertyPath: MiniGameCanvas
       value: 
       objectReference: {fileID: 529537638}
@@ -204,6 +208,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cd5cdc3355fb8a408ae712af7ff45f4, type: 3}
+--- !u!224 &4954667 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3652107068838533142, guid: 2cd5cdc3355fb8a408ae712af7ff45f4, type: 3}
+  m_PrefabInstance: {fileID: 4245503}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &20503400 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3519353717053772359, guid: 7e582c029b03d99418b5513d146f2df1, type: 3}
@@ -8153,7 +8162,7 @@ PrefabInstance:
     - target: {fileID: 986797144004499978, guid: 8e7f1349302512e40a3baef04d0ac0d8, type: 3}
       propertyPath: requiredItem
       value: 
-      objectReference: {fileID: 11400000, guid: 70db7c7e280847048bb926dcef08e25a, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 6173866553046958424, guid: 8e7f1349302512e40a3baef04d0ac0d8, type: 3}
       propertyPath: m_Name
       value: IntecatableThree
@@ -8445,10 +8454,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b20dc766e2a80844ebcd48bc53609437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiPrefab: {fileID: 2167000426180074409, guid: e1b71dac1da3bef47aeff464611ce6e8, type: 3}
+  uiPrefab:
+  - {fileID: 4388923589407824420, guid: 5bfea46c3d76db74788e75df8920a1c1, type: 3}
+  - {fileID: 1447796144729071822, guid: 8cf7be12d74163040a8ce2bcfdd322db, type: 3}
+  - {fileID: 4484774359767680454, guid: 86eb57d0a4de5de47a7df83379766669, type: 3}
+  - {fileID: 2682929472159014077, guid: 221e44b9624cc764b84378155de7284d, type: 3}
   minigameControllerPrefab: {fileID: 902015046832067346, guid: 50be4588a45a5d143a2ac0685782f305, type: 3}
   difficultData: {fileID: 11400000, guid: e34af0c93de40ea4eb2e6ea3f2108725, type: 2}
   selectedMode: 0
+  Recompeca: {fileID: 11400000, guid: e41e02719f3b03a429e0deeee1604aa9, type: 2}
+  isRewarded: 0
 --- !u!1 &1544874698 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3519353717053772359, guid: 7e582c029b03d99418b5513d146f2df1, type: 3}
