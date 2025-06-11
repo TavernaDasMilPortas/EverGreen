@@ -2,13 +2,27 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum NoteType
+{
+    Classic,
+    Sequence,
+    Piano
+}
 
 public class RhythmNote : MonoBehaviour
 {
     public char key;
-    public RectTransform hitZone; 
+
+    private char originalKey;
+    public RectTransform hitZone;
     public RectTransform rectTransform;
     public Image indicatorImage;
+  
+    private NoteType noteType;
+    private float lifeTime;
+
+    private Coroutine lifeCoroutine;
+
     private void Awake()
     {
         if (rectTransform == null)
@@ -16,85 +30,135 @@ public class RhythmNote : MonoBehaviour
 
         if (indicatorImage == null)
             indicatorImage = GetComponent<Image>();
-
-    }
-    public void MoveNote(float deltaTime)
-    {
-        // Mover a nota horizontalmente (ex: eixo X ou Y)
-        transform.Translate(Vector3.left * deltaTime * 100f); // Exemplo básico
     }
 
-    public void MoveDown(float speed)
-    {
-        rectTransform.anchoredPosition -= new Vector2(0, speed * Time.deltaTime);
-    }
-
-    public bool IsOutOfBounds()
-    {
-        return rectTransform.anchoredPosition.y < -Screen.height; // ou -noteAreaHeight
-    }
-
-
-    public bool IsExpired()
-    {
-        // Define se a nota já passou do tempo permitido (exemplo básico)
-        return transform.localPosition.x < -hitZone.rect.width;
-    }
-
-
-    public float DistanceToHitArea()
-    {
-        if (hitZone == null)
-        {
-            Debug.LogWarning("HitZone não atribuída em RhythmNote.");
-            return float.MaxValue;
-        }
-
-        Vector2 notePos = rectTransform.anchoredPosition;
-        Vector2 hitZonePos = hitZone.anchoredPosition;
-
-        return Mathf.Abs(notePos.y - hitZonePos.y); // Distância vertical
-    }
-    public char GetKey()
-    {
-        return key;
-    }
-
-    public float GetVerticalDistanceToHitZone()
-    {
-        if (rectTransform == null)
-        {
-            Debug.LogError($"[RhythmNote] rectTransform está nulo no objeto {gameObject.name}");
-            return float.MaxValue;
-        }
-
-        if (hitZone == null)
-        {
-           // Debug.LogError($"[RhythmNote] hitZone está nulo no objeto {gameObject.name}");
-            return float.MaxValue;
-        }
-
-        return Mathf.Abs(rectTransform.anchoredPosition.y - hitZone.anchoredPosition.y);
-    }
-
-    public void Initialize(char assignedKey, RectTransform hitZoneReference)
+    public void Initialize(char assignedKey, RectTransform hitZoneReference, NoteType type, float duration)
     {
         key = assignedKey;
         hitZone = hitZoneReference;
+        noteType = type;
+        lifeTime = duration;
+
+        if (rectTransform == null)
+            rectTransform = GetComponent<RectTransform>();
+
+        if (indicatorImage == null)
+            indicatorImage = GetComponent<Image>();
+
+        // Configura visual inicial
+        rectTransform.localScale = Vector3.one * 2f;
+        if (indicatorImage != null)
+            indicatorImage.color = Color.green;
+
+        // Atualiza texto da nota
+        var tmpText = GetComponentInChildren<TMPro.TextMeshProUGUI>();
+        if (tmpText != null)
+        {
+            tmpText.text = assignedKey.ToString();
+        }
+        else
+        {
+            Debug.LogWarning("[RhythmNote] TextMeshProUGUI não encontrado no prefab da nota.");
+        }
+
+        // Caso seja modo Classic, inicia a animação de vida
+        if (noteType == NoteType.Classic)
+        {
+            AnimateVisualOverLifetime(duration);
+        }
+
+        // Cancela coroutine anterior, se tiver
+        if (lifeCoroutine != null)
+            StopCoroutine(lifeCoroutine);
+
+        // Inicia o ciclo de vida
+        lifeCoroutine = StartCoroutine(LifeCycle());
     }
+
+    public static GameObject SpawnNote(char key, RectTransform hitZone, GameObject notePrefab, Transform parent, Vector2 position, NoteType type, float duration)
+    {
+        GameObject noteGO = GameObject.Instantiate(notePrefab, parent);
+        RectTransform noteRect = noteGO.GetComponent<RectTransform>();
+        noteRect.anchoredPosition = position;
+
+        RhythmNote rhythmNote = noteGO.GetComponent<RhythmNote>();
+        rhythmNote.Initialize(key, hitZone, type, duration);
+        rhythmNote.rectTransform = noteRect;
+
+        return noteGO;
+    }
+
+    public void StartLifeCycle(float lifeTime, System.Action onExpire)
+    {
+        StartCoroutine(LifeCycleCoroutine(lifeTime, onExpire));
+    }
+
+    private IEnumerator LifeCycleCoroutine(float lifeTime, System.Action onExpire)
+    {
+        yield return new WaitForSeconds(lifeTime);
+        onExpire?.Invoke();
+        DestroyNote();
+    }
+
+    public void DestroyNote()
+    {
+        Destroy(gameObject);
+    }
+
+    private IEnumerator LifeCycle()
+    {
+        switch (noteType)
+        {
+            case NoteType.Classic:
+                yield return new WaitForSeconds(lifeTime);
+                Expire();
+                break;
+
+            case NoteType.Sequence:
+                yield return new WaitForSeconds(3f);
+                ZeroKey();
+                break;
+
+            case NoteType.Piano:
+                while (true)
+                {
+                    if (IsPastHitZone())
+                    {
+                        Expire();
+                        yield break;
+                    }
+                    yield return null;
+                }
+        }
+    }
+
+    private void ZeroKey()
+    {
+        key = '\0';
+        var tmpText = GetComponentInChildren<TMPro.TextMeshProUGUI>();
+        if (tmpText != null) tmpText.text = "";
+    }
+
+    private void Expire()
+    {
+        Destroy(gameObject);
+    }
+
+    public void OnHit()
+    {
+        StopAllCoroutines();
+        Destroy(gameObject);
+    }
+
     public void AnimateVisualOverLifetime(float duration)
     {
         StartCoroutine(VisualAnimationCoroutine(duration));
     }
 
-
-
-
     private IEnumerator VisualAnimationCoroutine(float duration)
     {
         float elapsed = 0f;
 
-        // Começa com escala 2x e cor verde
         rectTransform.localScale = Vector3.one * 2f;
         if (indicatorImage != null) indicatorImage.color = Color.green;
 
@@ -102,26 +166,54 @@ public class RhythmNote : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             float progress = Mathf.Clamp01(elapsed / duration);
-
-            // Escala de 2x para 1x
             rectTransform.localScale = Vector3.one * Mathf.Lerp(2f, 1f, progress);
-
-            // Cor de verde para vermelho
             if (indicatorImage != null)
                 indicatorImage.color = Color.Lerp(Color.green, Color.red, progress);
-
             yield return null;
         }
 
-        // Garantir que finalize exatamente no estado final
-        rectTransform.localScale = Vector3.one * 1f;
+        rectTransform.localScale = Vector3.one;
         if (indicatorImage != null)
             indicatorImage.color = Color.red;
     }
 
+    public bool IsPastHitZone()
+    {
+        if (hitZone == null) return false;
+
+        return rectTransform.anchoredPosition.y < hitZone.anchoredPosition.y - hitZone.rect.height / 2f;
+    }
+    public float DistanceToHitArea()
+    {
+        if (hitZone == null || rectTransform == null)
+        {
+            Debug.LogWarning("[RhythmNote] hitZone ou rectTransform não definidos.");
+            return float.MaxValue;  // Considera distância infinita se não puder calcular
+        }
+
+        return Mathf.Abs(rectTransform.anchoredPosition.y - hitZone.anchoredPosition.y);
+    }
 
     public bool MatchesKey(KeyCode pressedKey)
     {
         return pressedKey.ToString().ToLower() == key.ToString().ToLower();
+    }
+    public void SetText(char c)
+    {
+        key = c;
+        var tmpText = GetComponentInChildren<TMPro.TextMeshProUGUI>();
+        if (tmpText != null)
+            tmpText.text = c.ToString();
+    }
+
+    public void SetColor(Color c)
+    {
+        if (indicatorImage != null)
+            indicatorImage.color = c;
+    }
+
+    public char GetOriginalKey()
+    {
+        return originalKey;
     }
 }

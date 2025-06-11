@@ -14,5 +14,6 @@ public interface IRhythmGameController
     RectTransform hitZone { get; }
     void SpawnNote(char key, Vector2 position);
     void CheckNoteHit(KeyCode key);
+    bool gameResult { get; set; }
     System.Collections.Generic.List<RhythmNote> GetActiveNotes();
 }

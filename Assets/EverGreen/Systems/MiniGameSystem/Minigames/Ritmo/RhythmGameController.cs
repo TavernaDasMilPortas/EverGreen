@@ -6,11 +6,11 @@ public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinig
 {
     [Header("Configurações")]
     [SerializeField] private RhythmMinigameDifficultyData _difficultyData;
-    [SerializeField] private GameObject _notePrefab;
-    [SerializeField] private RectTransform _noteArea;
-    [SerializeField] private TextMeshProUGUI _feedbackText;
-    [SerializeField] private GameObject UiRoot;
-
+    [SerializeField] public GameObject _notePrefab;
+    [SerializeField] public RectTransform _noteArea;
+    [SerializeField] public TextMeshProUGUI _feedbackText;
+    [SerializeField] public GameObject[] UiRoot;
+    private Transform parentUi;
     [Header("Modo de Jogo")]
     public GameModes.Modes selectedMode;
 
@@ -34,37 +34,21 @@ public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinig
     public TextMeshProUGUI timerText => _timerText;
 
     public RhythmMinigameDifficultyData difficultyData => _difficultyData;
+    private bool _gameResult = false;
 
+    // Implementação da propriedade da interface
+    public bool gameResult
+    {
+        get => _gameResult;
+        set => _gameResult = value;
+    }
     private void Start()
     {
         spawnerService = new NoteSpawnerService();
         evaluatorService = new NoteEvaluatorService();
-        AssignUI(UiRoot);
-    }
-
-    private void Update()
-    {
-        if (!modeStarted || currentMode == null) return;
-
-        currentMode.UpdateMode();
-
-        if (currentMode.IsModeFinished)
-        {
-            Debug.Log("Minigame finished by mode.");
-            EndMinigame();
-        }
-
-        if (Input.anyKeyDown)
-        {
-            foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
-            {
-                if (Input.GetKeyDown(key))
-                {
-                    currentMode.HandleInput(key);
-                    break;
-                }
-            }
-        }
+ 
+        // Não iniciar modo automaticamente
+        // SetMode(RhythmGameMode.CreateMode(selectedMode, this));
     }
 
     public void SetMode(IRhythmGameMode mode)
@@ -95,19 +79,6 @@ public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinig
             Debug.LogError("[RhythmGameController] SetDifficulty: Dificuldade fornecida não é do tipo RhythmMinigameDifficultyData!");
         }
     }
-
-    public void BeginMinigame()
-    {
-        if (currentMode == null)
-        {
-            SetMode(RhythmGameMode.CreateMode(selectedMode, this));
-        }
-        currentMode?.StartMode();
-        modeStarted = true;
-
-        Debug.Log("[RhythmGameController] BeginMinigame called.");
-    }
-
     public void SpawnNote(char key, Vector2 position)
     {
         var note = spawnerService.SpawnNote(notePrefab, noteArea, key, position);
@@ -130,35 +101,96 @@ public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinig
         feedbackText.text = "Miss!";
     }
 
-    public void AssignUI(GameObject uiRoot)
+    public void AssignUI(GameObject[] uiRoots)
     {
-        Transform noteAreaTransform = FindDeepChild(uiRoot.transform, "NoteArea");
-        _noteArea = noteAreaTransform?.GetComponent<RectTransform>();
-        if (_noteArea != null)
-            Debug.Log("[RhythmGameController] NoteArea encontrado.");
-        else
-            Debug.LogWarning("[RhythmGameController] NoteArea NÃO encontrado.");
+        parentUi = GameObject.Find("MiniGamePanel").transform;
+        Debug.Log($"[RhythmGameController] Iniciando AssignUI com {uiRoots.Length} elementos. 1- {uiRoots[0]} 2- {uiRoots[1]}, 3- {uiRoots[2]}, 4- {uiRoots[3]}");
+        UiRoot = uiRoots;
+        foreach (GameObject uiRoot in uiRoots)
+        {
+            if (_noteArea == null)
+            {
+                RectTransform noteAreaTransform = FindDeepChild(parentUi, "NoteArea") as RectTransform;
+                if (noteAreaTransform != null)
+                {
+                    _noteArea = noteAreaTransform;
+                    Debug.Log($"[RhythmGameController] NoteArea encontrado: {GetPath(noteAreaTransform)}");
+                }
+            }
 
-        Transform feedbackTextTransform = FindDeepChild(uiRoot.transform, "FeedbackText");
-        _feedbackText = feedbackTextTransform?.GetComponent<TextMeshProUGUI>();
-        if (_feedbackText != null)
-            Debug.Log("[RhythmGameController] FeedbackText encontrado.");
-        else
-            Debug.LogWarning("[RhythmGameController] FeedbackText NÃO encontrado.");
+            if (_feedbackText == null)
+            {
+                Transform feedbackTextTransform = FindDeepChild(parentUi, "FeedbackText");
+                if (feedbackTextTransform != null)
+                {
+                    _feedbackText = feedbackTextTransform.GetComponent<TextMeshProUGUI>();
+                    Debug.Log($"[RhythmGameController] FeedbackText encontrado: {GetPath(feedbackTextTransform)}");
+                }
+            }
 
-        Transform hitZoneTransform = FindDeepChild(uiRoot.transform, "HitZone");
-        _hitZone = hitZoneTransform?.GetComponent<RectTransform>();
-        if (_hitZone != null)
-            Debug.Log("[RhythmGameController] HitZone encontrado.");
-        else
-            Debug.LogWarning("[RhythmGameController] HitZone NÃO encontrado.");
+            if (_hitZone == null)
+            {
+                Transform hitZoneTransform = FindDeepChild(parentUi, "HitZone");
+                if (hitZoneTransform != null)
+                {
+                    _hitZone = hitZoneTransform.GetComponent<RectTransform>();
+                    Debug.Log($"[RhythmGameController] HitZone encontrado: {GetPath(hitZoneTransform)}");
+                }
+            }
 
-        Transform timerTextTransform = FindDeepChild(uiRoot.transform, "TimerText");
-        _timerText = timerTextTransform?.GetComponent<TextMeshProUGUI>();
-        if (_timerText != null)
-            Debug.Log("[RhythmGameController] TimerText encontrado.");
-        else
-            Debug.LogWarning("[RhythmGameController] TimerText NÃO encontrado.");
+            if (_timerText == null)
+            {
+                Transform timerTextTransform = FindDeepChild(parentUi, "TimerText");
+                if (timerTextTransform != null)
+                {
+                    _timerText = timerTextTransform.GetComponent<TextMeshProUGUI>();
+                    Debug.Log($"[RhythmGameController] TimerText encontrado: {GetPath(timerTextTransform)}");
+                }
+            }
+
+            // Se todos já foram encontrados, podemos encerrar o loop
+            if (_noteArea != null && _feedbackText != null && _hitZone != null && _timerText != null)
+                break;
+        }
+
+        // Relatórios de erros caso algum ainda não tenha sido encontrado
+        if (_noteArea == null)
+            Debug.LogError("[RhythmGameController] NoteArea NÃO encontrado em nenhum UI.");
+
+        if (_feedbackText == null)
+            Debug.LogError("[RhythmGameController] FeedbackText NÃO encontrado em nenhum UI.");
+
+        if (_hitZone == null)
+            Debug.LogError("[RhythmGameController] HitZone NÃO encontrado em nenhum UI.");
+
+        if (_timerText == null)
+            Debug.LogError("[RhythmGameController] TimerText NÃO encontrado em nenhum UI.");
+    }
+
+    private string GetPath(Transform obj)
+    {
+        if (obj == null) return "null";
+        string path = obj.name;
+        while (obj.parent != null)
+        {
+            obj = obj.parent;
+            path = obj.name + "/" + path;
+        }
+        return path;
+    }
+
+    private Transform FindDeepChild(Transform parent, string childName)
+    {
+        foreach (Transform child in parent)
+        {
+            if (child.name.StartsWith(childName))
+                return child;
+
+            Transform result = FindDeepChild(child, childName);
+            if (result != null)
+                return result;
+        }
+        return null;
     }
 
 
@@ -167,7 +199,15 @@ public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinig
     // Implementação da interface IMinigame
     public void StartMinigame()
     {
-        SetMode(RhythmGameMode.CreateMode(selectedMode, this));
+        if (UiRoot == null)
+        {
+            Debug.LogWarning("UiRoot não atribuído. AssignUI não será chamado.");
+        }
+        else
+        {
+ 
+        }
+        SetMode(RhythmGameMode.CreateMode(selectedMode, this, this));
         currentMode?.StartMode();
         modeStarted = true;
 
@@ -176,7 +216,15 @@ public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinig
 
     public void UpdateMinigame()
     {
-        Update();
+        if (!modeStarted || currentMode == null) return;
+
+        currentMode.UpdateMode();
+
+        if (currentMode.IsModeFinished)
+        {
+            Debug.Log("Minigame finished by mode.");
+            EndMinigame();
+        }
     }
 
     public void HandleInput(KeyCode key)
@@ -190,11 +238,13 @@ public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinig
         modeStarted = false;
         activeNotes.ForEach(note => Destroy(note.gameObject));
         activeNotes.Clear();
+        MinigameManager.Instance.gameFinish = true;
     }
 
     public bool EvaluateResult()
     {
-        return true;
+        // Exemplo básico (ajuste conforme sua lógica)
+        return gameResult;
     }
 
     private Transform FindDeepChild(Transform parent, string childName)
