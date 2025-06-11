@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 989a4a8ff99fd0e48917ad55d82e6e5d, type: 3}
   m_Name: Wood
   m_EditorClassIdentifier: 
-  itemName: 
-  description: 
-  icon: {fileID: 0}
+  itemName: Madeira
+  description: "Est\xE1 madeira \xE9 perfeita para reconstruir a casa"
+  icon: {fileID: 21300000, guid: e1ba515d4ebbfe845836389cbe2f143c, type: 3}
   consumable: 0

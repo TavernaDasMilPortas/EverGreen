@@ -6,10 +6,10 @@ public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinig
 {
     [Header("Configurações")]
     [SerializeField] private RhythmMinigameDifficultyData _difficultyData;
-    [SerializeField] private GameObject _notePrefab;
-    [SerializeField] private RectTransform _noteArea;
-    [SerializeField] private TextMeshProUGUI _feedbackText;
-    [SerializeField] private GameObject[] UiRoot;
+    [SerializeField] public GameObject _notePrefab;
+    [SerializeField] public RectTransform _noteArea;
+    [SerializeField] public TextMeshProUGUI _feedbackText;
+    [SerializeField] public GameObject[] UiRoot;
     private Transform parentUi;
     [Header("Modo de Jogo")]
     public GameModes.Modes selectedMode;
@@ -102,7 +102,7 @@ public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinig
     public void AssignUI(GameObject[] uiRoots)
     {
         parentUi = GameObject.Find("MiniGamePanel").transform;
-        Debug.Log($"[RhythmGameController] Iniciando AssignUI com {uiRoots.Length} elementos.");
+        Debug.Log($"[RhythmGameController] Iniciando AssignUI com {uiRoots.Length} elementos. 1- {uiRoots[0]} 2- {uiRoots[1]}, 3- {uiRoots[2]}, 4- {uiRoots[3]}");
         UiRoot = uiRoots;
         foreach (GameObject uiRoot in uiRoots)
         {
@@ -202,7 +202,7 @@ public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinig
         }
         else
         {
-            AssignUI(UiRoot);
+ 
         }
         SetMode(RhythmGameMode.CreateMode(selectedMode, this, this));
         currentMode?.StartMode();

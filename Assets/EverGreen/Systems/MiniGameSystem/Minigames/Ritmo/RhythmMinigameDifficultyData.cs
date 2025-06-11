@@ -18,7 +18,7 @@ public class RhythmMinigameDifficultyData : ScriptableObject, IDifficultData
     [Header("Sequence Mode")]
     public int sequence_length = 5;
     public float sequence_displayInterval = 0.7f;
-
+     
     [Header("Piano Mode")]
     public float piano_minTimeBetweenNotes = 0.5f;
     public float piano_maxTimeBetweenNotes = 1.5f;
