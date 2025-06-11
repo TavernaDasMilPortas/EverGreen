@@ -5,9 +5,12 @@ public class InteractableThreeShrine : MonoBehaviour, IInteractable
     [Header("Item necessário para interação (opcional)")]
     public Item requiredItem;
     public int requiredItemQuantity = 1;
-
+   
     [TextArea]
     public string interactionMessage = "Interagiu com Interactable";
+
+    [Header("GameConfig")]
+    public MinigameConfig config;
 
     // Implementação das propriedades da interface (nomes exatos conforme a interface)
     public Item RequiredItem => requiredItem;
@@ -30,21 +33,41 @@ public class InteractableThreeShrine : MonoBehaviour, IInteractable
     {
         Debug.Log(interactionMessage);
 
-        IMinigame minigame = GetComponent<IMinigame>();
-        if (minigame != null)
+        if (config != null && config.isRewarded == false)
         {
-            //MinigameManager.Instance.StartMinigame(minigame);
+            MinigameManager.Instance.OnMinigameFinished += HandleMinigameResult;
 
-            // Após StartMinigame, já chama o início real do minigame:
-            minigame.StartMinigame();
-
-            // Se o minigame tiver etapas adicionais, o próprio StartMinigame deve cuidar disso.
-            // Por exemplo, RhythmGameController.SetMode + BeginMinigame.
+            MinigameManager.Instance.StartMinigameWithUI(
+                config.uiPrefab,
+                config.minigameControllerPrefab,
+                config.difficultData as IDifficultData,
+                config.selectedMode);
         }
-        else
+        else if(config == null  )
         {
             Debug.LogError("Nenhum IMinigame encontrado neste objeto!");
         }
     }
+
+    private void HandleMinigameResult(bool success)
+    {
+        // Remover o callback para evitar chamadas duplicadas
+        MinigameManager.Instance.OnMinigameFinished -= HandleMinigameResult;
+
+        if (success)
+        {
+            Debug.Log("Minigame foi concluído com sucesso!");
+            InventoryManager.Instance.AddItem(config.Recompeca, 1);
+            config.isRewarded = true;
+        }
+        else
+        {
+            Debug.Log("Minigame falhou ou foi perdido.");
+            // Aqui o que fazer caso o jogador não tenha conseguido.
+        }
+    }
+
+
+
 
 }

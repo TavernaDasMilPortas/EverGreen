@@ -61,6 +61,10 @@ public class InputManager : MonoBehaviour
         {
             MenuManager.Instance?.ToggleMainMenu();
         }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            InteractionHandler.Instance.nearestInteractable.Interact();
+        }
     }
 
     private void HandleMenuInput()
@@ -117,14 +121,18 @@ public class InputManager : MonoBehaviour
     }
     private void HandleMinigameInput()
     {
-        foreach (char c in Input.inputString)
+        foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
         {
-            if (System.Char.IsLetterOrDigit(c))
+            if (Input.GetKeyDown(key) && IsValidKey(key))
             {
-                KeyCode key = (KeyCode)System.Enum.Parse(typeof(KeyCode), c.ToString().ToUpper());
                 MinigameManager.Instance.HandleInput(key);
             }
         }
+    }
+
+    private bool IsValidKey(KeyCode key)
+    {
+        return key >= KeyCode.A && key <= KeyCode.Z || key >= KeyCode.Alpha0 && key <= KeyCode.Alpha9;
     }
     public void SetState(InputState newState)
     {
