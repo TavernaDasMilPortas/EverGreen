@@ -168,39 +168,44 @@ public class MoveChanPhisical : MonoBehaviour
 
     private void GroundControl()
     {
-        // Calcula a direção relativa de movimento com base na câmera
         Vector3 relativedirection = currentCamera.transform.TransformVector(movaxis).normalized;
         relativedirection = new Vector3(relativedirection.x, jumptime, relativedirection.z);
-        Vector3 relativeDirectionWOy = new Vector3(relativedirection.x, 0, relativedirection.z); 
+        Vector3 relativeDirectionWOy = new Vector3(relativedirection.x, 0, relativedirection.z);
+
         if (grounded)
         {
-            rdb.linearVelocity = new Vector3(relativedirection.x * 5, rdb.linearVelocity.y, relativedirection.z * 5);
+            Vector3 targetVelocity = new Vector3(relativedirection.x * 5, rdb.linearVelocity.y, relativedirection.z * 5);
+            rdb.linearVelocity = Vector3.Lerp(rdb.linearVelocity, targetVelocity, Time.fixedDeltaTime * 5f);
+
+            if (moveInput.magnitude < 0.01f)
+            {
+                rdb.linearVelocity = Vector3.Lerp(rdb.linearVelocity, new Vector3(0, rdb.linearVelocity.y, 0), Time.fixedDeltaTime * 5f);
+            }
         }
         else
         {
             rdb.AddForce(new Vector3(relativedirection.x * 500, 0, relativedirection.z * 500));
         }
 
-
-        if (!joint)
+        if (!joint && relativeDirectionWOy.sqrMagnitude > 0.01f)
         {
             Quaternion rottogo = Quaternion.LookRotation(relativeDirectionWOy * 2 + transform.forward);
-            transform.rotation = Quaternion.Lerp(transform.rotation, rottogo, Time.fixedDeltaTime * 50);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rottogo, Time.fixedDeltaTime * 5f);
         }
-        //boiar
+
         if (transform.position.y < AlturaAgua)
         {
-            rdb.AddForce(Vector3.up* 1200);
+            rdb.AddForce(Vector3.up * 1200);
             rdb.linearDamping = 4;
         }
         else
         {
             rdb.linearDamping = 1;
         }
-
     }
-      
-           
+
+
+
 
     // Método OnAnimatorIK é chamado para calcular a cinemática inversa (IK)
     void OnAnimatorIK()
