@@ -84,9 +84,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0935fc9aa54e464caab274fc085d9bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MiniGameCanvas: {fileID: 0}
+  MiniGameCanvas: {fileID: 6632351263485035801}
   gameFinish: 0
-  uiParent: {fileID: 8593301402791746725}
+  uiParent: {fileID: 3652107068838533142}
 --- !u!1 &2231559998174680112
 GameObject:
   m_ObjectHideFlags: 0
@@ -859,7 +859,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &3576359800600514372
 MonoBehaviour:
@@ -1365,7 +1365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &549522049084182643
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1485,7 +1485,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!114 &5325153134372889250
 MonoBehaviour:
@@ -1761,7 +1761,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3652107068838533142
 RectTransform:
   m_ObjectHideFlags: 0

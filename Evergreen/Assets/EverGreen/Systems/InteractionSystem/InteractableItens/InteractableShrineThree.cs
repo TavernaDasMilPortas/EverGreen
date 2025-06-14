@@ -9,6 +9,9 @@ public class InteractableShrineThree : MonoBehaviour, IInteractable
     [TextArea]
     public string interactionMessage = "Interagiu com Interactable";
 
+    [Header("GameConfig")]
+    public MinigameConfig config;
+
     // Implementação das propriedades da interface (nomes exatos conforme a interface)
     public Item RequiredItem => requiredItem;
     public int RequiredItemQuantity => requiredItemQuantity;
@@ -18,7 +21,12 @@ public class InteractableShrineThree : MonoBehaviour, IInteractable
     {
         if (RequiredItem == null || InventoryManager.Instance.HasItem(RequiredItem, RequiredItemQuantity))
         {
-            PerformInteraction();
+
+            if (GridObjectInstantiator.Instance.CanFallTree(GridObjectInstantiator.Instance.playerTransform.position, GridObjectInstantiator.Instance.closestTree.transform.position))
+            {
+                PerformInteraction();
+            }
+
         }
         else
         {
@@ -28,7 +36,40 @@ public class InteractableShrineThree : MonoBehaviour, IInteractable
 
     private void PerformInteraction()
     {
-        Debug.Log(InteractionMessage);
-        // TODO: lógica específica de interação aqui.
+        Debug.Log(interactionMessage);
+
+        if (config != null && config.isRewarded == false)
+        {
+            MinigameManager.Instance.OnMinigameFinished += HandleMinigameResult;
+
+            MinigameManager.Instance.StartMinigameWithUI(
+                config.uiPrefab,
+                config.minigameControllerPrefab,
+                config.difficultData as IDifficultData,
+                config.selectedMode);
+        }
+        else if (config == null)
+        {
+            Debug.LogError("Nenhum IMinigame encontrado neste objeto!");
+        }
     }
+
+    private void HandleMinigameResult(bool success)
+    {
+        // Remover o callback para evitar chamadas duplicadas
+        MinigameManager.Instance.OnMinigameFinished -= HandleMinigameResult;
+
+        if (success)
+        {
+            GridObjectInstantiator.Instance.SpawnBridge(GridObjectInstantiator.Instance.playerTransform.position, GridObjectInstantiator.Instance.closestTree.transform.position);
+            config.isRewarded = true;
+        }
+        else
+        {
+
+        }
+    }
+
+
+
 }
