@@ -22,7 +22,7 @@ public class InteractableShrineThree : MonoBehaviour, IInteractable
         if (RequiredItem == null || InventoryManager.Instance.HasItem(RequiredItem, RequiredItemQuantity))
         {
 
-            if (GridObjectInstantiator.Instance.CanFallTree(GridObjectInstantiator.Instance.playerTransform.position, GridObjectInstantiator.Instance.closestTree.transform.position))
+            if (MidpointManager.Instance.CanFallTree(MidpointManager.Instance.playerTransform.position, MidpointManager.Instance.closestTree.treeObject.transform.position))
             {
                 PerformInteraction();
             }
@@ -61,7 +61,7 @@ public class InteractableShrineThree : MonoBehaviour, IInteractable
 
         if (success)
         {
-            GridObjectInstantiator.Instance.SpawnBridge(GridObjectInstantiator.Instance.playerTransform.position, GridObjectInstantiator.Instance.closestTree.transform.position);
+            MidpointManager.Instance.SpawnBridgeFromTree(MidpointManager.Instance.playerTransform.position, MidpointManager.Instance.closestTree.treeObject.transform.position);
             config.isRewarded = true;
         }
         else
