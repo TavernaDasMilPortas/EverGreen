@@ -26,6 +26,15 @@ public class PlayerController : MonoBehaviour
     {
         mover.TriggerAttack();
     }
+    public void Stop()
+    {
+        mover.StopMovement();
+    }
 
+    public void Interagir()
+    {
+        Stop();
+        InteractionHandler.Instance.nearestInteractable.Interact();
+    }
 }
 

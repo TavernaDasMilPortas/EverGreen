@@ -18,7 +18,17 @@ public class MidpointManager : MonoBehaviour
             adjacentMidpoints = midpoints;
         }
     }
+    public class PlatformMidpoint
+    {
+        public Vector2Int from;
+        public Vector2Int to;
+        public GameObject midpointObj;
 
+        public bool Matches(Vector2Int a, Vector2Int b)
+        {
+            return (from == a && to == b) || (from == b && to == a);
+        }
+    }
 
     public static MidpointManager Instance { get; private set; }
 
@@ -63,8 +73,8 @@ public class MidpointManager : MonoBehaviour
         dir.y = 0;
 
         Vector2Int direction = Mathf.Abs(dir.x) > Mathf.Abs(dir.z) ?
-            (dir.x > 0 ? Vector2Int.right : Vector2Int.left) :
-            (dir.z > 0 ? Vector2Int.up : Vector2Int.down);
+            (dir.x > 0 ? Vector2Int.down : Vector2Int.up) :
+            (dir.z > 0 ? Vector2Int.left : Vector2Int.right);
 
         Vector2Int from = closestTree.platformGridPos;
         Vector2Int to = from + direction;
@@ -147,6 +157,15 @@ public class MidpointManager : MonoBehaviour
         closestTree = new ClosestTreeData(nearestTree, treeGrid, adjacents);
     }
 
+    public void ClearMidpoints()
+    {
+        foreach (var m in midpoints)
+        {
+            if (m.midpointObj != null)
+                Destroy(m.midpointObj);
+        }
+        midpoints.Clear();
+    }
     public bool CanFallTree(Vector3 playerPos, Vector3 treePos)
     {
         Vector3 dir = (treePos - playerPos).normalized;

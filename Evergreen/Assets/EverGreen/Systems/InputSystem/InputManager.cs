@@ -63,7 +63,7 @@ public class InputManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            InteractionHandler.Instance.nearestInteractable.Interact();
+            PlayerController.Instance.Interagir();
         }
     }
 

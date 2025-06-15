@@ -1,7 +1,7 @@
 // ------------------- SCRIPT 1: MapGenerator.cs -------------------
 
 using UnityEngine;
-
+using System.Collections.Generic;
 public class MapGenerator : MonoBehaviour
 {
     [Header("Referência da personagem")]
@@ -17,6 +17,8 @@ public class MapGenerator : MonoBehaviour
     [Header("Offset vertical da origem")]
     public float verticalOffset = -2f;
 
+    private int currentPhaseIndex = 0;
+
     [Header("Mapa (linhas x colunas)")]
     public int[,] map = new int[,] {
         {0, 2, 1, 2, 0},
@@ -26,7 +28,18 @@ public class MapGenerator : MonoBehaviour
 
     public GameObject[,] spawnedObjects;
 
-    void Start() => InstantiateMap();
+
+    [Header("Fases pré-configuradas")]
+    public List<MapData> mapDataList;
+
+    void Start()
+    {
+        if (mapDataList != null && mapDataList.Count > 0)
+        {
+            currentPhaseIndex = 0;
+            GenerateMap(mapDataList[currentPhaseIndex].To2DArray());
+        }
+    }
 
     void InstantiateMap()
     {
@@ -100,8 +113,57 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
-        MidpointManager.Instance.SpawnBridgeBetween(new Vector2Int(0, 2), new Vector2Int(1, 2));
     }
+    void ClearMap()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        if (spawnedObjects != null)
+        {
+            int rows = spawnedObjects.GetLength(0);
+            int cols = spawnedObjects.GetLength(1);
+
+            for (int row = 0; row < rows; row++)
+            {
+                for (int col = 0; col < cols; col++)
+                {
+                    if (spawnedObjects[row, col] != null)
+                    {
+                        Destroy(spawnedObjects[row, col]);
+                    }
+                }
+            }
+        }
+
+        MidpointManager.Instance.ClearMidpoints();
+    }
+    public void NextPhase()
+    {
+        currentPhaseIndex++;
+        if (currentPhaseIndex >= mapDataList.Count)
+            currentPhaseIndex = 0;
+
+        GenerateMap(mapDataList[currentPhaseIndex].To2DArray());
+    }
+
+    public void GenerateMap(int[,] map)
+    {
+        ClearMap(); // Limpa o anterior
+        this.map = map;
+        InstantiateMap();
+
+        var currentMapData = mapDataList[currentPhaseIndex];
+
+        foreach (var (from, to) in currentMapData.GetBridgeConnections())
+        {
+            MidpointManager.Instance.SpawnBridgeBetween(from, to);
+        }
+    }
+
+
 
     public Vector2Int FindOriginCoords(int id)
     {

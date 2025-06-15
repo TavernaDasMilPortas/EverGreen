@@ -21,11 +21,7 @@ public class InteractableShrineThree : MonoBehaviour, IInteractable
     {
         if (RequiredItem == null || InventoryManager.Instance.HasItem(RequiredItem, RequiredItemQuantity))
         {
-
-            if (MidpointManager.Instance.CanFallTree(MidpointManager.Instance.playerTransform.position, MidpointManager.Instance.closestTree.treeObject.transform.position))
-            {
-                PerformInteraction();
-            }
+            PerformInteraction();
 
         }
         else
@@ -55,8 +51,7 @@ public class InteractableShrineThree : MonoBehaviour, IInteractable
     }
 
     private void HandleMinigameResult(bool success)
-    {
-        // Remover o callback para evitar chamadas duplicadas
+    { 
         MinigameManager.Instance.OnMinigameFinished -= HandleMinigameResult;
 
         if (success)
@@ -68,6 +63,17 @@ public class InteractableShrineThree : MonoBehaviour, IInteractable
         {
 
         }
+        ShrineProgressionManager manager = FindObjectOfType<ShrineProgressionManager>();
+        if (manager != null)
+        {
+            manager.RegisterInteraction();
+        }
+        else
+        {
+            Debug.LogWarning("ShrineProgressionManager não encontrado na cena.");
+        }
+
+        Destroy(gameObject);
     }
 
 
