@@ -13,11 +13,19 @@ MonoBehaviour:
   m_Name: Fase1
   m_EditorClassIdentifier: 
   mapRows:
-  - row: 0000000002000000010000000200000000000000
-  - row: 0200000002000000020000000200000002000000
-  - row: 0000000002000000020000000200000000000000
+  - row: 000000000100000000000000
+  - row: 000000000200000000000000
+  - row: 040000000400000004000000
+  - row: 040000000400000004000000
+  - row: 040000000300000005000000
   bridgeConnections:
   - from: {x: 0, y: 1}
     to: {x: 1, y: 1}
-  - from: {x: 0, y: 2}
-    to: {x: 1, y: 2}
+  - from: {x: 1, y: 1}
+    to: {x: 2, y: 1}
+  maxInteractions: 2
+  initialWaterY: 26
+  waterLevelOffset: -2
+  initialRainRate: 1000
+  initialLightColor: {r: 1, g: 1, b: 1, a: 0}
+  targetLightColor: {r: 0.13679248, g: 0.35575265, b: 1, a: 0}

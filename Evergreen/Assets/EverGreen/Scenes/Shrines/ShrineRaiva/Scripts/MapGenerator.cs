@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Collections.Generic;
 public class MapGenerator : MonoBehaviour
 {
+    public static MapGenerator Instance;
     [Header("Referência da personagem")]
     public Transform playerTransform;
 
@@ -17,7 +18,7 @@ public class MapGenerator : MonoBehaviour
     [Header("Offset vertical da origem")]
     public float verticalOffset = -2f;
 
-    private int currentPhaseIndex = 0;
+    public int currentPhaseIndex = 0;
 
     [Header("Mapa (linhas x colunas)")]
     public int[,] map = new int[,] {
@@ -31,13 +32,13 @@ public class MapGenerator : MonoBehaviour
 
     [Header("Fases pré-configuradas")]
     public List<MapData> mapDataList;
-
-    void Start()
+    private void Awake()
     {
         if (mapDataList != null && mapDataList.Count > 0)
         {
             currentPhaseIndex = 0;
             GenerateMap(mapDataList[currentPhaseIndex].To2DArray());
+
         }
     }
 
@@ -113,6 +114,7 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
+
     }
     void ClearMap()
     {
@@ -137,7 +139,6 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
-
         MidpointManager.Instance.ClearMidpoints();
     }
     public void NextPhase()
@@ -147,6 +148,8 @@ public class MapGenerator : MonoBehaviour
             currentPhaseIndex = 0;
 
         GenerateMap(mapDataList[currentPhaseIndex].To2DArray());
+        ShrineProgressionManager.Instance.ResetProgression();
+        ShrineProgressionManager.Instance.ApplyData(mapDataList[currentPhaseIndex]);
     }
 
     public void GenerateMap(int[,] map)

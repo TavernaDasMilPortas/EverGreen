@@ -542,11 +542,16 @@ MonoBehaviour:
   playerTransform: {fileID: 1987005824}
   objectPrefabs:
   - {fileID: 8680658482682266577, guid: d0db044d58f21594b917da4a8ee36d80, type: 3}
+  - {fileID: 532738707373688492, guid: 3002e18f667037649824c773f92ef4b5, type: 3}
+  - {fileID: 8680658482682266577, guid: d0db044d58f21594b917da4a8ee36d80, type: 3}
   - {fileID: 5884816594291673144, guid: 86465f8de583d7d439851b7b0010aef4, type: 3}
+  - {fileID: 8715906567960324044, guid: 8b2db59e04c63364684c90d31b15715e, type: 3}
   midpointPrefab: {fileID: 8626275649171202252, guid: bd744ae24c1201542bbb87513b2d0944, type: 3}
   spacing: 15
   verticalOffset: -2
+  currentPhaseIndex: 0
   mapDataList:
+  - {fileID: 11400000, guid: 03ac65f16a6c99e4a90bafa644e51768, type: 2}
   - {fileID: 11400000, guid: 03ac65f16a6c99e4a90bafa644e51768, type: 2}
 --- !u!114 &659868493
 MonoBehaviour:
@@ -560,17 +565,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af8b8b9a3d2b6ac4595b26b1bc7d7c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxInteractions: 5
   mainLight: {fileID: 1181380202}
-  initialLightColor: {r: 1, g: 1, b: 1, a: 1}
-  targetLightColor: {r: 0.023050921, g: 0.19428639, b: 0.6981132, a: 1}
-  lightLerpSpeed: 1
   waterPlane: {fileID: 307986978}
-  initialWaterY: 26
-  finalWaterY: 5
-  levelPerInteraction: 0
   rainSystem: {fileID: 1304528747}
-  initialRainRate: 1000
   player: {fileID: 1987005824}
   waterLevelForReset: 2
   waterTransitionDuration: 2
