@@ -47,10 +47,13 @@ public class MidpointManager : MonoBehaviour
 
     void Update()
     {
+        if (mapGen == null || mapGen.spawnedObjects == null)
+            return;
+
         UpdateClosestTree();
         UpdateCurrentMidpoint();
-
     }
+    
     void OnDrawGizmos()
     {
         if (currentMidpoint != null)

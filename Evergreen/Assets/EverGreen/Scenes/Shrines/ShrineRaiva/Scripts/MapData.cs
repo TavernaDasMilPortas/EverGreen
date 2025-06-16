@@ -10,6 +10,15 @@ public class MapData : ScriptableObject
     [Header("Pontes pré-definidas")]
     public List<MidpointConnection> bridgeConnections = new List<MidpointConnection>();
 
+    public int maxInteractions;
+
+    public float initialWaterY;
+    public float waterLevelOffset;
+
+    public float initialRainRate;
+
+    public Color initialLightColor;
+    public Color targetLightColor;
     public int[,] To2DArray()
     {
         int rows = mapRows.Count;

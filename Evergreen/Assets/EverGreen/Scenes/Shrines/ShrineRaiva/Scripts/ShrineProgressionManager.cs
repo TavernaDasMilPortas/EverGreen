@@ -5,49 +5,64 @@ using System.Collections;
 public class ShrineProgressionManager : MonoBehaviour
 {
 
-    [Header("Configuração")]
-    public int maxInteractions = 5;
+    public static ShrineProgressionManager Instance {  get; private set; } 
     private int currentInteractions = 0;
 
-    [Header("Ambiente")]
-    public Light mainLight;
-    public Color initialLightColor = Color.white;
-    public Color targetLightColor = Color.blue;
-    public float lightLerpSpeed = 1f;
-
-    [Header("Água")]
-    public Transform waterPlane;
-    public float initialWaterY = 26f;
-    public float finalWaterY;
-    public float levelPerInteraction;
-
-    [Header("Chuva")]
-    public ParticleSystem rainSystem;
-    private ParticleSystem.EmissionModule rainEmission;
-    [SerializeField]private float initialRainRate = 100f;
+    private int maxInteractions;
+    private float initialWaterY;
+    private float finalWaterY;
+    private float initialRainRate;
     private float finalRainRate;
+    private float levelPerInteraction;
+    private Color initialLightColor;
+    private Color targetLightColor;
 
-    [Header("Jogadora")]
+    [Header("Referências")]
+    public Light mainLight;
+    public Transform waterPlane;
+    public ParticleSystem rainSystem;
     public Transform player;
-    public float waterLevelForReset = 2f; // altura da água relativa à jogadora
-    
+
     [Header("Transições")]
+    public float waterLevelForReset = 2f;
     public float waterTransitionDuration = 2f;
 
     void Start()
     {
-        if (mainLight == null)
-            mainLight = GameObject.FindGameObjectWithTag("MainLight")?.GetComponent<Light>();
+        ResetProgression();
+        StartCoroutine(ApplyDataNextFrame());
+ // AAAAAAAAAAAAAA
 
-        var emission = rainSystem.emission;
-        emission.rateOverTime = initialRainRate;
+    }
+
+    public void ApplyData(MapData data)
+    {
+        if (data == null) return;
+
+        maxInteractions = data.maxInteractions;
+        initialWaterY = data.initialWaterY;
+        initialRainRate = data.initialRainRate;
+        initialLightColor = data.initialLightColor;
+        targetLightColor = data.targetLightColor;
+
+        finalWaterY = player.position.y + data.waterLevelOffset;
+        levelPerInteraction = (finalWaterY - initialWaterY) / maxInteractions;
+        finalRainRate = initialRainRate * maxInteractions;
+    }
+
+
+    public void ResetProgression()
+    {
+        currentInteractions = 0;
+
+        if (mainLight != null)
+            mainLight.color = initialLightColor;
 
         if (waterPlane != null)
             waterPlane.position = new Vector3(waterPlane.position.x, initialWaterY, waterPlane.position.z);
 
-        finalWaterY = player.position.y + 2f;
-        levelPerInteraction = (finalWaterY - initialWaterY) / maxInteractions;
-        finalRainRate = initialRainRate * maxInteractions;
+        var emission = rainSystem.emission;
+        emission.rateOverTime = initialRainRate;
     }
 
     public void RegisterInteraction()
@@ -57,22 +72,18 @@ public class ShrineProgressionManager : MonoBehaviour
 
         float t = (float)currentInteractions / maxInteractions;
 
-        // Luz ambiente
         if (mainLight != null)
             mainLight.color = Color.Lerp(initialLightColor, targetLightColor, t);
 
-        // Subida da água
         if (waterPlane != null)
         {
             float targetY = Mathf.Lerp(initialWaterY, finalWaterY, t);
             StartCoroutine(SmoothMoveWater(waterPlane.position.y, targetY));
         }
 
-        // Intensidade da chuva
         var emission = rainSystem.emission;
         emission.rateOverTime = Mathf.Lerp(initialRainRate, finalRainRate, t);
     }
-
 
     private IEnumerator SmoothMoveWater(float startY, float targetY)
     {
@@ -90,5 +101,12 @@ public class ShrineProgressionManager : MonoBehaviour
 
         waterPlane.position = endPos;
     }
+    private IEnumerator ApplyDataNextFrame()
+    {
+        // Aguarda até que MapGenerator.Instance esteja disponível
+        while (MapGenerator.Instance == null || MapGenerator.Instance.mapDataList.Count == 0)
+            yield return null;
 
+        ApplyData(MapGenerator.Instance.mapDataList[MapGenerator.Instance.currentPhaseIndex]);
+    }
 }
