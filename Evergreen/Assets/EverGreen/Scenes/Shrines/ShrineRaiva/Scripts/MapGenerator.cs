@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-
+using Cinemachine;
 public class MapGenerator : MonoBehaviour
 {
     public static MapGenerator Instance;
@@ -32,7 +32,7 @@ public class MapGenerator : MonoBehaviour
     public List<MapData> mapDataList;
 
     [Header("Câmeras")]
-    public Cinemachine.CinemachineVirtualCamera topDownCamera;
+    public CinemachineVirtualCamera topDownVirtualCamera;
 
     private void Awake()
     {
@@ -61,6 +61,8 @@ public class MapGenerator : MonoBehaviour
         Vector3 forward = startPoint.forward;
         Vector3 right = startPoint.right;
 
+        Quaternion horizontalRotation = Quaternion.Euler(0f, startPoint.eulerAngles.y, 0f);
+
         for (int row = 0; row < rows; row++)
         {
             for (int col = 0; col < cols; col++)
@@ -73,7 +75,7 @@ public class MapGenerator : MonoBehaviour
                     Vector3 offset = right * (deltaCol * spacing) + forward * (deltaRow * spacing);
                     Vector3 finalPosition = originWorldPos + offset;
 
-                    GameObject obj = Instantiate(objectPrefabs[id - 1], finalPosition, Quaternion.identity, transform);
+                    GameObject obj = Instantiate(objectPrefabs[id - 1], finalPosition, horizontalRotation, transform);
                     obj.name = $"Object_{id}_({row},{col})";
                     spawnedObjects[row, col] = obj;
                 }
@@ -90,9 +92,9 @@ public class MapGenerator : MonoBehaviour
                 Vector3 currentPos = spawnedObjects[row, col]?.transform.position ?? Vector3.zero;
 
                 Vector2Int[] directions = new Vector2Int[] {
-                    Vector2Int.right,
-                    Vector2Int.down
-                };
+                Vector2Int.right,
+                Vector2Int.down
+            };
 
                 foreach (var dir in directions)
                 {
@@ -111,7 +113,7 @@ public class MapGenerator : MonoBehaviour
 
                             if (!MidpointManager.Instance.midpoints.Exists(m => m.Matches(from, to)))
                             {
-                                GameObject midpointObj = Instantiate(midpointPrefab, midPos, Quaternion.identity, transform);
+                                GameObject midpointObj = Instantiate(midpointPrefab, midPos, horizontalRotation, transform);
                                 midpointObj.name = $"midPoint_{from.x}{from.y}_{to.x}{to.y}";
                                 MidpointManager.Instance?.RegisterMidpoint(from, to, midpointObj);
                             }
@@ -188,9 +190,11 @@ public class MapGenerator : MonoBehaviour
         return new Vector2Int(-1, -1);
     }
 
+
+
     void PositionTopDownCamera()
     {
-        if (topDownCamera == null) return;
+        if (topDownVirtualCamera == null || map == null || spawnedObjects == null) return;
 
         int rows = map.GetLength(0);
         int cols = map.GetLength(1);
@@ -214,13 +218,34 @@ public class MapGenerator : MonoBehaviour
 
         if (count == 0) return;
 
-        Vector3 center = new Vector3(sumX / count, 0, sumZ / count);
-        Vector3 cameraPos = center + Vector3.up * 20f;
+        Vector3 center = new Vector3(sumX / count, 0f, sumZ / count);
 
-        topDownCamera.transform.position = cameraPos;
-        topDownCamera.transform.rotation = Quaternion.Euler(90f, -90f, 0f);
-        topDownCamera.LookAt = null; // ou mantenha null para visão ortogonal
+        // Define um fator para ajustar altura - pode ser tweakado no Inspector se quiser
+        float fatorDeAltura = 1.5f;
+
+        // Calcula altura baseada na dimensão maior do mapa
+        float maxDimension = Mathf.Max(rows, cols);
+        float height = maxDimension * spacing * fatorDeAltura;
+
+        Vector3 cameraPos = center + Vector3.up * height;
+
+        // Posiciona a virtual camera
+        topDownVirtualCamera.transform.position = cameraPos;
+
+        // Rotação para olhar para baixo e girar o mapa 180° para inverter a orientação vertical
+        topDownVirtualCamera.transform.rotation = Quaternion.Euler(90f, 180f, 0f);
+
+        // Ajuste da câmera ortográfica
+        Camera cam = topDownVirtualCamera.VirtualCameraGameObject.GetComponent<Camera>();
+        if (cam != null)
+        {
+            cam.orthographic = true;
+            cam.orthographicSize = maxDimension * spacing * 0.5f; // para enquadrar melhor
+        }
     }
+
+
+
 
 }
 

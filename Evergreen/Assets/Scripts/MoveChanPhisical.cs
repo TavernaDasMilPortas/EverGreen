@@ -51,7 +51,6 @@ public class MoveChanPhisical : MonoBehaviour
             }
         }
 
-        currentCamera = Camera.main.gameObject;
     }
 
 

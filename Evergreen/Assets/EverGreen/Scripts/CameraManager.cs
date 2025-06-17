@@ -1,15 +1,15 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 using Cinemachine;
 
 public class CameraManager : MonoBehaviour
 {
     public static CameraManager Instance;
 
-    [Header("C‚meras Virtuais")]
+    [Header("C√¢meras Virtuais")]
     public CinemachineVirtualCamera playerCamera;
     public CinemachineVirtualCamera topDownCamera;
 
-    [Header("ConfiguraÁ„o")]
+    [Header("Configura√ß√£o")]
     public KeyCode switchKey = KeyCode.Tab;
 
     private bool isTopDown = false;
@@ -24,7 +24,7 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
-        SetPlayerView(); // ComeÁa com a c‚mera da jogadora
+        SetPlayerView(); // Come√ßa com a c√¢mera da jogadora
     }
 
     private void Update()
@@ -36,7 +36,9 @@ public class CameraManager : MonoBehaviour
                 InputManager.Instance.SetState(InputState.Gameplay);
             }
             else
-            { SetTopDownView();
+            {
+                PlayerController.Instance.Stop();
+                SetTopDownView();
                 InputManager.Instance.SetState(InputState.Camera);
             }
                 

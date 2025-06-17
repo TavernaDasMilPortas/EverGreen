@@ -30,6 +30,6 @@ public class InteractableAxe : MonoBehaviour, IInteractable
     private void PerformInteraction()
     {
         InventoryManager.Instance.AddItem(item, 1);
-        Destroy(gameObject);
+        InteractionHandler.SafeDestroy(this);
     }
 }

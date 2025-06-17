@@ -58,6 +58,7 @@ public class InteractableShrineThree : MonoBehaviour, IInteractable
         {
             MidpointManager.Instance.SpawnBridgeFromTree(MidpointManager.Instance.playerTransform.position, MidpointManager.Instance.closestTree.treeObject.transform.position);
             config.isRewarded = true;
+            InteractionHandler.SafeDestroy(this);
         }
         else
         {
@@ -73,7 +74,7 @@ public class InteractableShrineThree : MonoBehaviour, IInteractable
             Debug.LogWarning("ShrineProgressionManager não encontrado na cena.");
         }
 
-        Destroy(gameObject);
+
     }
 
 
