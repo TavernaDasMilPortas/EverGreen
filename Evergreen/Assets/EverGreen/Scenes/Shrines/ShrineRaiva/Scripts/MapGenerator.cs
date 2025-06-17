@@ -1,44 +1,50 @@
-// ------------------- SCRIPT 1: MapGenerator.cs -------------------
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
+
 public class MapGenerator : MonoBehaviour
 {
     public static MapGenerator Instance;
-    [Header("Refer�ncia da personagem")]
+
+    [Header("Referência da personagem")]
     public Transform playerTransform;
 
     [Header("Prefabs")]
     public GameObject[] objectPrefabs;
     public GameObject midpointPrefab;
 
-    [Header("Espa�amento")]
+    [Header("Espaçamento")]
     public float spacing = 2f;
 
     [Header("Offset vertical da origem")]
     public float verticalOffset = -2f;
 
+    [Header("Start point do mapa (mundo)")]
+    public Transform startPoint; // ← definido no Inspector
+
     public int currentPhaseIndex = 0;
 
     [Header("Mapa (linhas x colunas)")]
-    public int[,] map = new int[,] {
-        {0, 2, 1, 2, 0},
-        {2, 2, 2, 2, 2},
-        {0, 2, 2, 2, 0}
-    };
+    public int[,] map;
 
     public GameObject[,] spawnedObjects;
 
-
-    [Header("Fases pr�-configuradas")]
+    [Header("Fases pré-configuradas")]
     public List<MapData> mapDataList;
+
+    [Header("Câmeras")]
+    public Cinemachine.CinemachineVirtualCamera topDownCamera;
+
     private void Awake()
     {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+
         if (mapDataList != null && mapDataList.Count > 0)
         {
             currentPhaseIndex = 0;
             GenerateMap(mapDataList[currentPhaseIndex].To2DArray());
-
         }
     }
 
@@ -48,12 +54,12 @@ public class MapGenerator : MonoBehaviour
         int cols = map.GetLength(1);
         spawnedObjects = new GameObject[rows, cols];
 
-        Vector2Int originCoords = FindOriginCoords(1);
+        Vector2Int originCoords = FindOriginCoords(1); // usa plataforma de id=1
         if (originCoords == new Vector2Int(-1, -1)) return;
 
-        Vector3 originWorldPos = playerTransform.position + new Vector3(0, verticalOffset, 0);
-        Vector3 forward = playerTransform.forward;
-        Vector3 right = playerTransform.right;
+        Vector3 originWorldPos = startPoint.position + new Vector3(0, verticalOffset, 0);
+        Vector3 forward = startPoint.forward;
+        Vector3 right = startPoint.right;
 
         for (int row = 0; row < rows; row++)
         {
@@ -74,7 +80,7 @@ public class MapGenerator : MonoBehaviour
             }
         }
 
-        // Gerar midpoints entre todas as plataformas v�lidas (ignorar id 0), sem duplicatas
+        // Midpoints
         for (int row = 0; row < rows; row++)
         {
             for (int col = 0; col < cols; col++)
@@ -115,13 +121,24 @@ public class MapGenerator : MonoBehaviour
             }
         }
 
+        // Mover o jogador diretamente para a plataforma de id = 1
+        MovePlayerToSpawn(originCoords, originWorldPos, forward, right);
+        PositionTopDownCamera();
     }
+
+    void MovePlayerToSpawn(Vector2Int originCoords, Vector3 originWorldPos, Vector3 forward, Vector3 right)
+    {
+        Vector3 offset = Vector3.zero; // já está na origem
+        Vector3 finalPosition = originWorldPos + offset;
+
+        playerTransform.position = finalPosition;
+        playerTransform.rotation = Quaternion.Euler(0f, -180f, 0f);
+    }
+
     void ClearMap()
     {
         foreach (Transform child in transform)
-        {
             Destroy(child.gameObject);
-        }
 
         if (spawnedObjects != null)
         {
@@ -129,18 +146,14 @@ public class MapGenerator : MonoBehaviour
             int cols = spawnedObjects.GetLength(1);
 
             for (int row = 0; row < rows; row++)
-            {
                 for (int col = 0; col < cols; col++)
-                {
                     if (spawnedObjects[row, col] != null)
-                    {
                         Destroy(spawnedObjects[row, col]);
-                    }
-                }
-            }
         }
+
         MidpointManager.Instance.ClearMidpoints();
     }
+
     public void NextPhase()
     {
         currentPhaseIndex++;
@@ -148,14 +161,13 @@ public class MapGenerator : MonoBehaviour
             currentPhaseIndex = 0;
 
         GenerateMap(mapDataList[currentPhaseIndex].To2DArray());
-        ShrineProgressionManager.Instance.ResetProgression();
-        ShrineProgressionManager.Instance.ApplyData(mapDataList[currentPhaseIndex]);
+        ShrineProgressionManager.Instance.AdvancePhase();
     }
 
-    public void GenerateMap(int[,] map)
+    public void GenerateMap(int[,] newMap)
     {
-        ClearMap(); // Limpa o anterior
-        this.map = map;
+        ClearMap();
+        this.map = newMap;
         InstantiateMap();
 
         var currentMapData = mapDataList[currentPhaseIndex];
@@ -166,14 +178,49 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-
-
     public Vector2Int FindOriginCoords(int id)
     {
         for (int row = 0; row < map.GetLength(0); row++)
             for (int col = 0; col < map.GetLength(1); col++)
                 if (map[row, col] == id)
                     return new Vector2Int(row, col);
+
         return new Vector2Int(-1, -1);
     }
+
+    void PositionTopDownCamera()
+    {
+        if (topDownCamera == null) return;
+
+        int rows = map.GetLength(0);
+        int cols = map.GetLength(1);
+
+        float sumX = 0f, sumZ = 0f;
+        int count = 0;
+
+        for (int row = 0; row < rows; row++)
+        {
+            for (int col = 0; col < cols; col++)
+            {
+                if (spawnedObjects[row, col] != null)
+                {
+                    Vector3 pos = spawnedObjects[row, col].transform.position;
+                    sumX += pos.x;
+                    sumZ += pos.z;
+                    count++;
+                }
+            }
+        }
+
+        if (count == 0) return;
+
+        Vector3 center = new Vector3(sumX / count, 0, sumZ / count);
+        Vector3 cameraPos = center + Vector3.up * 20f;
+
+        topDownCamera.transform.position = cameraPos;
+        topDownCamera.transform.rotation = Quaternion.Euler(90f, -90f, 0f);
+        topDownCamera.LookAt = null; // ou mantenha null para visão ortogonal
+    }
+
 }
+

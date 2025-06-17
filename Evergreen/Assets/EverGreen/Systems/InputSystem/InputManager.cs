@@ -37,6 +37,9 @@ public class InputManager : MonoBehaviour
             case InputState.Minigame:
                 HandleMinigameInput();
                 break;
+            case InputState.Camera:
+                HandleCameraInput();
+                break;
         }
     }
 
@@ -128,6 +131,11 @@ public class InputManager : MonoBehaviour
                 MinigameManager.Instance.HandleInput(key);
             }
         }
+    }
+    private void HandleCameraInput()
+    {
+
+
     }
 
     private bool IsValidKey(KeyCode key)

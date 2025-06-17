@@ -2,5 +2,6 @@ public enum InputState
 {
     Gameplay,
     Menu,
-    Minigame
+    Minigame,
+    Camera
 }

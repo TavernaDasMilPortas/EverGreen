@@ -71,7 +71,7 @@ public class InteractionHandler : MonoBehaviour
         if (nearestInteractable != null)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawLine(transform.position, ((Component)nearestInteractable).transform.position);
+            //Gizmos.DrawLine(transform.position, ((Component)nearestInteractable).transform.position);
         }
     }
 }

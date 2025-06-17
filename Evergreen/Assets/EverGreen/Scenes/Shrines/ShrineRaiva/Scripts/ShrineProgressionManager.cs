@@ -1,21 +1,28 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ShrineProgressionManager : MonoBehaviour
 {
+    public static ShrineProgressionManager Instance { get; private set; }
 
-    public static ShrineProgressionManager Instance {  get; private set; } 
+    [Header("Progresso")]
     private int currentInteractions = 0;
-
     private int maxInteractions;
+    private int currentMapIndex = 0;
+
+    [Header("Níveis de Água e Chuva")]
     private float initialWaterY;
     private float finalWaterY;
+    private float waterLevelOffset;
+    private float levelPerInteraction;
+
     private float initialRainRate;
     private float finalRainRate;
-    private float levelPerInteraction;
-    private Color initialLightColor;
-    private Color targetLightColor;
+
+    [Header("Cores de Luz")]
+     private Color initialLightColor;
+     private Color targetLightColor;
 
     [Header("Referências")]
     public Light mainLight;
@@ -27,29 +34,70 @@ public class ShrineProgressionManager : MonoBehaviour
     public float waterLevelForReset = 2f;
     public float waterTransitionDuration = 2f;
 
-    void Start()
+    [Header("Dados do Mapa")]
+    public List<MapData> mapDataList = new List<MapData>();
+
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+        currentMapIndex = 0;
+    }
+
+    private void Start()
     {
         ResetProgression();
-        StartCoroutine(ApplyDataNextFrame());
- // AAAAAAAAAAAAAA
+        ApplyData(mapDataList[currentMapIndex]);
+    }
 
+
+    public void ApplyDataByIndex(int index)
+    {
+        if (mapDataList == null || index < 0 || index >= mapDataList.Count)
+        {
+            Debug.LogError($"Índice inválido ({index}) para MapData. Lista tem {mapDataList?.Count ?? 0} elementos.");
+            return;
+        }
+
+        MapData data = mapDataList[index];
+        ApplyData(data);
     }
 
     public void ApplyData(MapData data)
     {
-        if (data == null) return;
+        if (data == null)
+        {
+            Debug.LogWarning("MapData é nulo.");
+            return;
+        }
 
-        maxInteractions = data.maxInteractions;
+        if (player == null)
+        {
+            Debug.LogError("Player não atribuído no ShrineProgressionManager.");
+            return;
+        }
+
+        maxInteractions = Mathf.Max(1, data.maxInteractions) + 1; // evita divisão por zero
         initialWaterY = data.initialWaterY;
+        waterLevelOffset = data.waterLevelOffset;
         initialRainRate = data.initialRainRate;
         initialLightColor = data.initialLightColor;
         targetLightColor = data.targetLightColor;
 
-        finalWaterY = player.position.y + data.waterLevelOffset;
+        finalWaterY = player.position.y + waterLevelOffset;
         levelPerInteraction = (finalWaterY - initialWaterY) / maxInteractions;
         finalRainRate = initialRainRate * maxInteractions;
-    }
 
+        Debug.Log($"[ShrineProgressionManager] Dados aplicados (Fase {currentMapIndex}):\n" +
+                  $"- maxInteractions: {maxInteractions}\n" +
+                  $"- initialWaterY: {initialWaterY}\n" +
+                  $"- finalWaterY: {finalWaterY}\n" +
+                  $"- levelPerInteraction: {levelPerInteraction}\n" +
+                  $"- initialRainRate: {initialRainRate}\n" +
+                  $"- finalRainRate: {finalRainRate}\n" +
+                  $"- initialLightColor: {initialLightColor}\n" +
+                  $"- targetLightColor: {targetLightColor}");
+    }
 
     public void ResetProgression()
     {
@@ -65,11 +113,10 @@ public class ShrineProgressionManager : MonoBehaviour
         emission.rateOverTime = initialRainRate;
     }
 
+
     public void RegisterInteraction()
     {
-        currentInteractions++;
-        currentInteractions = Mathf.Clamp(currentInteractions, 0, maxInteractions);
-
+        currentInteractions = Mathf.Clamp(currentInteractions + 1, 0, maxInteractions);
         float t = (float)currentInteractions / maxInteractions;
 
         if (mainLight != null)
@@ -101,12 +148,19 @@ public class ShrineProgressionManager : MonoBehaviour
 
         waterPlane.position = endPos;
     }
-    private IEnumerator ApplyDataNextFrame()
-    {
-        // Aguarda até que MapGenerator.Instance esteja disponível
-        while (MapGenerator.Instance == null || MapGenerator.Instance.mapDataList.Count == 0)
-            yield return null;
 
-        ApplyData(MapGenerator.Instance.mapDataList[MapGenerator.Instance.currentPhaseIndex]);
+    // Avançar para próxima fase (caso queira controlar isso manualmente)
+    public void AdvancePhase()
+    {
+        if (currentMapIndex + 1 < mapDataList.Count)
+        {
+            currentMapIndex++;
+            ApplyDataByIndex(currentMapIndex);
+            ResetProgression();
+        }
+        else
+        {
+            Debug.Log("Última fase já foi alcançada.");
+        }
     }
 }

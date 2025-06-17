@@ -29,7 +29,6 @@ public class ReloadOnWater : MonoBehaviour
     {
         isReloading = true;
 
-        // Aqui você pode adicionar um efeito de afogamento ou fade out, se quiser
         yield return new WaitForSeconds(reloadDelay);
 
         Scene currentScene = SceneManager.GetActiveScene();
