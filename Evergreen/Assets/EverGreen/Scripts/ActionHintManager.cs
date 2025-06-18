@@ -57,13 +57,10 @@ public class ActionHintManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("texte1");
         foreach (var hint in activeHints.Values)
         {
-            Debug.Log("texte2");
             if (TryParseKey(hint.key, out KeyCode keyCode))
             {
-                Debug.Log("texte3");
                 if (hint.buttonImage != null)
                 {
                     Sprite targetSprite = Input.GetKey(keyCode) ? pressedSprite : hint.originalSprite;

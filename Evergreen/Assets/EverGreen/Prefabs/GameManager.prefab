@@ -334,6 +334,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4534244809892638369}
   - component: {fileID: 5076971549029151824}
+  - component: {fileID: 2999527103873469018}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -376,6 +377,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: []
   maxSlots: 51
+--- !u!114 &2999527103873469018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2850351979244578313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 710fabb4ee7ac93489550ce6ff4d2793, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pulseEnabled: 0
+  maxWidth: 6
+  pulseSpeed: 2
 --- !u!1 &3092233305168451608
 GameObject:
   m_ObjectHideFlags: 0

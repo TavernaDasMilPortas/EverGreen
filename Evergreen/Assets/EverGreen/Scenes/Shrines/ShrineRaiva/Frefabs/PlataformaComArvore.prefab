@@ -81,6 +81,10 @@ PrefabInstance:
       propertyPath: interactionMessage
       value: Interagiu com interactableThreeShrine
       objectReference: {fileID: 0}
+    - target: {fileID: 1391876116583048631, guid: 5dea6ae2daccd274d83dfbbf47c9852c, type: 3}
+      propertyPath: outlineMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3401048963909317274, guid: 5dea6ae2daccd274d83dfbbf47c9852c, type: 3}
       propertyPath: difficultData
       value: 

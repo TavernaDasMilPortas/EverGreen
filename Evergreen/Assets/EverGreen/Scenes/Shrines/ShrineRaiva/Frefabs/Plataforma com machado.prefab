@@ -83,8 +83,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7331234849835826354, guid: d0db044d58f21594b917da4a8ee36d80, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7331234849835826354, guid: d0db044d58f21594b917da4a8ee36d80, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7331234849835826354, guid: d0db044d58f21594b917da4a8ee36d80, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7331234849835826354, guid: d0db044d58f21594b917da4a8ee36d80, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -29.92743
+      value: -30.89
       objectReference: {fileID: 0}
     - target: {fileID: 7331234849835826354, guid: d0db044d58f21594b917da4a8ee36d80, type: 3}
       propertyPath: m_LocalPosition.y
@@ -92,7 +104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7331234849835826354, guid: d0db044d58f21594b917da4a8ee36d80, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -71.452194
+      value: -70.87
       objectReference: {fileID: 0}
     - target: {fileID: 7331234849835826354, guid: d0db044d58f21594b917da4a8ee36d80, type: 3}
       propertyPath: m_LocalRotation.w
@@ -124,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8680658482682266577, guid: d0db044d58f21594b917da4a8ee36d80, type: 3}
       propertyPath: m_Name
-      value: PlataformaBase Variant
+      value: Plataforma com machado
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

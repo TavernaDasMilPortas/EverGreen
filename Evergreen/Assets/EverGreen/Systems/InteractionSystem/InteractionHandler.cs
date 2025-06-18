@@ -34,16 +34,13 @@ public class InteractionHandler : MonoBehaviour
 
         foreach (Collider hit in hits)
         {
-            // Se o objeto do collider foi destruído, ignora
             if (hit == null || hit.gameObject == null)
                 continue;
 
-            // Checa se o componente IInteractable ainda existe e não foi destruído
             IInteractable interactable = hit.GetComponent<IInteractable>();
             if (interactable == null)
                 continue;
 
-            // Checa se o objeto do interactable ainda é válido
             if (((Component)interactable) == null)
                 continue;
 
@@ -55,31 +52,40 @@ public class InteractionHandler : MonoBehaviour
             }
         }
 
-        // Desativa outline anterior, só se o lastHighlighted ainda existe
+        // Desativa outline anterior
         if (lastHighlighted != null && ((Component)lastHighlighted) != null && lastHighlighted != closest)
         {
-            OutlineURPEffect outline = ((Component)lastHighlighted).GetComponent<OutlineURPEffect>();
-            if (outline != null)
+            Outline oldOutline = ((Component)lastHighlighted).GetComponent<Outline>();
+            if (oldOutline != null)
             {
-                outline.DisableOutline();
+
+                oldOutline.OutlineWidth = 0f; // Modo de destaque oculto
                 Debug.Log($"Desativando outline de {((Component)lastHighlighted).gameObject.name}");
             }
         }
 
-        // Ativa outline novo, se válido
+        // Ativa outline novo com cor e largura customizada
         if (closest != null && ((Component)closest) != null && closest != lastHighlighted)
         {
-            OutlineURPEffect outline = ((Component)closest).GetComponent<OutlineURPEffect>();
-            if (outline != null)
+            MinigameConfig minigameConfig= ((Component)closest).GetComponent<MinigameConfig>();
+            Outline newOutline = ((Component)closest).GetComponent<Outline>();
+            if (minigameConfig != null && minigameConfig.isRewarded == false)
             {
-                outline.EnableOutline();
-                Debug.Log($"Ativando outline de {((Component)closest).gameObject.name}");
+                if (newOutline != null)
+                {
+                    newOutline.OutlineMode = Outline.Mode.OutlineVisible; // Modo de destaque
+                    newOutline.OutlineColor = Color.white;         // <- Cor do destaque
+                    newOutline.OutlineWidth = 10f;                  // <- Espessura da borda
+                    Debug.Log($"Ativando outline de {((Component)closest).gameObject.name}");
+                }
             }
         }
 
         nearestInteractable = closest;
         lastHighlighted = closest;
     }
+
+
 
     private void OnDrawGizmosSelected()
     {
