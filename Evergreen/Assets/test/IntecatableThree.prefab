@@ -1,0 +1,154 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &358536148788946214
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 13ccd5df029e5e84fa3c1c96e1ae2106, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -56.67
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 13ccd5df029e5e84fa3c1c96e1ae2106, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 41.24012
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 13ccd5df029e5e84fa3c1c96e1ae2106, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -64.949
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 13ccd5df029e5e84fa3c1c96e1ae2106, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -3.7493994e-33
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 13ccd5df029e5e84fa3c1c96e1ae2106, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -6.123234e-17
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 13ccd5df029e5e84fa3c1c96e1ae2106, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 13ccd5df029e5e84fa3c1c96e1ae2106, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 6.123234e-17
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 13ccd5df029e5e84fa3c1c96e1ae2106, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 13ccd5df029e5e84fa3c1c96e1ae2106, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 13ccd5df029e5e84fa3c1c96e1ae2106, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 13ccd5df029e5e84fa3c1c96e1ae2106, type: 3}
+      propertyPath: m_Name
+      value: IntecatableThree
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 13ccd5df029e5e84fa3c1c96e1ae2106, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4596841017906424405}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 13ccd5df029e5e84fa3c1c96e1ae2106, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7818505623819910907}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 13ccd5df029e5e84fa3c1c96e1ae2106, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3141008472459599605}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 13ccd5df029e5e84fa3c1c96e1ae2106, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3950491688541687109}
+  m_SourcePrefab: {fileID: 100100000, guid: 13ccd5df029e5e84fa3c1c96e1ae2106, type: 3}
+--- !u!1 &592416228044085367 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 13ccd5df029e5e84fa3c1c96e1ae2106, type: 3}
+  m_PrefabInstance: {fileID: 358536148788946214}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4596841017906424405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592416228044085367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2225a0d57237fa34b86cc5a5fae2faa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredItem: {fileID: 0}
+  requiredItemQuantity: 1
+  interactionMessage: Interagiu com Interactable
+  config: {fileID: 3141008472459599605}
+--- !u!64 &7818505623819910907
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592416228044085367}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5495902117074765545, guid: 13ccd5df029e5e84fa3c1c96e1ae2106, type: 3}
+--- !u!114 &3141008472459599605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592416228044085367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b20dc766e2a80844ebcd48bc53609437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiPrefab:
+  - {fileID: 4388923589407824420, guid: 5bfea46c3d76db74788e75df8920a1c1, type: 3}
+  - {fileID: 1447796144729071822, guid: 8cf7be12d74163040a8ce2bcfdd322db, type: 3}
+  - {fileID: 4484774359767680454, guid: 86eb57d0a4de5de47a7df83379766669, type: 3}
+  - {fileID: 2682929472159014077, guid: 221e44b9624cc764b84378155de7284d, type: 3}
+  minigameControllerPrefab: {fileID: 902015046832067346, guid: fe63df90ec9b6e044a5734089b51de46, type: 3}
+  difficultData: {fileID: 11400000, guid: e34af0c93de40ea4eb2e6ea3f2108725, type: 2}
+  selectedMode: 0
+  Recompeca: {fileID: 11400000, guid: e41e02719f3b03a429e0deeee1604aa9, type: 2}
+  isRewarded: 0
+--- !u!114 &3950491688541687109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592416228044085367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

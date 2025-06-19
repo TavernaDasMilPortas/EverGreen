@@ -90,8 +90,8 @@ public class MinigameManager : MonoBehaviour
         gameFinish = false;
         currentMinigame.StartMinigame();
 
-        if (InputManager.Instance != null)
-            InputManager.Instance.SetState(InputState.Minigame);
+        if (GameStateManager.Instance != null)
+            GameStateManager.Instance.SetState(InputState.Minigame);
 
     }
 
@@ -133,8 +133,7 @@ public class MinigameManager : MonoBehaviour
 
         if (MiniGameCanvas != null)
             MiniGameCanvas.SetActive(false);
-
-        if (InputManager.Instance != null)
-            InputManager.Instance.SetState(InputState.Gameplay);
+        if(currentMinigameController == null)
+            GameStateManager.Instance.RestorePreviousState();
     }
 }

@@ -4,7 +4,6 @@ public class InputManager : MonoBehaviour
 {
     public static InputManager Instance { get; private set; }
 
-    [SerializeField] public InputState CurrentState { get; private set; } = InputState.Gameplay;
 
     private void Awake()
     {
@@ -24,7 +23,7 @@ public class InputManager : MonoBehaviour
     {
        
 
-        switch (CurrentState)
+        switch (GameStateManager.Instance.CurrentState)
         {
             case InputState.Gameplay:
                 HandleGameplayInput();
@@ -40,6 +39,9 @@ public class InputManager : MonoBehaviour
             case InputState.Camera:
                 HandleCameraInput();
                 break;
+            case InputState.House:
+                HandleHouseInput();
+                break;
         }
     }
 
@@ -52,11 +54,6 @@ public class InputManager : MonoBehaviour
         {
             PlayerController.Instance.Move(h, v);
 
-            if (Input.GetButtonDown("Jump"))
-                PlayerController.Instance.Jump();
-
-            if (Input.GetButtonDown("Fire1"))
-                PlayerController.Instance.Attack();
         }
 
         // Abre o menu principal (com abas como inventário, mapa etc)
@@ -138,12 +135,28 @@ public class InputManager : MonoBehaviour
 
     }
 
+    private void HandleHouseInput()
+    {
+
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+
+        if (PlayerController.Instance != null)
+        {
+            PlayerController.Instance.Move(h, v);
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            MenuManager.Instance?.ToggleMainMenu();
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            PlayerController.Instance.Interagir();
+        }
+    }
     private bool IsValidKey(KeyCode key)
     {
         return key >= KeyCode.A && key <= KeyCode.Z || key >= KeyCode.Alpha0 && key <= KeyCode.Alpha9;
     }
-    public void SetState(InputState newState)
-    {
-        CurrentState = newState;
-    }
+
 }

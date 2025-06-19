@@ -87,6 +87,84 @@ MonoBehaviour:
   MiniGameCanvas: {fileID: 6632351263485035801}
   gameFinish: 0
   uiParent: {fileID: 3652107068838533142}
+--- !u!1 &2083823698353813294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7403985015466265139}
+  - component: {fileID: 348034259601007331}
+  - component: {fileID: 5395597676843329282}
+  m_Layer: 5
+  m_Name: ActionHintPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7403985015466265139
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083823698353813294}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7161020302195968915}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -692.8687, y: -451.22403}
+  m_SizeDelta: {x: 418.0386, y: 73.3114}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &348034259601007331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083823698353813294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
+--- !u!114 &5395597676843329282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083823698353813294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa1b7e74c5eb704185aa8886189342f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionHintPanel: {fileID: 2083823698353813294}
+  actionHintPrefab: {fileID: 3132442487697312789, guid: 02a6313d673ec354987b983060a12059, type: 3}
+  pressedSprite: {fileID: 21300000, guid: 60e874f2c44e9b543b175665cfb4157f, type: 3}
 --- !u!1 &2231559998174680112
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,7 +313,7 @@ GameObject:
   - component: {fileID: 7153255393152482717}
   - component: {fileID: 250547594420895898}
   - component: {fileID: 7240610201030522202}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: MessageCanva
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +331,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7403985015466265139}
   m_Father: {fileID: 5698161806022530430}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -279,7 +358,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 100
@@ -335,6 +414,7 @@ GameObject:
   - component: {fileID: 4534244809892638369}
   - component: {fileID: 5076971549029151824}
   - component: {fileID: 2999527103873469018}
+  - component: {fileID: 145663638891634984}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -355,8 +435,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5698161806022530430}
-  - {fileID: 7907370978779704568}
+  - {fileID: 7977023838832402142}
   - {fileID: 9218183243878913889}
   - {fileID: 6842778877582398408}
   - {fileID: 7324725485550602048}
@@ -392,6 +471,18 @@ MonoBehaviour:
   pulseEnabled: 0
   maxWidth: 6
   pulseSpeed: 2
+--- !u!114 &145663638891634984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2850351979244578313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e41516d74c6b74d42b7788e58cb3645c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3092233305168451608
 GameObject:
   m_ObjectHideFlags: 0
@@ -769,7 +860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1158,7 +1249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5698161806022530430}
   - component: {fileID: 6480069538518395481}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UiMenus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1181,7 +1272,7 @@ Transform:
   - {fileID: 6510055601678123299}
   - {fileID: 8593301402791746725}
   - {fileID: 7161020302195968915}
-  m_Father: {fileID: 4534244809892638369}
+  m_Father: {fileID: 7977023838832402142}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6480069538518395481
 MonoBehaviour:
@@ -1453,7 +1544,7 @@ GameObject:
   - component: {fileID: 3676682945429304220}
   - component: {fileID: 5325153134372889250}
   - component: {fileID: 6215900842345023909}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: MiniGameCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1601,7 +1692,6 @@ GameObject:
   - component: {fileID: 7907370978779704568}
   - component: {fileID: 3889592272139663719}
   - component: {fileID: 5605078738753505863}
-  - component: {fileID: 1781306569852607634}
   m_Layer: 5
   m_Name: CameraCanvas
   m_TagString: Untagged
@@ -1622,7 +1712,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7498007199188140685}
-  m_Father: {fileID: 4534244809892638369}
+  m_Father: {fileID: 7977023838832402142}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1675,23 +1765,39 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
---- !u!114 &1781306569852607634
-MonoBehaviour:
+--- !u!1 &7083615082260494062
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6938234288259926939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7977023838832402142}
+  m_Layer: 5
+  m_Name: UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7977023838832402142
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7083615082260494062}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5698161806022530430}
+  - {fileID: 7907370978779704568}
+  m_Father: {fileID: 4534244809892638369}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7258645320069151547
 GameObject:
   m_ObjectHideFlags: 0
@@ -1771,7 +1877,7 @@ GameObject:
   - component: {fileID: 3652107068838533142}
   - component: {fileID: 4065537830871080070}
   - component: {fileID: 3508533779702820362}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: MiniGamePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -8,41 +8,57 @@ public class InteractionHandler : MonoBehaviour
     public float interactionDistance = 2f;
     public float sphereRadius = 0.5f;
     public KeyCode interactionKey = KeyCode.E;
+    public LayerMask interactionLayer;
 
     [Header("Status Atual")]
     public IInteractable nearestInteractable;
-
     [HideInInspector]
     public IInteractable lastHighlighted;
+
+    private Camera mainCamera;
 
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+
+        mainCamera = Camera.main;
     }
 
     private void Update()
     {
-        FindNearestInteractable();
+        if (GameStateManager.Instance.CurrentState == InputState.House)
+            FindByRaycast();
+        else
+            FindNearestByProximity();
     }
 
-    private void FindNearestInteractable()
+    private void FindByRaycast()
     {
-        Collider[] hits = Physics.OverlapSphere(transform.position, interactionDistance);
+        if (mainCamera == null) return;
+
+        Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        if (Physics.Raycast(ray, out RaycastHit hit, interactionDistance, interactionLayer))
+        {
+            IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+            UpdateHighlight(interactable);
+        }
+        else
+        {
+            UpdateHighlight(null);
+        }
+    }
+
+    private void FindNearestByProximity()
+    {
+        Collider[] hits = Physics.OverlapSphere(transform.position, interactionDistance, interactionLayer);
         IInteractable closest = null;
         float shortestDistance = float.MaxValue;
 
         foreach (Collider hit in hits)
         {
-            if (hit == null || hit.gameObject == null)
-                continue;
-
             IInteractable interactable = hit.GetComponent<IInteractable>();
-            if (interactable == null)
-                continue;
-
-            if (((Component)interactable) == null)
-                continue;
+            if (interactable == null) continue;
 
             float distance = Vector3.Distance(transform.position, hit.transform.position);
             if (distance < shortestDistance)
@@ -52,40 +68,18 @@ public class InteractionHandler : MonoBehaviour
             }
         }
 
-        // Desativa outline anterior
-        if (lastHighlighted != null && ((Component)lastHighlighted) != null && lastHighlighted != closest)
-        {
-            Outline oldOutline = ((Component)lastHighlighted).GetComponent<Outline>();
-            if (oldOutline != null)
-            {
-
-                oldOutline.OutlineWidth = 0f; // Modo de destaque oculto
-                Debug.Log($"Desativando outline de {((Component)lastHighlighted).gameObject.name}");
-            }
-        }
-
-        // Ativa outline novo com cor e largura customizada
-        if (closest != null && ((Component)closest) != null && closest != lastHighlighted)
-        {
-            MinigameConfig minigameConfig= ((Component)closest).GetComponent<MinigameConfig>();
-            Outline newOutline = ((Component)closest).GetComponent<Outline>();
-            if (minigameConfig != null && minigameConfig.isRewarded == false)
-            {
-                if (newOutline != null)
-                {
-                    newOutline.OutlineMode = Outline.Mode.OutlineVisible; // Modo de destaque
-                    newOutline.OutlineColor = Color.white;         // <- Cor do destaque
-                    newOutline.OutlineWidth = 10f;                  // <- Espessura da borda
-                    Debug.Log($"Ativando outline de {((Component)closest).gameObject.name}");
-                }
-            }
-        }
-
-        nearestInteractable = closest;
-        lastHighlighted = closest;
+        UpdateHighlight(closest);
     }
 
+    private void UpdateHighlight(IInteractable newInteractable)
+    {
+        nearestInteractable = newInteractable;
 
+        // Atualiza o outline através do OutlineManager
+        OutlineManager.Instance?.Highlight(newInteractable);
+
+        lastHighlighted = newInteractable;
+    }
 
     private void OnDrawGizmosSelected()
     {
@@ -99,39 +93,26 @@ public class InteractionHandler : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Método seguro para destruir objetos interagíveis, limpando outline e referências antes.
-    /// </summary>
     public static void SafeDestroy(IInteractable interactable)
     {
         if (interactable == null) return;
 
         GameObject go = ((Component)interactable).gameObject;
 
-        // Desativa outline se houver
         OutlineURPEffect outline = go.GetComponent<OutlineURPEffect>();
         if (outline != null)
         {
             outline.DisableOutline();
-            Debug.Log($"[InteractionHandler] Outline desativada de {go.name} antes da destruição.");
         }
 
-        // Limpa referências no Instance
         if (Instance != null)
         {
             if (Instance.nearestInteractable == interactable)
-            {
                 Instance.nearestInteractable = null;
-                Debug.Log("[InteractionHandler] nearestInteractable limpo.");
-            }
             if (Instance.lastHighlighted == interactable)
-            {
                 Instance.lastHighlighted = null;
-                Debug.Log("[InteractionHandler] lastHighlighted limpo.");
-            }
         }
 
-        // Destrói o objeto
         Object.Destroy(go);
     }
 }

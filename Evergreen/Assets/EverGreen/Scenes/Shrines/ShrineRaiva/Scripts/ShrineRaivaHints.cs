@@ -12,11 +12,11 @@ public class ShrineRaivaHints : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (InteractionHandler.Instance.nearestInteractable != null && InputManager.Instance.CurrentState == InputState.Gameplay)
+        if (InteractionHandler.Instance.nearestInteractable != null && GameStateManager.Instance.CurrentState == InputState.Gameplay)
         {
             ActionHintManager.Instance.ShowHint("E", " - Interagir", 10);
         }
-        else if (ActionHintManager.Instance.IsHintActive("E") && InteractionHandler.Instance.nearestInteractable == null || InputManager.Instance.CurrentState != InputState.Gameplay)
+        else if (ActionHintManager.Instance.IsHintActive("E") && InteractionHandler.Instance.nearestInteractable == null || GameStateManager.Instance.CurrentState != InputState.Gameplay)
         {
             ActionHintManager.Instance.HideHint("E");
         }

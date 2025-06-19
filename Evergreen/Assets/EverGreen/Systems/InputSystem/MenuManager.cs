@@ -33,9 +33,9 @@ public class MenuManager : MonoBehaviour
         Debug.Log($"Aba atual: {currentTabIndex}, Estado atual: {isOpen}, Novo estado: {newState}");
 
         menuTabs[currentTabIndex].Toggle(newState);
-        InputManager.Instance.SetState(newState ? InputState.Menu : InputState.Gameplay);
+        GameStateManager.Instance.SetState(newState ? InputState.Menu : InputState.Gameplay);
 
-        Debug.Log("Estado do InputManager agora é: " + InputManager.Instance.CurrentState);
+        Debug.Log("Estado do InputManager agora é: " + GameStateManager.Instance.CurrentState);
     }
 
     public void Navigate(Vector2 direction)
@@ -103,7 +103,7 @@ public class MenuManager : MonoBehaviour
         menuTabs[currentTabIndex].Cancel();
         menuTabs[currentTabIndex].OnClose();
 
-        InputManager.Instance.SetState(InputState.Gameplay);
-        Debug.Log("Estado do InputManager agora é: " + InputManager.Instance.CurrentState);
+        GameStateManager.Instance.SetState(InputState.Gameplay);
+        Debug.Log("Estado do InputManager agora é: " + GameStateManager.Instance.CurrentState);
     }
 }

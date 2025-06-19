@@ -6,45 +6,58 @@ public class OutlineManager : MonoBehaviour
     public static OutlineManager Instance { get; private set; }
 
     private List<Outline> allOutlines = new List<Outline>();
+    private Outline currentActiveOutline = null;
 
-    [Header("Configuração do pulso (global)")]
-    public bool pulseEnabled = false;
-    private float minWidth = 0f;
-    public float maxWidth = 6f;
-    public float pulseSpeed = 2f;
+    [Header("Configurações globais de outline")]
+    public float defaultWidth = 10f;
+    public Color highlightColor = Color.red;
 
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
     }
+
     public void Start()
     {
-        // Inicializa o OutlineManager e encontra todos os outlines na cena
         FindAllOutlinesInScene();
-        SetWidthAllOutlines(minWidth); // Define a largura mínima inicialmente
-    }
-    private void Update()
-    {
- 
+        DisableAllOutlines(); // desliga todos inicialmente
     }
 
     public void FindAllOutlinesInScene()
     {
         allOutlines.Clear();
-        Outline[] found = FindObjectsOfType<Outline>(true); // true: inclui inativos
+        Outline[] found = FindObjectsOfType<Outline>(true);
         allOutlines.AddRange(found);
         Debug.Log($"[OutlineManager] Encontrados {allOutlines.Count} objetos com Outline.");
     }
 
-    public void EnableAllOutlines()
+    public void Highlight(IInteractable target)
     {
-        foreach (var outline in allOutlines)
+        Outline newOutline = (target as Component)?.GetComponent<Outline>();
+
+        // Se for o mesmo, não faz nada
+        if (currentActiveOutline == newOutline) return;
+
+        // Desativa o atual
+        if (currentActiveOutline != null)
         {
-            if (outline != null)
-                outline.enabled = true;
+            currentActiveOutline.enabled = false;
+            currentActiveOutline = null;
+        }
+
+        currentActiveOutline = newOutline;
+
+        // Ativa novo se existir
+        if (currentActiveOutline != null)
+        {
+            currentActiveOutline.enabled = true;
+            currentActiveOutline.OutlineMode = Outline.Mode.OutlineVisible;
+            currentActiveOutline.OutlineColor = highlightColor;
+            currentActiveOutline.OutlineWidth = defaultWidth;
         }
     }
+
 
     public void DisableAllOutlines()
     {
@@ -53,6 +66,8 @@ public class OutlineManager : MonoBehaviour
             if (outline != null)
                 outline.enabled = false;
         }
+
+        currentActiveOutline = null;
     }
 
     public void SetColorAllOutlines(Color newColor)
@@ -71,10 +86,5 @@ public class OutlineManager : MonoBehaviour
             if (outline != null)
                 outline.OutlineWidth = width;
         }
-    }
-
-    public void TogglePulse(bool enable)
-    {
-        pulseEnabled = enable;
     }
 }

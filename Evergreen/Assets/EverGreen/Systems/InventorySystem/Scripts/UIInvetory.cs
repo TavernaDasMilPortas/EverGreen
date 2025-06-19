@@ -77,7 +77,7 @@ public class UIInventory : UIMenuTab
     {
         Debug.Log("UIInventory.Toggle chamado com open = " + open);
 
-        if (InputManager.Instance.CurrentState == InputState.Minigame)
+        if (GameStateManager.Instance.CurrentState == InputState.Minigame)
         {
             Debug.Log("Toggle cancelado: estado é Minigame.");
             return;
@@ -140,7 +140,7 @@ public class UIInventory : UIMenuTab
     {
         Debug.Log("UIInventory.Cancel chamado");
         Toggle(false);
-        InputManager.Instance.SetState(InputState.Gameplay);
+        GameStateManager.Instance.SetState(InputState.Gameplay);
     }
 
     public void UpdateUI()

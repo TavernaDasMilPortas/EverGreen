@@ -3,5 +3,6 @@ public enum InputState
     Gameplay,
     Menu,
     Minigame,
-    Camera
+    Camera,
+    House
 }
