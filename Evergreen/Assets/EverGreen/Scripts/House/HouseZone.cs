@@ -20,4 +20,5 @@ public class RestrictionZone : MonoBehaviour
             GameStateManager.Instance.SetState(InputState.Gameplay);
         }
     }
+
 }

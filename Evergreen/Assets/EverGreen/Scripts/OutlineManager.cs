@@ -52,7 +52,7 @@ public class OutlineManager : MonoBehaviour
         if (currentActiveOutline != null)
         {
             currentActiveOutline.enabled = true;
-            currentActiveOutline.OutlineMode = Outline.Mode.OutlineVisible;
+            currentActiveOutline.OutlineMode = Outline.Mode.OutlineAll;
             currentActiveOutline.OutlineColor = highlightColor;
             currentActiveOutline.OutlineWidth = defaultWidth;
         }
