@@ -6,6 +6,6 @@ public class MinigameConfig : MonoBehaviour
     public GameObject minigameControllerPrefab; // Prefab do controlador do minigame
     public ScriptableObject difficultData; // Dados de dificuldade do minigame
     public GameModes.Modes selectedMode; // Modo de jogo selecionado
-    public Item Recompeca;
+    [SerializeField] public MinigameReward Recompeca;
     public bool isRewarded = false;
 }

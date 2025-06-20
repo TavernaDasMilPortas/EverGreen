@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class MinigameManager : MonoBehaviour
 {
+
     public static MinigameManager Instance { get; private set; }
 
     private IMinigame currentMinigame;
@@ -50,7 +51,7 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
-    public void StartMinigameWithUI(GameObject[] uiPrefabs, GameObject minigameControllerPrefab, IDifficultData difficult, GameModes.Modes mode)
+    public void StartMinigameWithUI(GameObject[] uiPrefabs, GameObject minigameControllerPrefab, IDifficultData difficult, GameModes.Modes mode, MinigameReward reward)
     {
         if (MiniGameCanvas != null)
         {
@@ -84,12 +85,30 @@ public class MinigameManager : MonoBehaviour
         if (rhythmController != null && currentMinigameUI.Count > 0)
         {
             rhythmController.AssignUI(currentMinigameUI.ToArray());
+            rhythmController.SetBackgroundByGameMode(mode);
+            rhythmController.currentReward = reward;
+
+            // Verificação de debug
+            if (reward == null)
+            {
+                Debug.LogError("Reward está NULO ao ser passado para RhythmGameController.");
+            }
+            else if (reward.item == null)
+            {
+                Debug.LogWarning("Reward foi passado, mas o item está NULO.");
+            }
+            else
+            {
+                Debug.Log($"Reward passado para RhythmGameController: {reward.item.name} x{reward.quantity}");
+            }
         }
+
+
+
 
         isRunning = true;
         gameFinish = false;
         currentMinigame.StartMinigame();
-
         if (GameStateManager.Instance != null)
             GameStateManager.Instance.SetState(InputState.Minigame);
 
@@ -133,7 +152,11 @@ public class MinigameManager : MonoBehaviour
 
         if (MiniGameCanvas != null)
             MiniGameCanvas.SetActive(false);
-        if(currentMinigameController == null)
-            GameStateManager.Instance.RestorePreviousState();
+        GameStateManager.Instance.RestorePreviousState();
     }
+}
+[System.Serializable]public class MinigameReward
+{
+    public Item item;
+    public int quantity;
 }

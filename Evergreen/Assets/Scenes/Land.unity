@@ -14236,6 +14236,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: IntecatableThree
       objectReference: {fileID: 0}
+    - target: {fileID: 3141008472459599605, guid: 1a6d5bcb0b5fd8c46a3069aff1997dae, type: 3}
+      propertyPath: Recompeca.item
+      value: 
+      objectReference: {fileID: 11400000, guid: e41e02719f3b03a429e0deeee1604aa9, type: 2}
+    - target: {fileID: 3141008472459599605, guid: 1a6d5bcb0b5fd8c46a3069aff1997dae, type: 3}
+      propertyPath: Recompeca.quantity
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

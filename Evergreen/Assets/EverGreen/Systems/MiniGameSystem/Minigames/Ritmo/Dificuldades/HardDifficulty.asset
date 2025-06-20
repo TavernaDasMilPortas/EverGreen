@@ -12,9 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dceb17f47f23be42bd44301739b64c6, type: 3}
   m_Name: HardDifficulty
   m_EditorClassIdentifier: 
-  allowedKeys: abcdefghijklmnopqrstuvwxyz
-  minTimeBetweenNotes: 0.4
-  maxTimeBetweenNotes: 1
-  noteSpeed: 1.5
-  gameDuration: 30
-  hitWindow: 0.3
+  allowedKeys: qwert
+  allowedKeysPiano: QWE
+  classic_minTimeBetweenNotes: 0.5
+  classic_maxTimeBetweenNotes: 1.5
+  classic_hitWindow: 0.3
+  classic_gameDuration: 20
+  MissTolerance: 7
+  sequence_length: 5
+  sequence_displayInterval: 0.7
+  piano_minTimeBetweenNotes: 0.3
+  piano_maxTimeBetweenNotes: 0.7
+  piano_noteSpeed: 500
+  piano_gameDuration: 30

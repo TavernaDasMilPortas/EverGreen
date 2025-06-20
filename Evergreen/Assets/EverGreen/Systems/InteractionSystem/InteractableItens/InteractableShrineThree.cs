@@ -42,7 +42,9 @@ public class InteractableShrineThree : MonoBehaviour, IInteractable
                 config.uiPrefab,
                 config.minigameControllerPrefab,
                 config.difficultData as IDifficultData,
-                config.selectedMode);
+                config.selectedMode,
+                config.Recompeca
+                );
         }
         else if (config == null)
         {

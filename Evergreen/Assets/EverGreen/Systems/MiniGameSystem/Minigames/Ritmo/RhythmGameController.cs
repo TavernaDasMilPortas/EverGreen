@@ -1,9 +1,17 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinigame
 {
+    [System.Serializable]
+    public class GameModeImagePair
+    {
+        public GameModes.Modes mode;
+        public Sprite backgroundImage;
+    }
+
     [Header("Configurações")]
     [SerializeField] private RhythmMinigameDifficultyData _difficultyData;
     [SerializeField] public GameObject _notePrefab;
@@ -19,7 +27,7 @@ public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinig
     private NoteEvaluatorService evaluatorService;
 
     private List<RhythmNote> activeNotes = new List<RhythmNote>();
-
+    public MinigameReward currentReward;
     [Header("UI Extras")]
     //[SerializeField] private GameObject _gamePrefab; // Prefab do minigame, usado para ativar/desativa
     private TextMeshProUGUI _timerText;
@@ -34,10 +42,18 @@ public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinig
     public TextMeshProUGUI feedbackText => _feedbackText;
     public GameObject noteButtonPrefab => _notePrefab;
     public TextMeshProUGUI timerText => _timerText;
-
+    private Image _backgroundImage;
     public RhythmMinigameDifficultyData difficultyData => _difficultyData;
     private bool _gameResult = false;
 
+    [SerializeField] private GameObject resultScreenPrefab;
+    [SerializeField] private Sprite victorySprite;
+    [SerializeField] private Sprite defeatSprite;
+
+    private bool waitingResultScreen = false;
+    public static System.Action OnResultScreenClosed;
+
+    public List<GameModeImagePair> modeImagePairs;
     // Implementação da propriedade da interface
     public bool gameResult
     {
@@ -149,6 +165,8 @@ public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinig
             // Se todos já foram encontrados, podemos encerrar o loop
             if (_noteArea != null && _feedbackText != null && _hitZone != null && _timerText != null)
                 break;
+
+            
         }
 
         // Relatórios de erros caso algum ainda não tenha sido encontrado
@@ -227,19 +245,91 @@ public class RhythmGameController : MonoBehaviour, IRhythmGameController, IMinig
     {
         currentMode?.HandleInput(key);
     }
+  public bool EvaluateResult()
+    {
+        // Exemplo básico (ajuste conforme sua lógica)
+        return gameResult;
+    }
+    public void SetBackgroundByGameMode(GameModes.Modes mode)
+    {
+        if (_backgroundImage == null)
+        {
 
+            Image imageComponent = parentUi.GetComponentInChildren<Image>();
+            if (imageComponent != null)
+            {
+                _backgroundImage = imageComponent;
+            }
+            else
+            {
+                Debug.LogWarning("[RhythmGameController] Nenhum componente Image encontrado em parentUi.");
+                return;
+            }
+        }
+
+        GameModeImagePair pair = modeImagePairs.Find(p => p.mode == mode);
+        if (pair != null && pair.backgroundImage != null)
+        {
+            _backgroundImage.sprite = pair.backgroundImage;
+            Debug.Log($"[RhythmGameController] Background alterado para o modo: {mode}");
+        }
+        else
+        {
+            Debug.LogWarning($"[RhythmGameController] Nenhuma imagem encontrada para o modo: {mode}");
+        }
+    }
     public void EndMinigame()
     {
         Debug.Log("Rhythm Minigame Ended.");
         modeStarted = false;
         activeNotes.ForEach(note => Destroy(note.gameObject));
         activeNotes.Clear();
-        MinigameManager.Instance.gameFinish = true;
+
+        if (UiRoot != null)
+        {
+            foreach (var ui in UiRoot)
+            {
+                if (ui != null)
+                    Destroy(ui);
+            }
+        }
+
+        ShowResultScreen(); // Exibe a tela, não finaliza aqui
+    }
+    private void ShowResultScreen()
+    {
+        parentUi = GameObject.Find("MiniGamePanel").transform;
+        VictoryDefeatScreenUI screenUI = VictoryDefeatScreenUI.CreateScreen(resultScreenPrefab, parentUi);
+
+        if (screenUI == null)
+        {
+            Debug.LogError("[Minigame] Falha ao instanciar VictoryDefeatScreenUI.");
+            MinigameManager.Instance.gameFinish = true;
+            return;
+        }
+
+        screenUI.Setup(
+            gameResult,
+            gameResult ? victorySprite : defeatSprite,
+            currentReward.item.icon,
+            currentReward.item.name,
+            currentReward.quantity
+        );
+
+        waitingResultScreen = true;
+        OnResultScreenClosed += HandleResultScreenClosed;
+
+
     }
 
-    public bool EvaluateResult()
+
+    private void HandleResultScreenClosed()
     {
-        // Exemplo básico (ajuste conforme sua lógica)
-        return gameResult;
+        OnResultScreenClosed -= HandleResultScreenClosed;
+        waitingResultScreen = false;
+
+        // Agora sim, sinaliza ao MinigameManager que pode finalizar o minigame
+        MinigameManager.Instance.gameFinish = true;
     }
 }
+

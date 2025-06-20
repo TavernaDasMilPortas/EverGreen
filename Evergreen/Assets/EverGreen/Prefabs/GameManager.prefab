@@ -468,9 +468,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 710fabb4ee7ac93489550ce6ff4d2793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pulseEnabled: 0
-  maxWidth: 6
-  pulseSpeed: 2
+  defaultWidth: 10
+  highlightColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &145663638891634984
 MonoBehaviour:
   m_ObjectHideFlags: 0

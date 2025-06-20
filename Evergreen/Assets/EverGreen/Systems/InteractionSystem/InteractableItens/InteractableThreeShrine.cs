@@ -41,7 +41,9 @@ public class InteractableThreeShrine : MonoBehaviour, IInteractable
                 config.uiPrefab,
                 config.minigameControllerPrefab,
                 config.difficultData as IDifficultData,
-                config.selectedMode);
+                config.selectedMode,
+                config.Recompeca
+                ) ;
         }
         else if(config == null  )
         {
@@ -57,7 +59,7 @@ public class InteractableThreeShrine : MonoBehaviour, IInteractable
         if (success)
         {
             Debug.Log("Minigame foi concluído com sucesso!");
-            InventoryManager.Instance.AddItem(config.Recompeca, 1);
+            InventoryManager.Instance.AddItem(config.Recompeca.item, config.Recompeca.quantity);
             config.isRewarded = true;
         }
         else

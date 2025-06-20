@@ -50,3 +50,13 @@ MonoBehaviour:
   _feedbackText: {fileID: 0}
   UiRoot: []
   selectedMode: 1
+  resultScreenPrefab: {fileID: 783288526936336585, guid: b025cec14362a9b4a910105194bff82b, type: 3}
+  victorySprite: {fileID: 21300000, guid: f4ce54d958542094ca3c60a57c2665d4, type: 3}
+  defeatSprite: {fileID: 21300000, guid: 104c8b3cd529b214182bad9ec4574a1d, type: 3}
+  modeImagePairs:
+  - mode: 0
+    backgroundImage: {fileID: 21300000, guid: a41c2df9dff1d6249a28c2c39df7d05c, type: 3}
+  - mode: 1
+    backgroundImage: {fileID: 21300000, guid: a41c2df9dff1d6249a28c2c39df7d05c, type: 3}
+  - mode: 2
+    backgroundImage: {fileID: 21300000, guid: 27119bd2fa53c81499b692b278db60e6, type: 3}
