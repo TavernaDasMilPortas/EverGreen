@@ -780,6 +780,42 @@ MonoBehaviour:
   interactionLayer:
     serializedVersion: 2
     m_Bits: 215
+--- !u!114 &320326567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320326558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35ef4d84712091340bccb10836c498a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensitivity: 100
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  mouseFollower: {fileID: 0}
+--- !u!114 &320326568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320326558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ace0c6440704d249a2f2d7ceaf3f71b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rdb: {fileID: 431217046}
+  anim: {fileID: 431217047}
+  currentCamera: {fileID: 1382182961}
+  jumpspeed: 10000
+  gravity: 20
+  rightHandObj: {fileID: 0}
+  leftHandObj: {fileID: 0}
 --- !u!1 &331613361
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,6 +904,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a15d783ab0b07d408025047abd4aaf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &431217046 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 7046437972623310166, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
+  m_PrefabInstance: {fileID: 7178004968186966790}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &431217047 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2012696493318597386, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
+  m_PrefabInstance: {fileID: 7178004968186966790}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &486443166
 GameObject:
   m_ObjectHideFlags: 0
@@ -6466,6 +6512,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1069073969668396615, guid: 4fa394374eb3277448769d428fbd3bf4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 320326563}
+    - targetCorrespondingSourceObject: {fileID: 1069073969668396615, guid: 4fa394374eb3277448769d428fbd3bf4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 320326567}
+    - targetCorrespondingSourceObject: {fileID: 1069073969668396615, guid: 4fa394374eb3277448769d428fbd3bf4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 320326568}
   m_SourcePrefab: {fileID: 100100000, guid: 4fa394374eb3277448769d428fbd3bf4, type: 3}
 --- !u!1 &1496581426
 GameObject:
@@ -14283,7 +14335,8 @@ PrefabInstance:
       propertyPath: currentCamera
       value: 
       objectReference: {fileID: 1382182961}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7942285003035998846, guid: 4ccb3266c6a8f734588dc5d920baef9d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
