@@ -19,9 +19,22 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    private InputState lastState;
+
     private void Update()
     {
-       
+        if (lastState != GameStateManager.Instance.CurrentState)
+        {
+            // Estado mudou
+            if (GameStateManager.Instance.CurrentState != InputState.Gameplay)
+            {
+                // Não é gameplay, para o movimento do player
+                if (PlayerController.Instance != null)
+                    PlayerController.Instance.Stop();
+            }
+        }
+
+        lastState = GameStateManager.Instance.CurrentState;
 
         switch (GameStateManager.Instance.CurrentState)
         {
@@ -65,10 +78,12 @@ public class InputManager : MonoBehaviour
         {
             PlayerController.Instance.Interagir();
         }
+
     }
 
     private void HandleMenuInput()
     {
+
         // Navegação entre itens (dentro do menu atual)
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
@@ -121,6 +136,7 @@ public class InputManager : MonoBehaviour
     }
     private void HandleMinigameInput()
     {
+
         foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
         {
             if (Input.GetKeyDown(key) && IsValidKey(key))
