@@ -6683,6 +6683,28 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 2
+--- !u!95 &1577294923
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577294918}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 091d02735b865a64bb417ec609ce9d35, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1792758088
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7400,6 +7422,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4760426307729308776, guid: d04d1fe0082f8804583b67be9e8e019e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1577294922}
+    - targetCorrespondingSourceObject: {fileID: 4760426307729308776, guid: d04d1fe0082f8804583b67be9e8e019e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1577294923}
   m_SourcePrefab: {fileID: 100100000, guid: d04d1fe0082f8804583b67be9e8e019e, type: 3}
 --- !u!33 &196121404324944082
 MeshFilter:
