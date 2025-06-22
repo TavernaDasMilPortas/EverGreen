@@ -110,7 +110,9 @@ MonoBehaviour:
   minigameControllerPrefab: {fileID: 0}
   difficultData: {fileID: 0}
   selectedMode: 0
-  Recompeca: {fileID: 0}
+  Recompeca:
+    item: {fileID: 11400000, guid: 5c19c0173ecb15b409d272b66597ac79, type: 2}
+    quantity: 0
   isRewarded: 0
 --- !u!64 &367776151903872933
 MeshCollider:
