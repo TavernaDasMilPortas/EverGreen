@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class MoveChanPhisical : MonoBehaviour
 {
     public Rigidbody rdb;
-    public Animator anim;
     public GameObject currentCamera;
     public float jumpspeed = 1;
     public float gravity = 20;
@@ -36,10 +35,6 @@ public class MoveChanPhisical : MonoBehaviour
         jumpbtndown = true;
     }
 
-    public void TriggerAttack()
-    {
-        anim.SetTrigger("PunchA");
-    }
 
     void Start()
     {
@@ -58,7 +53,6 @@ public class MoveChanPhisical : MonoBehaviour
     void FixedUpdate()
     {
         movaxis = moveInput;
-        anim.SetFloat("Speed", rdb.linearVelocity.magnitude);
 
         // Checagem de solo
         grounded = false;
@@ -69,20 +63,15 @@ public class MoveChanPhisical : MonoBehaviour
         if (Physics.Raycast(origin, Vector3.down, out hit, rayLength))
         {
             grounded = true;
-            anim.SetFloat("JumpHeight", hit.distance);
 
             if (jumpbtn)
             {
                 jumptime = 0.25f;
             }
         }
-        else
-        {
-            anim.SetFloat("JumpHeight", 2); // valor indicando que está no ar
-        }
 
         // Pulo
-        /*if (jumpbtn && grounded)
+        if (jumpbtn && grounded)
         {
             rdb.AddForce(Vector3.up * jumpspeed, ForceMode.Impulse);
             jumpbtn = false; // evita aplicar várias vezes
@@ -92,16 +81,12 @@ public class MoveChanPhisical : MonoBehaviour
         if (!grounded)
         {
             rdb.AddForce(Vector3.down * gravity, ForceMode.Acceleration);
-        }*/
+        }
 
         jumpbtndown = false;
 
         GroundControl();
 
-        if (Input.GetButtonDown("Fire1"))
-        {
-            anim.SetTrigger("PunchA");
-        }
     }
 
     private void GroundControl()
@@ -111,12 +96,36 @@ public class MoveChanPhisical : MonoBehaviour
 
         if (grounded)
         {
-            Vector3 targetVelocity = new Vector3(relativedirection.x * 5, rdb.linearVelocity.y, relativedirection.z * 5);
-            rdb.linearVelocity = Vector3.Lerp(rdb.linearVelocity, targetVelocity, Time.fixedDeltaTime * 5f);
-
-            if (moveInput.magnitude < 0.01f)
+            // Primeiro, detecta o plano inclinado em que o personagem está
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, out hit, 1f))
             {
-                rdb.linearVelocity = Vector3.Lerp(rdb.linearVelocity, new Vector3(0, rdb.linearVelocity.y, 0), Time.fixedDeltaTime * 5f);
+                Vector3 groundNormal = hit.normal;
+
+                // Projeta a direção do movimento no plano da rampa
+                Vector3 moveOnSlope = Vector3.ProjectOnPlane(relativedirection, groundNormal).normalized;
+
+                // Define a velocidade alvo ao longo da rampa
+                Vector3 targetVelocity = moveOnSlope * 5f;
+                targetVelocity.y = rdb.linearVelocity.y; // mantém velocidade vertical atual para evitar saltos bruscos
+
+                // Aplica suavização na velocidade para movimento mais natural
+                rdb.linearVelocity = Vector3.Lerp(rdb.linearVelocity, targetVelocity, Time.fixedDeltaTime * 10f);
+
+                // Se não está se movendo, desacelera suavemente
+                if (moveInput.magnitude < 0.01f)
+                {
+                    Vector3 vel = rdb.linearVelocity;
+                    vel.x = Mathf.Lerp(vel.x, 0, Time.fixedDeltaTime * 10f);
+                    vel.z = Mathf.Lerp(vel.z, 0, Time.fixedDeltaTime * 10f);
+                    rdb.linearVelocity = vel;
+                }
+            }
+            else
+            {
+                // fallback caso não detecte chão, apenas movimenta normalmente (sem inclinação)
+                Vector3 targetVelocity = new Vector3(relativedirection.x * 5, rdb.linearVelocity.y, relativedirection.z * 5);
+                rdb.linearVelocity = Vector3.Lerp(rdb.linearVelocity, targetVelocity, Time.fixedDeltaTime * 5f);
             }
         }
         else
@@ -131,33 +140,9 @@ public class MoveChanPhisical : MonoBehaviour
         }
     }
 
+
     void OnAnimatorIK()
     {
-        if (closeThing)
-        {
-            Vector3 handDirection = closeThing.transform.position - transform.position;
-            float lookto = Vector3.Dot(handDirection.normalized, transform.forward);
-            weight = Mathf.Lerp(weight, (lookto * 3 / (Mathf.Pow(handDirection.magnitude, 3))), Time.fixedDeltaTime * 2);
-
-            anim.SetIKPositionWeight(AvatarIKGoal.RightHand, weight);
-            anim.SetIKRotationWeight(AvatarIKGoal.RightHand, weight);
-            anim.SetIKPosition(AvatarIKGoal.RightHand, closeThing.transform.position + transform.right * 0.1f);
-            anim.SetIKRotation(AvatarIKGoal.RightHand, Quaternion.identity);
-
-            anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, weight);
-            anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, weight);
-            anim.SetIKPosition(AvatarIKGoal.LeftHand, closeThing.transform.position - transform.right * 0.1f);
-            anim.SetIKRotation(AvatarIKGoal.LeftHand, Quaternion.identity);
-
-            if (weight <= 0)
-            {
-                Destroy(closeThing);
-                if (joint)
-                {
-                    Destroy(joint);
-                }
-            }
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -185,11 +170,6 @@ public class MoveChanPhisical : MonoBehaviour
             rdb.angularVelocity = Vector3.zero;
         }
 
-        // Atualiza a animação de velocidade
-        if (anim != null)
-        {
-            anim.SetFloat("Speed", 0f);
-        }
     }
     private void OnCollisionExit(Collision collision)
     {

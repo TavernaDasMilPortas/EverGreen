@@ -17,12 +17,12 @@ public class PlayerController : MonoBehaviour
     }
     public LayerMask groundLayer; // defina "Ground" no Inspector
 
-    public Transform mouseFollower;
 
    public void Move(float h, float v)
     {
         if (GameStateManager.Instance.CurrentState == InputState.House)
         {
+
             // Usa a rotação da câmera (ou transform do objeto com o FirstPersonLook)
             Vector3 forward = transform.forward;
             Vector3 right = transform.right;
@@ -47,19 +47,6 @@ public class PlayerController : MonoBehaviour
             // Modo normal (terceira pessoa, etc.)
             mover.SetMoveInput(h, v);
         }
-    }
-
-
-
-
-    public void Jump()
-    {
-            mover.TriggerJump();
-    }
-
-    public void Attack()
-    {
-        mover.TriggerAttack();
     }
 
     public void Stop()
