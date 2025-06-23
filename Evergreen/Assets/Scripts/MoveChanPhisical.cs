@@ -10,6 +10,7 @@ public class MoveChanPhisical : MonoBehaviour
     public GameObject currentCamera;
     public float jumpspeed = 1;
     public float gravity = 20;
+    public Animator animator;
 
     Vector3 movaxis;
     Vector3 moveInput;
@@ -35,7 +36,6 @@ public class MoveChanPhisical : MonoBehaviour
         jumpbtndown = true;
     }
 
-
     void Start()
     {
         if (SceneManager.GetActiveScene().name.Equals("Land"))
@@ -45,16 +45,24 @@ public class MoveChanPhisical : MonoBehaviour
                 transform.position = PlayerPrefsX.GetVector3("OldPlayerPosition");
             }
         }
-
     }
-
-
 
     void FixedUpdate()
     {
         movaxis = moveInput;
 
-        // Checagem de solo
+        // Animação de movimento
+        if (animator != null)
+        {
+            Vector3 horizontalVel = new Vector3(rdb.linearVelocity.x, 0, rdb.linearVelocity.z);
+            bool isMoving = horizontalVel.magnitude > 0.1f && grounded;
+            animator.SetBool("Andando", isMoving);
+
+            float speed = horizontalVel.magnitude;
+            animator.speed = grounded ? Mathf.Lerp(1f, 1.5f, speed / 5f) : 1f;
+        }
+
+        // Verifica se está no chão
         grounded = false;
         RaycastHit hit;
         float rayLength = 0.6f;
@@ -74,10 +82,10 @@ public class MoveChanPhisical : MonoBehaviour
         if (jumpbtn && grounded)
         {
             rdb.AddForce(Vector3.up * jumpspeed, ForceMode.Impulse);
-            jumpbtn = false; // evita aplicar várias vezes
+            jumpbtn = false;
         }
 
-        // Gravidade manual se estiver no ar
+        // Gravidade manual
         if (!grounded)
         {
             rdb.AddForce(Vector3.down * gravity, ForceMode.Acceleration);
@@ -86,33 +94,30 @@ public class MoveChanPhisical : MonoBehaviour
         jumpbtndown = false;
 
         GroundControl();
-
     }
 
     private void GroundControl()
     {
+        // Direção relativa à câmera
         Vector3 relativedirection = currentCamera.transform.TransformVector(movaxis).normalized;
         relativedirection = new Vector3(relativedirection.x, 0, relativedirection.z);
 
         if (grounded)
         {
-            // Primeiro, detecta o plano inclinado em que o personagem está
+            // Detecta plano inclinado
             RaycastHit hit;
             if (Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, out hit, 1f))
             {
                 Vector3 groundNormal = hit.normal;
 
-                // Projeta a direção do movimento no plano da rampa
+                // Movimento adaptado ao solo inclinado
                 Vector3 moveOnSlope = Vector3.ProjectOnPlane(relativedirection, groundNormal).normalized;
-
-                // Define a velocidade alvo ao longo da rampa
                 Vector3 targetVelocity = moveOnSlope * 5f;
-                targetVelocity.y = rdb.linearVelocity.y; // mantém velocidade vertical atual para evitar saltos bruscos
+                targetVelocity.y = rdb.linearVelocity.y;
 
-                // Aplica suavização na velocidade para movimento mais natural
                 rdb.linearVelocity = Vector3.Lerp(rdb.linearVelocity, targetVelocity, Time.fixedDeltaTime * 10f);
 
-                // Se não está se movendo, desacelera suavemente
+                // Desacelera se não estiver se movendo
                 if (moveInput.magnitude < 0.01f)
                 {
                     Vector3 vel = rdb.linearVelocity;
@@ -123,26 +128,28 @@ public class MoveChanPhisical : MonoBehaviour
             }
             else
             {
-                // fallback caso não detecte chão, apenas movimenta normalmente (sem inclinação)
+                // Movimento plano sem inclinação
                 Vector3 targetVelocity = new Vector3(relativedirection.x * 5, rdb.linearVelocity.y, relativedirection.z * 5);
                 rdb.linearVelocity = Vector3.Lerp(rdb.linearVelocity, targetVelocity, Time.fixedDeltaTime * 5f);
             }
         }
         else
         {
+            // Movimento no ar
             rdb.AddForce(new Vector3(relativedirection.x * 500, 0, relativedirection.z * 500));
         }
 
-        if (!joint && relativedirection.sqrMagnitude > 0.01f)
+        // Rotação suave apenas ao andar para frente
+        if (!joint && relativedirection.sqrMagnitude > 0.01f && moveInput.z > 0f)
         {
-            Quaternion rottogo = Quaternion.LookRotation(relativedirection * 2 + transform.forward);
-            transform.rotation = Quaternion.Lerp(transform.rotation, rottogo, Time.fixedDeltaTime * 5f);
+            Quaternion rottogo = Quaternion.LookRotation(relativedirection.normalized, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rottogo, Time.fixedDeltaTime * 3f);
         }
     }
 
-
     void OnAnimatorIK()
     {
+        // IK opcional aqui
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -157,22 +164,21 @@ public class MoveChanPhisical : MonoBehaviour
             closeThing.transform.position = collision.GetContact(0).point;
         }
     }
+
     public void StopMovement()
     {
-        // Zera o input de movimentação
         moveInput = Vector3.zero;
         movaxis = Vector3.zero;
 
-        // Para imediatamente a movimentação física
         if (rdb != null)
         {
             rdb.linearVelocity = Vector3.zero;
             rdb.angularVelocity = Vector3.zero;
         }
-
     }
+
     private void OnCollisionExit(Collision collision)
     {
-        // Nenhuma ação ao sair da colisão
+        // Nada necessário aqui
     }
 }

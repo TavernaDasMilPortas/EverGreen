@@ -24,4 +24,6 @@ public class RhythmMinigameDifficultyData : ScriptableObject, IDifficultData
     public float piano_maxTimeBetweenNotes = 1.5f;
     public float piano_noteSpeed = 300f;
     public float piano_gameDuration = 30f;
+    public int minSuccessHits = 10;
+    public int MissTolerancePiano = 5;
 }

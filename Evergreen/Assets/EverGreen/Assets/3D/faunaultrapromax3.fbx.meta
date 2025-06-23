@@ -13,7 +13,7 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
-    optimizeGameObjects: 0
+    optimizeGameObjects: 1
     removeConstantScaleCurves: 0
     motionNodeName: 
     animationImportErrors: 
@@ -22,7 +22,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -33,7 +33,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 5
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -80,7 +80,222 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: faunaultrapromax3(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Armature
+      parentName: faunaultrapromax3(Clone)
+      position: {x: -0, y: 1.6512736, z: 0}
+      rotation: {x: -0.7071069, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 19.496042, y: 19.496042, z: 19.496042}
+    - name: espinha
+      parentName: Armature
+      position: {x: 8.418674e-10, y: 0.004606346, z: 0.017105902}
+      rotation: {x: 0.6754837, y: 0.20909747, z: 0.20909743, w: 0.6754838}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+    - name: peito
+      parentName: espinha
+      position: {x: -2.427176e-10, y: 0.009154855, z: -8.575068e-10}
+      rotation: {x: -0, y: -0.00000008940696, z: 0.000000014901159, w: 1}
+      scale: {x: 0.99999964, y: 1.0000001, z: 0.9999998}
+    - name: "pesco\xE7o"
+      parentName: peito
+      position: {x: 0.0000000013737007, y: 0.011726538, z: -7.6834106e-10}
+      rotation: {x: 0.000000059604638, y: 0.000000119209275, z: -0.000000014901165, w: 1}
+      scale: {x: 0.9999999, y: 0.99999994, z: 1.0000001}
+    - name: "cabe\xE7a"
+      parentName: "pesco\xE7o"
+      position: {x: -0.000000001117587, y: 0.0032729958, z: -0.0000000019092112}
+      rotation: {x: 0.06914111, y: 0.0076343897, z: 0.06834294, w: 0.9952339}
+      scale: {x: 1.0000002, y: 1.0000004, z: 0.99999994}
+    - name: "cabe\xE7a_end"
+      parentName: "cabe\xE7a"
+      position: {x: 9.313225e-11, y: 0.03734653, z: -2.7939676e-10}
+      rotation: {x: 0.0000000074505797, y: 0.00000005634501, z: -0.000000047788483, w: 1}
+      scale: {x: 0.9999999, y: 0.9999999, z: 0.99999994}
+    - name: "cabe\xE7a_end_end"
+      parentName: "cabe\xE7a_end"
+      position: {x: -0, y: 0.03734655, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ombro.L
+      parentName: peito
+      position: {x: 0.0000000030035152, y: 0.011726538, z: 3.2596287e-10}
+      rotation: {x: 0.73374516, y: -0.3478559, z: -0.27934593, w: -0.5124259}
+      scale: {x: 1, y: 0.99999994, z: 0.99999976}
+    - name: "bra\xE7o.L"
+      parentName: ombro.L
+      position: {x: 4.6566126e-11, y: 0.008122253, z: 0.0000000034458933}
+      rotation: {x: 0.081864655, y: 0.15187156, z: 0.028143188, w: 0.9846021}
+      scale: {x: 1.0000005, y: 1.0000006, z: 1.0000004}
+    - name: "bra\xE7o.2.L"
+      parentName: "bra\xE7o.L"
+      position: {x: -0, y: 0.01067939, z: 0.000000002235174}
+      rotation: {x: -0.014744932, y: -0.017630586, z: 0.019543542, w: 0.99954486}
+      scale: {x: 1.0000004, y: 1.0000001, z: 0.9999998}
+    - name: mao.L
+      parentName: "bra\xE7o.2.L"
+      position: {x: 3.72529e-10, y: 0.0060480093, z: -0.0000000015832483}
+      rotation: {x: -0.05379435, y: 0.001739333, z: -0.06900343, w: 0.9961634}
+      scale: {x: 0.9999999, y: 1.0000004, z: 1.0000002}
+    - name: mao.L_end
+      parentName: mao.L
+      position: {x: -0, y: 0.004710819, z: -0.0000000010244547}
+      rotation: {x: 0.00000028312195, y: -0.00000047324588, z: 0.00000001542867, w: 1}
+      scale: {x: 1.0000001, y: 1.0000004, z: 1.0000001}
+    - name: mao.L_end_end
+      parentName: mao.L_end
+      position: {x: -0, y: 0.004710818, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ombro.R
+      parentName: peito
+      position: {x: 7.9162416e-10, y: 0.011726531, z: -0.0000000012107193}
+      rotation: {x: 0.44760126, y: 0.5765243, z: 0.64503443, w: -0.22628194}
+      scale: {x: 1.0000002, y: 0.99999994, z: 0.99999976}
+    - name: "bra\xE7o.R"
+      parentName: ombro.R
+      position: {x: -4.6566126e-11, y: 0.008122249, z: 0.0000000017695128}
+      rotation: {x: 0.08186462, y: -0.15187158, z: -0.028142681, w: 0.9846021}
+      scale: {x: 0.9999998, y: 0.99999994, z: 1.0000006}
+    - name: "bra\xE7o.R.001"
+      parentName: "bra\xE7o.R"
+      position: {x: -5.47152e-10, y: 0.010679396, z: 0.0000000012107193}
+      rotation: {x: -0.014745021, y: 0.017630363, z: -0.019543387, w: 0.99954486}
+      scale: {x: 1.0000001, y: 0.99999994, z: 1.0000007}
+    - name: mao.R
+      parentName: "bra\xE7o.R.001"
+      position: {x: 0.0000000013969838, y: 0.0060480116, z: 1.862645e-10}
+      rotation: {x: -0.053795196, y: -0.0017384152, z: 0.06900413, w: 0.99616337}
+      scale: {x: 0.9999998, y: 1, z: 1.0000002}
+    - name: mao.R_end
+      parentName: mao.R
+      position: {x: 0.0000000016763806, y: 0.004710812, z: 9.313225e-10}
+      rotation: {x: -0.00000016391273, y: 0.000000033305774, z: 0.00000006547234, w: 1}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: mao.R_end_end
+      parentName: mao.R_end
+      position: {x: -0, y: 0.0047108172, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: pernaCima.L
+      parentName: espinha
+      position: {x: -0.006293326, y: -0.00092613924, z: -0.0022700175}
+      rotation: {x: 0.0018270311, y: -0.04697833, z: 0.9986895, w: -0.020224346}
+      scale: {x: 1.0000082, y: 0.99999493, z: 1.0000767}
+    - name: pernabaixo.L
+      parentName: pernaCima.L
+      position: {x: 0.000000001466833, y: 0.006623018, z: -5.1222737e-10}
+      rotation: {x: 0.035530694, y: -0.9514222, z: 0.0836241, w: 0.29417756}
+      scale: {x: 0.9999807, y: 0.99999726, z: 1.0000187}
+    - name: pernabaixo.L.001
+      parentName: pernabaixo.L
+      position: {x: 3.72529e-10, y: 0.0077019953, z: -1.862645e-10}
+      rotation: {x: -0.7452167, y: -0.00009401141, z: 0.0012774485, w: 0.66682124}
+      scale: {x: 1.0000001, y: 0.9999977, z: 1.0000021}
+    - name: pernabaixo.L.001_end
+      parentName: pernabaixo.L.001
+      position: {x: -7.45058e-10, y: 0.008043414, z: 8.032657e-10}
+      rotation: {x: 0.00000008940694, y: 0.00000082020387, z: -0.00000011423249, w: 1}
+      scale: {x: 0.99999994, y: 1.0000004, z: 1}
+    - name: pernabaixo.L.001_end_end
+      parentName: pernabaixo.L.001_end
+      position: {x: -0, y: 0.008043478, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: pernaCima.R
+      parentName: espinha
+      position: {x: 0.00439221, y: -0.00092613953, z: 0.0050465316}
+      rotation: {x: -0.5657254, y: -0.05018681, z: 0.82300615, w: -0.0098514855}
+      scale: {x: 1.0000422, y: 1.0000014, z: 1.0000376}
+    - name: pernabaixo.R
+      parentName: pernaCima.R
+      position: {x: 1.13504935e-10, y: 0.006623013, z: 0.000000001490116}
+      rotation: {x: -0.035523966, y: -0.9514213, z: 0.08362813, w: -0.29418004}
+      scale: {x: 1.0000253, y: 0.9999951, z: 0.9999724}
+    - name: pernabaixo.R.001
+      parentName: pernabaixo.R
+      position: {x: -2.3283063e-10, y: 0.007702, z: 1.862645e-10}
+      rotation: {x: -0.7452161, y: 0.000119611606, z: -0.0012525636, w: 0.666822}
+      scale: {x: 1, y: 0.9999987, z: 1.0000015}
+    - name: pernabaixo.R.001_end
+      parentName: pernabaixo.R.001
+      position: {x: 0.0000000010419171, y: 0.00804344, z: 4.1909515e-10}
+      rotation: {x: -0, y: 0.00000089760556, z: 0.00000003667082, w: 1}
+      scale: {x: 0.99999994, y: 1.0000001, z: 0.9999998}
+    - name: pernabaixo.R.001_end_end
+      parentName: pernabaixo.R.001_end
+      position: {x: -0, y: 0.008043652, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: IKLegTarget.L
+      parentName: Armature
+      position: {x: -0.0146367485, y: -0.04929362, z: 0.0066701365}
+      rotation: {x: 0.000000029802322, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 0.9999999, z: 0.9999999}
+    - name: IKLegTarget.L_end
+      parentName: IKLegTarget.L
+      position: {x: -0, y: 0.0067620305, z: 0}
+      rotation: {x: -0.000000059604645, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: IKLegTarget.L_end_end
+      parentName: IKLegTarget.L_end
+      position: {x: -0, y: 0.0067620287, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: IKLegTarget.R
+      parentName: Armature
+      position: {x: 0.015826594, y: 0.030974872, z: 0.0117396}
+      rotation: {x: 0.000000029802322, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 0.9999999, z: 0.9999999}
+    - name: IKLegTarget.R_end
+      parentName: IKLegTarget.R
+      position: {x: -0, y: 0.0067620305, z: 0}
+      rotation: {x: -0.000000059604645, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: IKLegTarget.R_end_end
+      parentName: IKLegTarget.R_end
+      position: {x: -0, y: 0.0067620287, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: IKLegPole.L
+      parentName: Armature
+      position: {x: -0.0066067474, y: -0.003382033, z: 0.0095914}
+      rotation: {x: 0.30742472, y: -0.000000029802322, z: 0.9515724, w: 0.000000029802322}
+      scale: {x: 1.0000006, y: 1.0000005, z: 1.0000004}
+    - name: IKLegPole.L_end
+      parentName: IKLegPole.L
+      position: {x: -2.047086e-10, y: 0.004564641, z: -9.3420376e-11}
+      rotation: {x: 0.00000009882016, y: 1.3322676e-15, z: 0.000000015052688, w: 1}
+      scale: {x: 1.0000001, y: 0.9999999, z: 1.0000001}
+    - name: IKLegPole.L_end_end
+      parentName: IKLegPole.L_end
+      position: {x: -0, y: 0.004564641, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: IKLegPole.R
+      parentName: Armature
+      position: {x: 0.0066067474, y: -0.003382033, z: 0.0095914}
+      rotation: {x: -0.30742472, y: -0.000000029802322, z: 0.9515724, w: -0.000000029802322}
+      scale: {x: 1.0000006, y: 1.0000005, z: 1.0000004}
+    - name: IKLegPole.R_end
+      parentName: IKLegPole.R
+      position: {x: 5.68016e-10, y: 0.004564641, z: -1.6128758e-10}
+      rotation: {x: 0.00000009882016, y: -1.3322676e-15, z: -0.000000015052688, w: 1}
+      scale: {x: 1.0000001, y: 0.9999999, z: 1.0000001}
+    - name: IKLegPole.R_end_end
+      parentName: IKLegPole.R_end
+      position: {x: -0, y: 0.004564641, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder
+      parentName: faunaultrapromax3(Clone)
+      position: {x: -0, y: 1.6512736, z: -2.7705541e-14}
+      rotation: {x: -0.00000008146034, y: 0, z: -0, w: 1}
+      scale: {x: 0.19496042, y: 0.19496042, z: 0.19496042}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -88,16 +303,16 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
-    rootMotionBoneName: 
+    globalScale: 5
+    rootMotionBoneName: Armature
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

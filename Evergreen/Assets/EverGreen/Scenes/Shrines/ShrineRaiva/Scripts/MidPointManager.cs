@@ -220,9 +220,9 @@ public class MidpointManager : MonoBehaviour
         if (from.x != to.x) // Ligação vertical (linha diferente)
             rot = Quaternion.Euler(-90f, 90f, 0f); // Apontando no eixo Z
         else // Ligação horizontal (coluna diferente)
-            rot = Quaternion.Euler(-90f, 0f, 0f); // Apontando no eixo X
+            rot = Quaternion.Euler(-90f, 0f, 00f); // Apontando no eixo X
 
-        GameObject bridge = Instantiate(connectionPrefab, midpointPos + new Vector3(0f, 5f,0f), rot, transform);
+        GameObject bridge = Instantiate(connectionPrefab, midpointPos + new Vector3(0f, 10f,0f), rot, transform);
         bridge.name = $"Bridge_{from}_to_{to}";
     }
     

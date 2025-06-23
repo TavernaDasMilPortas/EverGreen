@@ -17,7 +17,7 @@ MonoBehaviour:
   classic_minTimeBetweenNotes: 1
   classic_maxTimeBetweenNotes: 3
   classic_hitWindow: 3
-  classic_gameDuration: 5
+  classic_gameDuration: 10
   MissTolerance: 7
   sequence_length: 5
   sequence_displayInterval: 0.7
@@ -25,3 +25,5 @@ MonoBehaviour:
   piano_maxTimeBetweenNotes: 1.5
   piano_noteSpeed: 300
   piano_gameDuration: 30
+  minSuccessHits: 10
+  MissTolerancePiano: 5

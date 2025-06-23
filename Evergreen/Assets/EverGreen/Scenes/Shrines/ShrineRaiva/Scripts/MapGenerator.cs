@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 public class MapGenerator : MonoBehaviour
 {
     public static MapGenerator Instance;
@@ -61,7 +62,7 @@ public class MapGenerator : MonoBehaviour
         Vector3 forward = startPoint.forward;
         Vector3 right = startPoint.right;
 
-        Quaternion horizontalRotation = Quaternion.Euler(0f, startPoint.eulerAngles.y, 0f);
+        Quaternion horizontalRotation = Quaternion.Euler(-90f, startPoint.eulerAngles.y, 0f);
 
         for (int row = 0; row < rows; row++)
         {
@@ -131,7 +132,7 @@ public class MapGenerator : MonoBehaviour
     void MovePlayerToSpawn(Vector2Int originCoords, Vector3 originWorldPos, Vector3 forward, Vector3 right)
     {
         Vector3 offset = Vector3.zero; // já está na origem
-        Vector3 finalPosition = originWorldPos + offset;
+        Vector3 finalPosition = originWorldPos + offset + new Vector3(0f, 5f, 0f);
 
         playerTransform.position = finalPosition;
         playerTransform.rotation = Quaternion.Euler(0f, -180f, 0f);
@@ -159,8 +160,12 @@ public class MapGenerator : MonoBehaviour
     public void NextPhase()
     {
         currentPhaseIndex++;
+
         if (currentPhaseIndex >= mapDataList.Count)
-            currentPhaseIndex = 0;
+        {
+            SceneManager.LoadScene("Land");
+            return;
+        }
 
         GenerateMap(mapDataList[currentPhaseIndex].To2DArray());
         ShrineProgressionManager.Instance.AdvancePhase();

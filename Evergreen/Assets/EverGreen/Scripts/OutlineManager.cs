@@ -28,18 +28,41 @@ public class OutlineManager : MonoBehaviour
     {
         allOutlines.Clear();
         Outline[] found = FindObjectsOfType<Outline>(true);
-        allOutlines.AddRange(found);
+
+        foreach (Outline outline in found)
+        {
+            // Garante que o mesh é legível
+            TryMakeMeshReadable(outline);
+            allOutlines.Add(outline);
+        }
+
         Debug.Log($"[OutlineManager] Encontrados {allOutlines.Count} objetos com Outline.");
+    }
+
+    private void TryMakeMeshReadable(Outline outline)
+    {
+        MeshFilter mf = outline.GetComponent<MeshFilter>();
+        if (mf != null && mf.sharedMesh != null && !mf.sharedMesh.isReadable)
+        {
+            Mesh newMesh = Instantiate(mf.sharedMesh);
+            mf.mesh = newMesh; // Isso torna a cópia legível
+        }
+
+        // Se for um SkinnedMeshRenderer
+        SkinnedMeshRenderer smr = outline.GetComponent<SkinnedMeshRenderer>();
+        if (smr != null && smr.sharedMesh != null && !smr.sharedMesh.isReadable)
+        {
+            Mesh newMesh = Instantiate(smr.sharedMesh);
+            smr.sharedMesh = newMesh;
+        }
     }
 
     public void Highlight(IInteractable target)
     {
         Outline newOutline = (target as Component)?.GetComponent<Outline>();
 
-        // Se for o mesmo, não faz nada
         if (currentActiveOutline == newOutline) return;
 
-        // Desativa o atual
         if (currentActiveOutline != null)
         {
             currentActiveOutline.enabled = false;
@@ -48,7 +71,6 @@ public class OutlineManager : MonoBehaviour
 
         currentActiveOutline = newOutline;
 
-        // Ativa novo se existir
         if (currentActiveOutline != null)
         {
             currentActiveOutline.enabled = true;
@@ -57,7 +79,6 @@ public class OutlineManager : MonoBehaviour
             currentActiveOutline.OutlineWidth = defaultWidth;
         }
     }
-
 
     public void DisableAllOutlines()
     {

@@ -1,14 +1,24 @@
 using System.Collections.Generic;
 using UnityEngine;
-
 public class PianoMode : IRhythmGameMode
 {
+    public enum NoteAccuracy
+    {
+        Perfect,
+        Good,
+        Okay,
+        Bad,
+        Miss
+    }
     private IRhythmGameController controller;
     private float gameTimer;
     private float nextNoteTime;
     private List<RhythmNote> activeNotes = new List<RhythmNote>();
 
     public bool IsModeFinished { get; private set; } = false;
+
+    private float successfulHits = 0;
+    private float missedHits = 0;
 
     public PianoMode(IRhythmGameController controller)
     {
@@ -24,16 +34,21 @@ public class PianoMode : IRhythmGameMode
     {
         gameTimer = controller.difficultyData.piano_gameDuration;
         nextNoteTime = Random.Range(controller.difficultyData.piano_minTimeBetweenNotes, controller.difficultyData.piano_maxTimeBetweenNotes);
+        successfulHits = 0;
+        missedHits = 0;
+        IsModeFinished = false;
     }
 
     public void UpdateMode()
     {
+        if (IsModeFinished) return;
+
         gameTimer -= Time.deltaTime;
         controller.timerText.text = Mathf.CeilToInt(gameTimer).ToString();
 
         if (gameTimer <= 0)
         {
-            IsModeFinished = true;
+            EndMode();
             return;
         }
 
@@ -56,6 +71,7 @@ public class PianoMode : IRhythmGameMode
             if (note.IsPastHitZone())
             {
                 controller.feedbackText.text = "Errou!";
+                missedHits++;
                 note.DestroyNote();
                 activeNotes.RemoveAt(i);
             }
@@ -64,9 +80,6 @@ public class PianoMode : IRhythmGameMode
 
     public void HandleInput(KeyCode key)
     {
-        string pressedKey = key.ToString().ToLower();
-        Debug.Log($"Tecla pressionada: {pressedKey}");
-
         RhythmNote bestCandidate = null;
         float closestDistance = float.MaxValue;
 
@@ -75,7 +88,6 @@ public class PianoMode : IRhythmGameMode
             if (note.MatchesKey(key))
             {
                 float distance = note.DistanceToHitArea();
-                Debug.Log($"Nota {note.key} corresponde. Distância: {distance}");
 
                 if (distance < closestDistance)
                 {
@@ -87,33 +99,79 @@ public class PianoMode : IRhythmGameMode
 
         if (bestCandidate != null)
         {
-            Debug.Log($"Melhor candidata: {bestCandidate.key} com distância: {closestDistance}");
+            NoteAccuracy accuracy = EvaluateAccuracy(closestDistance);
+            controller.feedbackText.text = GetAccuracyText(accuracy);
 
-            string accuracy = EvaluateAccuracy(closestDistance);
-            Debug.Log($"Nota {bestCandidate.key} acertada com precisão: {accuracy} (distância: {closestDistance})");
+            switch (accuracy)
+            {
+                case NoteAccuracy.Perfect:
+                    successfulHits+=1.5f;
+                    break;
+                case NoteAccuracy.Good:
+                    successfulHits++;
+                    break;
+                case NoteAccuracy.Okay:
+                    successfulHits+=0.5f;
+                    break;
+                case NoteAccuracy.Bad:
+                    missedHits+= 0.5f;
+                    break;
+                case NoteAccuracy.Miss:
+                    missedHits++;
+                    break;
+            }
 
-            controller.feedbackText.text = accuracy;
             activeNotes.Remove(bestCandidate);
             bestCandidate.OnHit();
         }
         else
         {
-            Debug.LogWarning("Nenhuma nota correspondente encontrada para a tecla pressionada.");
             controller.feedbackText.text = "Errou!";
+            missedHits++;
+        }
+    }
+
+
+    private void EndMode()
+    {
+        if (IsModeFinished) return;
+
+        IsModeFinished = true;
+
+        Debug.Log("[PianoMode] EndMode chamado.");
+
+        foreach (var note in activeNotes)
+        {
+            note.DestroyNote();
+        }
+
+        activeNotes.Clear();
+
+        int missTolerance = controller.difficultyData.MissTolerancePiano;
+        int minHitsToWin = controller.difficultyData.minSuccessHits;
+
+        // Critério: Erros excederam a tolerância ou acertos abaixo do mínimo
+        if (missedHits > missTolerance || successfulHits < minHitsToWin)
+        {
+            controller.gameResult = false;
+            Debug.Log($"[PianoMode] Derrota - Erros: {missedHits}, Acertos: {successfulHits}");
+        }
+        else
+        {
+            controller.gameResult = true;
+            Debug.Log($"[PianoMode] Vitória - Erros: {missedHits}, Acertos: {successfulHits}");
         }
     }
 
     private void SpawnNote()
     {
         char randomKey = controller.difficultyData.allowedKeys[Random.Range(0, controller.difficultyData.allowedKeys.Length)];
-        Debug.Log($"Spawnando nova nota: {randomKey}");
-
         RectTransform areaRect = controller.noteArea.GetComponent<RectTransform>();
         float areaWidth = areaRect.rect.width;
         int keyIndex = controller.difficultyData.allowedKeys.IndexOf(randomKey);
         float slotWidth = areaWidth / controller.difficultyData.allowedKeys.Length;
         float x = -areaWidth / 2f + slotWidth * (keyIndex + 0.5f);
-        Vector2 spawnPos = new Vector2(x, areaRect.rect.height / 2f + 50f); // Ajuste de 50f como offset superior
+        Vector2 spawnPos = new Vector2(x, areaRect.rect.height / 2f + 50f);
         Transform parentTransform = GameObject.Find("MiniGamePanel").transform;
 
         GameObject noteGO = RhythmNote.SpawnNote(
@@ -127,21 +185,32 @@ public class PianoMode : IRhythmGameMode
         );
 
         RhythmNote rhythmNote = noteGO.GetComponent<RhythmNote>();
-        if (rhythmNote == null)
+        if (rhythmNote != null)
         {
-            Debug.LogError("RhythmNote component não encontrado no noteButtonPrefab!");
-            return;
+            activeNotes.Add(rhythmNote);
         }
-
-        activeNotes.Add(rhythmNote);
     }
 
-    private string EvaluateAccuracy(float distance)
+    private NoteAccuracy EvaluateAccuracy(float distance)
     {
-        if (distance <= 10f) return "Perfeito!";
-        if (distance <= 20f) return "Bom!";
-        if (distance <= 30f) return "Ok!";
-        if (distance <= 40f) return "Ruim!";
-        return "Errou!";
+        if (distance <= 10f) return NoteAccuracy.Perfect;
+        if (distance <= 20f) return NoteAccuracy.Good;
+        if (distance <= 30f) return NoteAccuracy.Okay;
+        if (distance <= 40f) return NoteAccuracy.Bad;
+        return NoteAccuracy.Miss;
     }
+
+    private string GetAccuracyText(NoteAccuracy accuracy)
+    {
+        switch (accuracy)
+        {
+            case NoteAccuracy.Perfect: return "Perfeito!";
+            case NoteAccuracy.Good: return "Bom!";
+            case NoteAccuracy.Okay: return "Ok!";
+            case NoteAccuracy.Bad: return "Ruim!";
+            case NoteAccuracy.Miss: return "Errou!";
+            default: return "";
+        }
+    }
+
 }

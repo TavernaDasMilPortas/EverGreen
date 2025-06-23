@@ -2,9 +2,9 @@
 using UnityEngine;
 using System.IO;
 
-public class InteractableScriptCreator : EditorWindow
+public class InteractableScriptCreator : MonoBehaviour
 {
-    private string scriptName = "Interactable";
+   /* private string scriptName = "Interactable";
 
     private static InteractableScriptCreator windowInstance;
 
@@ -97,5 +97,5 @@ public class {scriptName} : MonoBehaviour, IInteractable
         {
             Close();
         }
-    }
+    }*/
 }

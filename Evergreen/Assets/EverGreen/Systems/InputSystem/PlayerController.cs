@@ -1,50 +1,77 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
 
     private MoveChanPhisical mover;
- // <- Novo modo
+    public GameObject Fauna;
 
     [Header("Restrição de área especial")]
     public float mouseSensitivity = 100f;
+
+    private Coroutine disableFaunaCoroutine;
+    private Coroutine ableFaunaCoroutine;
 
     private void Awake()
     {
         Instance = this;
         mover = GetComponent<MoveChanPhisical>();
     }
-    public LayerMask groundLayer; // defina "Ground" no Inspector
 
-
-   public void Move(float h, float v)
+    private void Update()
     {
         if (GameStateManager.Instance.CurrentState == InputState.House)
         {
-
-            // Usa a rotação da câmera (ou transform do objeto com o FirstPersonLook)
-            Vector3 forward = transform.forward;
-            Vector3 right = transform.right;
-
-            // Remove qualquer inclinação vertical
-            forward.y = 0;
-            right.y = 0;
-            forward.Normalize();
-            right.Normalize();
-
-            // Direção no mundo com base no input
-            Vector3 worldDirection = forward * v + right * h;
-
-            // Converte a direção de volta para componentes locais
-            float localH = Vector3.Dot(worldDirection, right);
-            float localV = Vector3.Dot(worldDirection, forward);
-
-            mover.SetMoveInput(localH, localV);
+            if (disableFaunaCoroutine == null)
+                disableFaunaCoroutine = StartCoroutine(DelayedDisableFauna());
         }
         else
         {
-            // Modo normal (terceira pessoa, etc.)
+
+            // Se sair do modo House antes de completar o delay
+            if (disableFaunaCoroutine != null)
+            {
+                StopCoroutine(disableFaunaCoroutine);
+                disableFaunaCoroutine = null;
+            }
+            ableFaunaCoroutine = StartCoroutine(DelayedAbleFauna());
+        }
+    }
+
+    private IEnumerator DelayedDisableFauna()
+    {
+        yield return new WaitForSeconds(1.8f);
+        Fauna.SetActive(false);
+        disableFaunaCoroutine = null; // Libera para rodar novamente se necessário
+    }
+
+    private IEnumerator DelayedAbleFauna()
+    {
+        yield return new WaitForSeconds(0.3f);
+        Fauna.SetActive(true);
+        disableFaunaCoroutine = null; // Libera para rodar novamente se necessário
+    }
+
+
+    public void Move(float h, float v)
+    {
+        if (GameStateManager.Instance.CurrentState == InputState.House)
+        {
+            h = 0f;
+
+            Vector3 forward = mover.currentCamera.transform.forward;
+            forward.y = 0;
+            forward.Normalize();
+
+            Vector3 worldDirection = forward * v;
+            float localV = Vector3.Dot(worldDirection, forward / 2);
+
+            mover.SetMoveInput(0f, localV);
+        }
+        else
+        {
             mover.SetMoveInput(h, v);
         }
     }
@@ -59,7 +86,4 @@ public class PlayerController : MonoBehaviour
         Stop();
         InteractionHandler.Instance.nearestInteractable.Interact();
     }
-
-    // Chamar ao entrar/sair da área especial
-
 }

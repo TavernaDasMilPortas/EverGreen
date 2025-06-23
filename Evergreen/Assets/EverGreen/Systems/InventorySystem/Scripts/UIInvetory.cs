@@ -140,7 +140,7 @@ public class UIInventory : UIMenuTab
     {
         Debug.Log("UIInventory.Cancel chamado");
         Toggle(false);
-        GameStateManager.Instance.SetState(InputState.Gameplay);
+        GameStateManager.Instance.RestorePreviousState();
     }
 
     public void UpdateUI()
